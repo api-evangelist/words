@@ -1,0 +1,32 @@
+aid: words
+name: Words
+description: "Definitions and synonyms for more than 150,000 words"
+url: https://www.wordsapi.com/docs/
+specificationVersion: '0.20'
+created: '2026-05-28'
+modified: '2026-05-28'
+x-source: public-apis/public-apis
+x-category: "Dictionaries"
+x-tier: 3
+x-tier-reason: bulk-registered-from-public-apis
+tags:
+  - Dictionaries
+  - Public APIs
+apis:
+  - name: Words
+    description: "Definitions and synonyms for more than 150,000 words"
+    humanURL: https://www.wordsapi.com/docs/
+    baseURL: https://www.wordsapi.com/docs/
+    tags:
+      - Dictionaries
+    properties:
+      - type: Documentation
+        url: https://www.wordsapi.com/docs/
+common:
+  - type: Website
+    url: https://www.wordsapi.com/docs/
+  - type: PublicAPIsListing
+    url: https://github.com/public-apis/public-apis
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
