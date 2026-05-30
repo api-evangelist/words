@@ -1,0 +1,79 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Words API — Definitions
+  description: 'Words API Definitions surface — 1 operations. Lead operation: Get Word Definitions. Self-contained Naftiko capability covering one Words API business surface.'
+  tags:
+  - Words API
+  - Definitions
+  created: '2026-05-30'
+  modified: '2026-05-30'
+binds:
+- namespace: env
+  keys:
+    WORDS_API_KEY: WORDS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: words-definitions
+    baseUri: https://wordsapiv1.p.rapidapi.com
+    description: Words API Definitions business capability. Self-contained, no shared references.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.WORDS_API_KEY}}'
+      placement: header
+    resources:
+    - name: word-definitions
+      path: /words/{word}/definitions
+      operations:
+      - name: getDefinitions
+        method: GET
+        description: Get Word Definitions
+        inputParameters:
+        - name: word
+          in: path
+          type: string
+          required: true
+          description: The English word to look up.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: words-definitions-rest
+    port: 8080
+    description: REST adapter for Words API — Definitions. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/words/{word}/definitions
+      name: word-definitions
+      description: REST surface for /words/{word}/definitions.
+      operations:
+      - method: GET
+        name: getDefinitions
+        description: Get Word Definitions
+        call: words-definitions.getDefinitions
+        with:
+          word: rest.word
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: words-definitions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Words API — Definitions. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: get-definitions
+      description: Get Word Definitions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: words-definitions.getDefinitions
+      with:
+        word: tools.word
+      outputParameters:
+      - type: object
+        mapping: $.

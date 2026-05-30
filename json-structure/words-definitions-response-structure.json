@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-structure/words-definitions-response-structure.json",
+  "name": "DefinitionsResponse",
+  "description": "Response from GET /words/{word}/definitions.",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string",
+      "example": "apple"
+    },
+    "definitions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DefinitionEntry"
+      }
+    }
+  }
+}

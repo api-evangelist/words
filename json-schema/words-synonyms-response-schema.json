@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-schema/words-synonyms-response-schema.json",
+  "title": "SynonymsResponse",
+  "description": "Response from GET /words/{word}/synonyms.",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string",
+      "example": "happy"
+    },
+    "synonyms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "glad",
+        "joyful",
+        "pleased"
+      ]
+    }
+  }
+}

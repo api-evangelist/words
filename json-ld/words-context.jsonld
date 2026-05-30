@@ -1,0 +1,264 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "words": "https://www.wordsapi.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Pronunciation": "words:Pronunciation",
+    "Syllables": "words:Syllables",
+    "Frequency": "words:Frequency",
+    "Result": "words:Result",
+    "WordEntry": "words:WordEntry",
+    "DefinitionEntry": "words:DefinitionEntry",
+    "DefinitionsResponse": "words:DefinitionsResponse",
+    "SynonymsResponse": "words:SynonymsResponse",
+    "AntonymsResponse": "words:AntonymsResponse",
+    "ExamplesResponse": "words:ExamplesResponse",
+    "RhymesResponse": "words:RhymesResponse",
+    "FrequencyResponse": "words:FrequencyResponse",
+    "SyllablesResponse": "words:SyllablesResponse",
+    "PronunciationResponse": "words:PronunciationResponse",
+    "HasTypesResponse": "words:HasTypesResponse",
+    "TypeOfResponse": "words:TypeOfResponse",
+    "PartOfResponse": "words:PartOfResponse",
+    "HasPartsResponse": "words:HasPartsResponse",
+    "InstancesResponse": "words:InstancesResponse",
+    "InstanceOfResponse": "words:InstanceOfResponse",
+    "SimilarToResponse": "words:SimilarToResponse",
+    "AlsoResponse": "words:AlsoResponse",
+    "EntailsResponse": "words:EntailsResponse",
+    "MemberOfResponse": "words:MemberOfResponse",
+    "HasMembersResponse": "words:HasMembersResponse",
+    "SubstanceOfResponse": "words:SubstanceOfResponse",
+    "HasSubstancesResponse": "words:HasSubstancesResponse",
+    "InCategoryResponse": "words:InCategoryResponse",
+    "HasCategoriesResponse": "words:HasCategoriesResponse",
+    "UsageOfResponse": "words:UsageOfResponse",
+    "HasUsagesResponse": "words:HasUsagesResponse",
+    "InRegionResponse": "words:InRegionResponse",
+    "RegionOfResponse": "words:RegionOfResponse",
+    "PertainsToResponse": "words:PertainsToResponse",
+    "SearchResultsMeta": "words:SearchResultsMeta",
+    "SearchResponse": "words:SearchResponse",
+    "all": {
+      "@id": "words:all",
+      "@type": "xsd:string"
+    },
+    "noun": {
+      "@id": "words:noun",
+      "@type": "xsd:string"
+    },
+    "verb": {
+      "@id": "words:verb",
+      "@type": "xsd:string"
+    },
+    "adjective": {
+      "@id": "words:adjective",
+      "@type": "xsd:string"
+    },
+    "adverb": {
+      "@id": "words:adverb",
+      "@type": "xsd:string"
+    },
+    "count": {
+      "@id": "words:count",
+      "@type": "xsd:integer"
+    },
+    "list": {
+      "@id": "words:list",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "zipf": {
+      "@id": "words:zipf",
+      "@type": "xsd:double"
+    },
+    "perMillion": {
+      "@id": "words:perMillion",
+      "@type": "xsd:double"
+    },
+    "diversity": {
+      "@id": "words:diversity",
+      "@type": "xsd:double"
+    },
+    "definition": {
+      "@id": "words:definition",
+      "@type": "xsd:string"
+    },
+    "partOfSpeech": {
+      "@id": "words:partOfSpeech",
+      "@type": "xsd:string"
+    },
+    "synonyms": {
+      "@id": "words:synonyms",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "antonyms": {
+      "@id": "words:antonyms",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "examples": {
+      "@id": "words:examples",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "typeOf": {
+      "@id": "words:typeOf",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "hasTypes": {
+      "@id": "words:hasTypes",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "partOf": {
+      "@id": "words:partOf",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "hasParts": {
+      "@id": "words:hasParts",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "instanceOf": {
+      "@id": "words:instanceOf",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "hasInstances": {
+      "@id": "words:hasInstances",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "similarTo": {
+      "@id": "words:similarTo",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "also": {
+      "@id": "words:also",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "entails": {
+      "@id": "words:entails",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "memberOf": {
+      "@id": "words:memberOf",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "hasMembers": {
+      "@id": "words:hasMembers",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "substanceOf": {
+      "@id": "words:substanceOf",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "hasSubstances": {
+      "@id": "words:hasSubstances",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "inCategory": {
+      "@id": "words:inCategory",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "hasCategories": {
+      "@id": "words:hasCategories",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "usageOf": {
+      "@id": "words:usageOf",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "hasUsages": {
+      "@id": "words:hasUsages",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "inRegion": {
+      "@id": "words:inRegion",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "regionOf": {
+      "@id": "words:regionOf",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "pertainsTo": {
+      "@id": "words:pertainsTo",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "word": {
+      "@id": "words:word",
+      "@type": "xsd:string"
+    },
+    "results": {
+      "@id": "words:results",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "syllables": {
+      "@id": "words:syllables",
+      "@type": "xsd:string"
+    },
+    "pronunciation": {
+      "@id": "words:pronunciation",
+      "@type": "xsd:string"
+    },
+    "frequency": {
+      "@id": "words:frequency",
+      "@type": "xsd:double"
+    },
+    "definitions": {
+      "@id": "words:definitions",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "rhymes": {
+      "@id": "words:rhymes",
+      "@type": "@id"
+    },
+    "numSyllables": {
+      "@id": "words:numSyllables",
+      "@type": "xsd:integer"
+    },
+    "instances": {
+      "@id": "words:instances",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "currentPage": {
+      "@id": "words:currentPage",
+      "@type": "xsd:integer"
+    },
+    "limit": {
+      "@id": "words:limit",
+      "@type": "xsd:integer"
+    },
+    "total": {
+      "@id": "words:total",
+      "@type": "xsd:integer"
+    },
+    "query": {
+      "@id": "words:query",
+      "@type": "@id"
+    }
+  }
+}

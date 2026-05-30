@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-schema/words-frequency-schema.json",
+  "title": "Frequency",
+  "description": "Corpus-derived frequency information for a word.",
+  "type": "object",
+  "properties": {
+    "zipf": {
+      "type": "number",
+      "format": "double",
+      "description": "Zipf-scale frequency score (typically 1\u20137).",
+      "example": 4.83
+    },
+    "perMillion": {
+      "type": "number",
+      "format": "double",
+      "description": "Average number of occurrences per million corpus tokens.",
+      "example": 67.61
+    },
+    "diversity": {
+      "type": "number",
+      "format": "double",
+      "description": "Likelihood (0\u20131) that the word appears in a randomly chosen document.",
+      "example": 0.17
+    }
+  }
+}

@@ -1,0 +1,79 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Words API — Word
+  description: 'Words API Word surface — 1 operations. Lead operation: Get Word Entry. Self-contained Naftiko capability covering one Words API business surface.'
+  tags:
+  - Words API
+  - Word
+  created: '2026-05-30'
+  modified: '2026-05-30'
+binds:
+- namespace: env
+  keys:
+    WORDS_API_KEY: WORDS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: words-word
+    baseUri: https://wordsapiv1.p.rapidapi.com
+    description: Words API Word business capability. Self-contained, no shared references.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.WORDS_API_KEY}}'
+      placement: header
+    resources:
+    - name: word
+      path: /words/{word}
+      operations:
+      - name: getWord
+        method: GET
+        description: Get Word Entry
+        inputParameters:
+        - name: word
+          in: path
+          type: string
+          required: true
+          description: The English word to look up.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: words-word-rest
+    port: 8080
+    description: REST adapter for Words API — Word. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/words/{word}
+      name: word
+      description: REST surface for /words/{word}.
+      operations:
+      - method: GET
+        name: getWord
+        description: Get Word Entry
+        call: words-word.getWord
+        with:
+          word: rest.word
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: words-word-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Words API — Word. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: get-word
+      description: Get Word Entry
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: words-word.getWord
+      with:
+        word: tools.word
+      outputParameters:
+      - type: object
+        mapping: $.

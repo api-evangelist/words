@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-schema/words-search-results-meta-schema.json",
+  "title": "SearchResultsMeta",
+  "description": "Pagination and totals metadata for /words search.",
+  "type": "object",
+  "properties": {
+    "currentPage": {
+      "type": "integer",
+      "example": 1
+    },
+    "limit": {
+      "type": "integer",
+      "example": 100
+    },
+    "total": {
+      "type": "integer",
+      "example": 12345
+    }
+  }
+}

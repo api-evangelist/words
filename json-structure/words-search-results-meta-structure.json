@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-structure/words-search-results-meta-structure.json",
+  "name": "SearchResultsMeta",
+  "description": "Pagination and totals metadata for /words search.",
+  "type": "object",
+  "properties": {
+    "currentPage": {
+      "type": "int32",
+      "example": 1
+    },
+    "limit": {
+      "type": "int32",
+      "example": 100
+    },
+    "total": {
+      "type": "int32",
+      "example": 12345
+    }
+  }
+}

@@ -1,0 +1,499 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Words API — Hierarchy
+  description: 'Words API Hierarchy surface — 11 operations. Lead operation: Get Word Has Types. Self-contained Naftiko capability covering one Words API business surface.'
+  tags:
+  - Words API
+  - Hierarchy
+  created: '2026-05-30'
+  modified: '2026-05-30'
+binds:
+- namespace: env
+  keys:
+    WORDS_API_KEY: WORDS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: words-hierarchy
+    baseUri: https://wordsapiv1.p.rapidapi.com
+    description: Words API Hierarchy business capability. Self-contained, no shared references.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.WORDS_API_KEY}}'
+      placement: header
+    resources:
+    - name: word-has-types
+      path: /words/{word}/hasTypes
+      operations:
+      - name: getHasTypes
+        method: GET
+        description: Get Word Has Types
+        inputParameters:
+        - name: word
+          in: path
+          type: string
+          required: true
+          description: The English word to look up.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: word-type-of
+      path: /words/{word}/typeOf
+      operations:
+      - name: getTypeOf
+        method: GET
+        description: Get Word Type Of
+        inputParameters:
+        - name: word
+          in: path
+          type: string
+          required: true
+          description: The English word to look up.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: word-part-of
+      path: /words/{word}/partOf
+      operations:
+      - name: getPartOf
+        method: GET
+        description: Get Word Part Of
+        inputParameters:
+        - name: word
+          in: path
+          type: string
+          required: true
+          description: The English word to look up.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: word-has-parts
+      path: /words/{word}/hasParts
+      operations:
+      - name: getHasParts
+        method: GET
+        description: Get Word Has Parts
+        inputParameters:
+        - name: word
+          in: path
+          type: string
+          required: true
+          description: The English word to look up.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: word-instances
+      path: /words/{word}/instances
+      operations:
+      - name: getInstances
+        method: GET
+        description: Get Word Instances
+        inputParameters:
+        - name: word
+          in: path
+          type: string
+          required: true
+          description: The English word to look up.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: word-instance-of
+      path: /words/{word}/instanceOf
+      operations:
+      - name: getInstanceOf
+        method: GET
+        description: Get Word Instance Of
+        inputParameters:
+        - name: word
+          in: path
+          type: string
+          required: true
+          description: The English word to look up.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: word-entails
+      path: /words/{word}/entails
+      operations:
+      - name: getEntails
+        method: GET
+        description: Get Word Entails
+        inputParameters:
+        - name: word
+          in: path
+          type: string
+          required: true
+          description: The English word to look up.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: word-member-of
+      path: /words/{word}/memberOf
+      operations:
+      - name: getMemberOf
+        method: GET
+        description: Get Word Member Of
+        inputParameters:
+        - name: word
+          in: path
+          type: string
+          required: true
+          description: The English word to look up.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: word-has-members
+      path: /words/{word}/hasMembers
+      operations:
+      - name: getHasMembers
+        method: GET
+        description: Get Word Has Members
+        inputParameters:
+        - name: word
+          in: path
+          type: string
+          required: true
+          description: The English word to look up.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: word-substance-of
+      path: /words/{word}/substanceOf
+      operations:
+      - name: getSubstanceOf
+        method: GET
+        description: Get Word Substance Of
+        inputParameters:
+        - name: word
+          in: path
+          type: string
+          required: true
+          description: The English word to look up.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: word-has-substances
+      path: /words/{word}/hasSubstances
+      operations:
+      - name: getHasSubstances
+        method: GET
+        description: Get Word Has Substances
+        inputParameters:
+        - name: word
+          in: path
+          type: string
+          required: true
+          description: The English word to look up.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: words-hierarchy-rest
+    port: 8080
+    description: REST adapter for Words API — Hierarchy. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/words/{word}/has-types
+      name: word-has-types
+      description: REST surface for /words/{word}/hasTypes.
+      operations:
+      - method: GET
+        name: getHasTypes
+        description: Get Word Has Types
+        call: words-hierarchy.getHasTypes
+        with:
+          word: rest.word
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/words/{word}/type-of
+      name: word-type-of
+      description: REST surface for /words/{word}/typeOf.
+      operations:
+      - method: GET
+        name: getTypeOf
+        description: Get Word Type Of
+        call: words-hierarchy.getTypeOf
+        with:
+          word: rest.word
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/words/{word}/part-of
+      name: word-part-of
+      description: REST surface for /words/{word}/partOf.
+      operations:
+      - method: GET
+        name: getPartOf
+        description: Get Word Part Of
+        call: words-hierarchy.getPartOf
+        with:
+          word: rest.word
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/words/{word}/has-parts
+      name: word-has-parts
+      description: REST surface for /words/{word}/hasParts.
+      operations:
+      - method: GET
+        name: getHasParts
+        description: Get Word Has Parts
+        call: words-hierarchy.getHasParts
+        with:
+          word: rest.word
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/words/{word}/instances
+      name: word-instances
+      description: REST surface for /words/{word}/instances.
+      operations:
+      - method: GET
+        name: getInstances
+        description: Get Word Instances
+        call: words-hierarchy.getInstances
+        with:
+          word: rest.word
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/words/{word}/instance-of
+      name: word-instance-of
+      description: REST surface for /words/{word}/instanceOf.
+      operations:
+      - method: GET
+        name: getInstanceOf
+        description: Get Word Instance Of
+        call: words-hierarchy.getInstanceOf
+        with:
+          word: rest.word
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/words/{word}/entails
+      name: word-entails
+      description: REST surface for /words/{word}/entails.
+      operations:
+      - method: GET
+        name: getEntails
+        description: Get Word Entails
+        call: words-hierarchy.getEntails
+        with:
+          word: rest.word
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/words/{word}/member-of
+      name: word-member-of
+      description: REST surface for /words/{word}/memberOf.
+      operations:
+      - method: GET
+        name: getMemberOf
+        description: Get Word Member Of
+        call: words-hierarchy.getMemberOf
+        with:
+          word: rest.word
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/words/{word}/has-members
+      name: word-has-members
+      description: REST surface for /words/{word}/hasMembers.
+      operations:
+      - method: GET
+        name: getHasMembers
+        description: Get Word Has Members
+        call: words-hierarchy.getHasMembers
+        with:
+          word: rest.word
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/words/{word}/substance-of
+      name: word-substance-of
+      description: REST surface for /words/{word}/substanceOf.
+      operations:
+      - method: GET
+        name: getSubstanceOf
+        description: Get Word Substance Of
+        call: words-hierarchy.getSubstanceOf
+        with:
+          word: rest.word
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/words/{word}/has-substances
+      name: word-has-substances
+      description: REST surface for /words/{word}/hasSubstances.
+      operations:
+      - method: GET
+        name: getHasSubstances
+        description: Get Word Has Substances
+        call: words-hierarchy.getHasSubstances
+        with:
+          word: rest.word
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: words-hierarchy-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Words API — Hierarchy. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: get-has-types
+      description: Get Word Has Types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: words-hierarchy.getHasTypes
+      with:
+        word: tools.word
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-type-of
+      description: Get Word Type Of
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: words-hierarchy.getTypeOf
+      with:
+        word: tools.word
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-part-of
+      description: Get Word Part Of
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: words-hierarchy.getPartOf
+      with:
+        word: tools.word
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-has-parts
+      description: Get Word Has Parts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: words-hierarchy.getHasParts
+      with:
+        word: tools.word
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-instances
+      description: Get Word Instances
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: words-hierarchy.getInstances
+      with:
+        word: tools.word
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-instance-of
+      description: Get Word Instance Of
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: words-hierarchy.getInstanceOf
+      with:
+        word: tools.word
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-entails
+      description: Get Word Entails
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: words-hierarchy.getEntails
+      with:
+        word: tools.word
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-member-of
+      description: Get Word Member Of
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: words-hierarchy.getMemberOf
+      with:
+        word: tools.word
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-has-members
+      description: Get Word Has Members
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: words-hierarchy.getHasMembers
+      with:
+        word: tools.word
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-substance-of
+      description: Get Word Substance Of
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: words-hierarchy.getSubstanceOf
+      with:
+        word: tools.word
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-has-substances
+      description: Get Word Has Substances
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: words-hierarchy.getHasSubstances
+      with:
+        word: tools.word
+      outputParameters:
+      - type: object
+        mapping: $.

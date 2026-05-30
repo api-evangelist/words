@@ -1,0 +1,74 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Words API
+providerId: words
+created: '2026-05-30'
+modified: '2026-05-30'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - Dictionaries
+  - Linguistics
+  - RapidAPI
+description: >-
+  FOCUS-aligned FinOps view of Words API: a subscription tier purchased on the
+  RapidAPI marketplace, billed monthly in USD, scoped to a single API key with a
+  daily request quota. A one-time data-purchase option exists for organizations
+  that prefer to take the dataset in-house and remove the recurring meter.
+sources:
+  - https://www.wordsapi.com/
+  - https://www.wordsapi.com/docs/
+  - https://rapidapi.com/dpventures/api/wordsapi/pricing
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: RapidAPI (Words API by Data Provider Ventures)
+serviceCategory: Linguistic Data & Lexical Services
+billingModel:
+  pricingCategory: Tiered Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Purchase
+    - Refund
+focusColumns:
+  ServiceName: Words API
+  ServiceCategory: Linguistic Data & Lexical Services
+  ProviderName: Words API
+  PublisherName: RapidAPI (Words API by Data Provider Ventures)
+  InvoiceIssuerName: RapidAPI
+  BillingCurrency: USD
+  ChargeCategory: Usage
+meters:
+  - name: api_requests
+    unit: request
+    aggregation: sum
+    dimensions:
+      - plan_tier
+      - endpoint_family
+    description: One unit per HTTP request made against wordsapiv1.p.rapidapi.com. Counted against the daily quota of the active plan tier.
+  - name: plan_subscription
+    unit: month
+    aggregation: count
+    dimensions:
+      - plan_tier
+    description: Monthly subscription line for the active RapidAPI plan (Pro / Ultra / Mega).
+  - name: dataset_purchase
+    unit: dataset
+    aggregation: count
+    description: One-time purchase of the Words API dataset for local hosting (eliminates request meter).
+principles:
+  - name: Visibility
+    description: Use the RapidAPI consumer dashboard to view real-time daily-quota burn-down per subscription key, broken out by endpoint family.
+  - name: Allocation
+    description: Issue a dedicated RapidAPI key per application or environment so daily quota and monthly subscription cost can be attributed to the owning team.
+  - name: Optimization
+    description: Cache Words API responses up to 24 hours (allowed by ToS) before re-fetching; collapse repeated lookups of the same word; right-size the plan tier to actual daily peak, not theoretical max. If sustained usage exceeds 500k requests/day, evaluate the $629 one-time dataset purchase to remove the recurring meter entirely.
+  - name: Accountability
+    description: Set RapidAPI usage alerts at 70% and 90% of daily quota; route alerts to the team that owns the key; review monthly invoices against business-driver metrics (queries per active user, dictionary lookups per session).

@@ -1,0 +1,306 @@
+# Words API — Spectral Ruleset
+# Enforces the documented Words API conventions: camelCase paths and parameters,
+# Title-Case summaries prefixed with "Words API", RapidAPI key auth, JSON
+# responses, and the {word} path-parameter contract.
+extends: [[spectral:oas, recommended]]
+
+rules:
+  # ─────────────────────────────────────────────────────────────────────────────
+  # INFO / METADATA
+  # ─────────────────────────────────────────────────────────────────────────────
+  info-title-prefix:
+    description: Spec info.title must begin with "Words API".
+    message: "info.title should start with 'Words API'"
+    severity: error
+    given: $.info.title
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Words API"
+  info-description-required:
+    description: Spec must include an info.description of at least 50 characters.
+    severity: warn
+    given: $.info
+    then:
+      field: description
+      function: length
+      functionOptions:
+        min: 50
+  info-contact-required:
+    description: Spec must include contact information.
+    severity: warn
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # OPENAPI VERSION
+  # ─────────────────────────────────────────────────────────────────────────────
+  openapi-version-3:
+    description: Spec must use OpenAPI 3.x.
+    severity: error
+    given: $.openapi
+    then:
+      function: pattern
+      functionOptions:
+        match: "^3\\."
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # SERVERS
+  # ─────────────────────────────────────────────────────────────────────────────
+  servers-rapidapi-host:
+    description: Words API servers must point at wordsapiv1.p.rapidapi.com.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://wordsapiv1\\.p\\.rapidapi\\.com"
+  servers-https-only:
+    description: Server URLs must use HTTPS.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # PATHS — NAMING CONVENTIONS
+  # ─────────────────────────────────────────────────────────────────────────────
+  paths-words-prefix:
+    description: Every operation path must live under /words.
+    severity: error
+    given: $.paths
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "^/words"
+  paths-camel-case-segments:
+    description: Path segments use camelCase (e.g. /words/{word}/hasTypes, /words/{word}/inCategory).
+    severity: warn
+    given: $.paths
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "^/words(/\\{?[a-z][a-zA-Z0-9]*\\}?)*/?$"
+  paths-word-param:
+    description: Per-word resources must use the {word} path parameter.
+    severity: warn
+    given: $.paths
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: "^/words/[a-z]+/[a-zA-Z]"
+  paths-no-trailing-version:
+    description: Do not version inside the path — versioning is handled by the host (wordsapiv1).
+    severity: warn
+    given: $.paths
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: "/v[0-9]+/"
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # OPERATIONS
+  # ─────────────────────────────────────────────────────────────────────────────
+  operation-summary-required:
+    description: Every operation must have a summary.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+  operation-description-required:
+    description: Every operation must have a description.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: description
+      function: truthy
+  operation-summary-words-prefix:
+    description: Operation summaries should start with "Get" or "Search" and be readable.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(Get|Search) "
+  operation-operationid-required:
+    description: Every operation must have an operationId.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+  operation-operationid-camel-case:
+    description: operationId must be camelCase starting with a verb (get, search, list, create, update, delete).
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(get|search|list|create|update|delete)[A-Z][a-zA-Z0-9]*$"
+  operation-tags-required:
+    description: Every operation must have at least one tag.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+  operation-microcks-extension:
+    description: Every operation must carry an x-microcks-operation block for mock-server compatibility.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: x-microcks-operation
+      function: truthy
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # TAGS
+  # ─────────────────────────────────────────────────────────────────────────────
+  tags-global-array:
+    description: Tags must be declared at the document level with descriptions.
+    severity: warn
+    given: $.tags
+    then:
+      function: truthy
+  tags-title-case:
+    description: Tag names must be Title Case.
+    severity: warn
+    given: $.tags[*].name
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9]*( [A-Z][a-zA-Z0-9]*)*$"
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # PARAMETERS
+  # ─────────────────────────────────────────────────────────────────────────────
+  parameter-description-required:
+    description: Every parameter must have a description.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].parameters[*]"
+    then:
+      field: description
+      function: truthy
+  parameter-schema-required:
+    description: Every parameter must declare a schema.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].parameters[*]"
+    then:
+      field: schema
+      function: truthy
+  parameter-camel-case:
+    description: Query parameter names use camelCase (lettersMin, soundsMax, partOfSpeech, hasDetails).
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].parameters[?(@.in == 'query')].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # RESPONSES
+  # ─────────────────────────────────────────────────────────────────────────────
+  response-success-required:
+    description: Every operation must define a 200 response.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      field: "200"
+      function: truthy
+  response-404-on-word-lookup:
+    description: Per-word lookups should document a 404 response.
+    severity: warn
+    given: "$.paths[/words/{word},/words/{word}/definitions,/words/{word}/synonyms,/words/{word}/antonyms,/words/{word}/examples].get.responses"
+    then:
+      field: "404"
+      function: truthy
+  response-json-content-type:
+    description: Response bodies must be application/json.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses[*].content"
+    then:
+      field: "application/json"
+      function: truthy
+  response-description-required:
+    description: Every response must include a description.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses[*]"
+    then:
+      field: description
+      function: truthy
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # SCHEMAS — PROPERTY NAMING
+  # ─────────────────────────────────────────────────────────────────────────────
+  schema-property-camel-case:
+    description: Schema property names use camelCase (matches Words API JSON — hasTypes, typeOf, perMillion, numSyllables).
+    severity: warn
+    given: "$.components.schemas[*].properties.*~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+  schema-description-required:
+    description: Top-level schemas should have a description.
+    severity: warn
+    given: "$.components.schemas[*]"
+    then:
+      field: description
+      function: truthy
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # SECURITY
+  # ─────────────────────────────────────────────────────────────────────────────
+  security-rapidapi-key:
+    description: Words API authentication uses the X-RapidAPI-Key header.
+    severity: error
+    given: "$.components.securitySchemes[*]"
+    then:
+      - field: type
+        function: pattern
+        functionOptions:
+          match: "^apiKey$"
+      - field: "in"
+        function: pattern
+        functionOptions:
+          match: "^header$"
+  security-global-defined:
+    description: Global security must be defined at the document level.
+    severity: warn
+    given: $
+    then:
+      field: security
+      function: truthy
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # HTTP METHOD CONVENTIONS
+  # ─────────────────────────────────────────────────────────────────────────────
+  http-get-only:
+    description: Words API is read-only — only GET methods are allowed.
+    severity: error
+    given: "$.paths[*]"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "^(get|parameters|summary|description)$"
+        notMatch: "^(post|put|patch|delete)$"
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # GENERAL QUALITY
+  # ─────────────────────────────────────────────────────────────────────────────
+  examples-encouraged:
+    description: Parameters should include example values.
+    severity: info
+    given: "$.paths[*][get,post,put,patch,delete].parameters[*]"
+    then:
+      field: example
+      function: truthy

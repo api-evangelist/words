@@ -1,0 +1,94 @@
+{
+  "definition": "fruit with red or yellow or green skin and sweet to tart crisp whitish flesh",
+  "partOfSpeech": "noun",
+  "synonyms": [
+    "orchard apple tree"
+  ],
+  "antonyms": [
+    "apple"
+  ],
+  "examples": [
+    "he is the apple of my eye"
+  ],
+  "typeOf": [
+    "edible fruit",
+    "pome",
+    "false fruit"
+  ],
+  "hasTypes": [
+    "garden",
+    "quickly",
+    "garden"
+  ],
+  "partOf": [
+    "garden"
+  ],
+  "hasParts": [
+    "bright",
+    "apple",
+    "happy"
+  ],
+  "instanceOf": [
+    "car",
+    "happy",
+    "happy"
+  ],
+  "hasInstances": [
+    "garden",
+    "happy",
+    "bright"
+  ],
+  "similarTo": [
+    "car"
+  ],
+  "also": [
+    "garden"
+  ],
+  "entails": [
+    "garden",
+    "apple",
+    "delicious"
+  ],
+  "memberOf": [
+    "walk",
+    "happy",
+    "apple"
+  ],
+  "hasMembers": [
+    "wisdom"
+  ],
+  "substanceOf": [
+    "happy",
+    "delicious"
+  ],
+  "hasSubstances": [
+    "walk"
+  ],
+  "inCategory": [
+    "walk"
+  ],
+  "hasCategories": [
+    "delicious"
+  ],
+  "usageOf": [
+    "bright"
+  ],
+  "hasUsages": [
+    "bright",
+    "delicious",
+    "apple"
+  ],
+  "inRegion": [
+    "walk"
+  ],
+  "regionOf": [
+    "garden",
+    "walk",
+    "happy"
+  ],
+  "pertainsTo": [
+    "garden",
+    "delicious",
+    "apple"
+  ]
+}

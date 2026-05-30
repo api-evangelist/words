@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-schema/words-search-response-schema.json",
+  "title": "SearchResponse",
+  "description": "Response from GET /words search.",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "object",
+      "description": "The query parameters as interpreted by Words API.",
+      "additionalProperties": true
+    },
+    "results": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Matching words.",
+          "example": [
+            "apple",
+            "ample",
+            "angle"
+          ]
+        },
+        "total": {
+          "type": "integer",
+          "example": 3
+        }
+      }
+    },
+    "word": {
+      "type": "string",
+      "description": "When random=true, the single random word returned.",
+      "example": "serendipity"
+    }
+  }
+}

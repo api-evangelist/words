@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-structure/words-similar-to-response-structure.json",
+  "name": "SimilarToResponse",
+  "description": "SimilarToResponse schema from Words API",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string",
+      "example": "bright"
+    },
+    "similarTo": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "vivid",
+        "brilliant"
+      ]
+    }
+  }
+}

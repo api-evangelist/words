@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-structure/words-member-of-response-structure.json",
+  "name": "MemberOfResponse",
+  "description": "MemberOfResponse schema from Words API",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string"
+    },
+    "memberOf": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

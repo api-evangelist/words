@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-schema/words-result-schema.json",
+  "title": "Result",
+  "description": "Single lexical-relationship record for one sense of a word.",
+  "type": "object",
+  "properties": {
+    "definition": {
+      "type": "string",
+      "description": "Definition of this sense.",
+      "example": "fruit with red or yellow or green skin and sweet to tart crisp whitish flesh"
+    },
+    "partOfSpeech": {
+      "type": "string",
+      "description": "Grammatical category of this sense.",
+      "example": "noun"
+    },
+    "synonyms": {
+      "type": "array",
+      "description": "Words interchangeable with the headword in this sense.",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "orchard apple tree"
+      ]
+    },
+    "antonyms": {
+      "type": "array",
+      "description": "Words with opposite meaning in this sense.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "examples": {
+      "type": "array",
+      "description": "Example sentences for this sense.",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "he is the apple of my eye"
+      ]
+    },
+    "typeOf": {
+      "type": "array",
+      "description": "Hypernyms \u2014 more general words for this sense.",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "edible fruit",
+        "pome",
+        "false fruit"
+      ]
+    },
+    "hasTypes": {
+      "type": "array",
+      "description": "Hyponyms \u2014 more specific words for this sense.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "partOf": {
+      "type": "array",
+      "description": "Holonyms \u2014 wholes this sense is part of.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "hasParts": {
+      "type": "array",
+      "description": "Meronyms \u2014 parts that compose this sense.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "instanceOf": {
+      "type": "array",
+      "description": "Categories of which this sense is an instance.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "hasInstances": {
+      "type": "array",
+      "description": "Specific instances of this sense.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "similarTo": {
+      "type": "array",
+      "description": "Related but non-synonymous words.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "also": {
+      "type": "array",
+      "description": "Idiomatic phrases that include this sense.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "entails": {
+      "type": "array",
+      "description": "Words logically entailed by this sense.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "memberOf": {
+      "type": "array",
+      "description": "Groups the sense is a member of.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "hasMembers": {
+      "type": "array",
+      "description": "Members that belong to this group sense.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "substanceOf": {
+      "type": "array",
+      "description": "Materials this sense is a substance of.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "hasSubstances": {
+      "type": "array",
+      "description": "Substances that compose this sense.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "inCategory": {
+      "type": "array",
+      "description": "Categories this sense belongs to.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "hasCategories": {
+      "type": "array",
+      "description": "Subcategories of this category sense.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "usageOf": {
+      "type": "array",
+      "description": "Domain-usage classifications this sense belongs to.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "hasUsages": {
+      "type": "array",
+      "description": "Domain-usage examples of this sense.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "inRegion": {
+      "type": "array",
+      "description": "Regions in which this sense is used.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "regionOf": {
+      "type": "array",
+      "description": "Regional variants associated with this sense.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "pertainsTo": {
+      "type": "array",
+      "description": "Words this sense pertains to.",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

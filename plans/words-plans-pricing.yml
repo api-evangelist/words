@@ -1,0 +1,112 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Words API
+providerId: words
+created: '2026-05-30'
+modified: '2026-05-30'
+reconciled: true
+tags:
+  - Dictionaries
+  - Linguistics
+  - Thesaurus
+  - English
+  - Lexical Data
+description: >-
+  Words API is sold and metered exclusively through the RapidAPI marketplace using a
+  daily-quota tiered model. Every paid tier carries the same per-request feature set;
+  tiers differ only by the per-day request ceiling. There is also a one-time data
+  purchase option for self-hosting the underlying dataset. All prices and quotas
+  reflect the figures published on wordsapi.com.
+sources:
+  - https://www.wordsapi.com/
+  - https://www.wordsapi.com/docs/
+  - https://rapidapi.com/dpventures/api/wordsapi/pricing
+plans:
+  - id: words-basic-free
+    name: Basic
+    type: freemium
+    description: Free tier — 2,500 requests per day for prototypes, students, and small projects.
+    entries:
+      - label: API requests
+        name: api_requests
+        type: quota
+        metric: request
+        limit: 2500
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: '$0.00'
+    elements:
+      - name: All Words API endpoints
+      - name: 150,000+ word coverage
+      - name: Full thesaurus and lexical hierarchy access
+      - name: Frequency, rhymes, pronunciation
+  - id: words-pro
+    name: Pro
+    type: subscription
+    description: Production tier — 25,000 requests per day for small to mid-scale apps.
+    entries:
+      - label: API requests
+        name: api_requests
+        type: quota
+        metric: request
+        limit: 25000
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: '$10/month'
+    elements:
+      - name: All Words API endpoints
+      - name: Email support via RapidAPI
+  - id: words-ultra
+    name: Ultra
+    type: subscription
+    description: High-volume tier — 250,000 requests per day for production consumer apps.
+    entries:
+      - label: API requests
+        name: api_requests
+        type: quota
+        metric: request
+        limit: 250000
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: '$49/month'
+    elements:
+      - name: All Words API endpoints
+      - name: Email support via RapidAPI
+  - id: words-mega
+    name: Mega
+    type: subscription
+    description: Very high-volume tier — 500,000 requests per day.
+    entries:
+      - label: API requests
+        name: api_requests
+        type: quota
+        metric: request
+        limit: 500000
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: '$89/month'
+    elements:
+      - name: All Words API endpoints
+      - name: Email support via RapidAPI
+  - id: words-data-purchase
+    name: Data Purchase
+    type: enterprise
+    description: One-time purchase of the full Words API dataset for local hosting.
+    entries:
+      - label: Full dataset (one-time download)
+        name: dataset
+        type: flat
+        metric: dataset
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '$629 one-time'
+    elements:
+      - name: Full lexical dataset
+      - name: Local hosting (no API quota)

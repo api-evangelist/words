@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-structure/words-rhymes-response-structure.json",
+  "name": "RhymesResponse",
+  "description": "Response from GET /words/{word}/rhymes.",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string",
+      "example": "apple"
+    },
+    "rhymes": {
+      "type": "object",
+      "description": "Rhyme arrays grouped by pronunciation variant.",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "all": [
+          "chapel",
+          "dapple",
+          "grapple"
+        ]
+      }
+    }
+  }
+}

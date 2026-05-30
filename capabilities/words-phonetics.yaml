@@ -1,0 +1,163 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Words API — Phonetics
+  description: 'Words API Phonetics surface — 3 operations. Lead operation: Get Word Rhymes. Self-contained Naftiko capability covering one Words API business surface.'
+  tags:
+  - Words API
+  - Phonetics
+  created: '2026-05-30'
+  modified: '2026-05-30'
+binds:
+- namespace: env
+  keys:
+    WORDS_API_KEY: WORDS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: words-phonetics
+    baseUri: https://wordsapiv1.p.rapidapi.com
+    description: Words API Phonetics business capability. Self-contained, no shared references.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.WORDS_API_KEY}}'
+      placement: header
+    resources:
+    - name: word-rhymes
+      path: /words/{word}/rhymes
+      operations:
+      - name: getRhymes
+        method: GET
+        description: Get Word Rhymes
+        inputParameters:
+        - name: word
+          in: path
+          type: string
+          required: true
+          description: The English word to look up.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: word-syllables
+      path: /words/{word}/syllables
+      operations:
+      - name: getSyllables
+        method: GET
+        description: Get Word Syllables
+        inputParameters:
+        - name: word
+          in: path
+          type: string
+          required: true
+          description: The English word to look up.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: word-pronunciation
+      path: /words/{word}/pronunciation
+      operations:
+      - name: getPronunciation
+        method: GET
+        description: Get Word Pronunciation
+        inputParameters:
+        - name: word
+          in: path
+          type: string
+          required: true
+          description: The English word to look up.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: words-phonetics-rest
+    port: 8080
+    description: REST adapter for Words API — Phonetics. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/words/{word}/rhymes
+      name: word-rhymes
+      description: REST surface for /words/{word}/rhymes.
+      operations:
+      - method: GET
+        name: getRhymes
+        description: Get Word Rhymes
+        call: words-phonetics.getRhymes
+        with:
+          word: rest.word
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/words/{word}/syllables
+      name: word-syllables
+      description: REST surface for /words/{word}/syllables.
+      operations:
+      - method: GET
+        name: getSyllables
+        description: Get Word Syllables
+        call: words-phonetics.getSyllables
+        with:
+          word: rest.word
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/words/{word}/pronunciation
+      name: word-pronunciation
+      description: REST surface for /words/{word}/pronunciation.
+      operations:
+      - method: GET
+        name: getPronunciation
+        description: Get Word Pronunciation
+        call: words-phonetics.getPronunciation
+        with:
+          word: rest.word
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: words-phonetics-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Words API — Phonetics. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: get-rhymes
+      description: Get Word Rhymes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: words-phonetics.getRhymes
+      with:
+        word: tools.word
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-syllables
+      description: Get Word Syllables
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: words-phonetics.getSyllables
+      with:
+        word: tools.word
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-pronunciation
+      description: Get Word Pronunciation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: words-phonetics.getPronunciation
+      with:
+        word: tools.word
+      outputParameters:
+      - type: object
+        mapping: $.

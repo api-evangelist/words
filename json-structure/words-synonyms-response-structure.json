@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-structure/words-synonyms-response-structure.json",
+  "name": "SynonymsResponse",
+  "description": "Response from GET /words/{word}/synonyms.",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string",
+      "example": "happy"
+    },
+    "synonyms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "glad",
+        "joyful",
+        "pleased"
+      ]
+    }
+  }
+}

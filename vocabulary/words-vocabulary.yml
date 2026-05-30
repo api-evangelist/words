@@ -1,0 +1,364 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Words API"
+  description: >-
+    Unified vocabulary mapping the operational dimension of the Words API
+    (one /words resource and 29 detail-type sub-resources, exposed via the
+    RapidAPI gateway) to the capability dimension (one Naftiko capability per
+    OpenAPI tag, each shipping a paired REST + MCP adapter).
+  created: "2026-05-30"
+  modified: "2026-05-30"
+
+# ─── OPERATIONAL DIMENSION (from OpenAPI) ───────────────────────────────────
+operational:
+  apis:
+    - name: Words API
+      namespace: words
+      version: "1.0.0"
+      baseUrl: https://wordsapiv1.p.rapidapi.com
+      status: active
+
+  resources:
+    - name: words
+      api: Words API
+      path: /words
+      actions: [search, random]
+    - name: word
+      api: Words API
+      path: /words/{word}
+      actions: [get]
+    - name: definitions
+      api: Words API
+      path: /words/{word}/definitions
+      actions: [get]
+    - name: synonyms
+      api: Words API
+      path: /words/{word}/synonyms
+      actions: [get]
+    - name: antonyms
+      api: Words API
+      path: /words/{word}/antonyms
+      actions: [get]
+    - name: examples
+      api: Words API
+      path: /words/{word}/examples
+      actions: [get]
+    - name: rhymes
+      api: Words API
+      path: /words/{word}/rhymes
+      actions: [get]
+    - name: frequency
+      api: Words API
+      path: /words/{word}/frequency
+      actions: [get]
+    - name: syllables
+      api: Words API
+      path: /words/{word}/syllables
+      actions: [get]
+    - name: pronunciation
+      api: Words API
+      path: /words/{word}/pronunciation
+      actions: [get]
+    - name: hierarchy
+      api: Words API
+      path: /words/{word}/{relation}
+      actions: [getHasTypes, getTypeOf, getPartOf, getHasParts, getInstances, getInstanceOf, getEntails, getMemberOf, getHasMembers, getSubstanceOf, getHasSubstances]
+    - name: similar
+      api: Words API
+      path: /words/{word}/similar
+      actions: [get]
+    - name: also
+      api: Words API
+      path: /words/{word}/also
+      actions: [get]
+    - name: categories
+      api: Words API
+      path: /words/{word}/{category-relation}
+      actions: [getInCategory, getHasCategories, getUsageOf, getHasUsages, getInRegion, getRegionOf, getPertainsTo]
+
+  actions:
+    - name: get
+      httpMethod: GET
+      pattern: read
+    - name: search
+      httpMethod: GET
+      pattern: query
+    - name: random
+      httpMethod: GET
+      pattern: query
+
+  schemas:
+    core:
+      - WordEntry
+      - Result
+      - DefinitionEntry
+      - Pronunciation
+      - Syllables
+      - Frequency
+    relationships:
+      - SynonymsResponse
+      - AntonymsResponse
+      - SimilarToResponse
+      - AlsoResponse
+      - TypeOfResponse
+      - HasTypesResponse
+      - PartOfResponse
+      - HasPartsResponse
+      - MemberOfResponse
+      - HasMembersResponse
+      - SubstanceOfResponse
+      - HasSubstancesResponse
+      - InstancesResponse
+      - InstanceOfResponse
+      - EntailsResponse
+    categorization:
+      - InCategoryResponse
+      - HasCategoriesResponse
+      - UsageOfResponse
+      - HasUsagesResponse
+      - InRegionResponse
+      - RegionOfResponse
+      - PertainsToResponse
+    phonetics:
+      - SyllablesResponse
+      - PronunciationResponse
+      - RhymesResponse
+    frequency:
+      - FrequencyResponse
+    examples:
+      - ExamplesResponse
+    search:
+      - SearchResponse
+      - SearchResultsMeta
+    errors:
+      - Error
+
+  parameters:
+    path:
+      - word
+    pagination:
+      - limit
+      - page
+    letterFilters:
+      - letterPattern
+      - letters
+      - lettersMin
+      - lettersMax
+    phonemeFilters:
+      - pronunciationPattern
+      - sounds
+      - soundsMin
+      - soundsMax
+    grammatical:
+      - partOfSpeech
+    detailFilters:
+      - hasDetails
+    selection:
+      - random
+
+  enums:
+    partOfSpeech:
+      - noun
+      - verb
+      - adjective
+      - adverb
+      - pronoun
+      - preposition
+      - conjunction
+      - interjection
+      - determiner
+
+  authentication:
+    - scheme: RapidApiKey
+      type: apiKey
+      header: X-RapidAPI-Key
+      hostHeader: X-RapidAPI-Host
+      hostValue: wordsapiv1.p.rapidapi.com
+      apis: [Words API]
+
+# ─── CAPABILITY DIMENSION (from Naftiko) ────────────────────────────────────
+capability:
+  workflows:
+    - name: Words API — Word
+      file: capabilities/words-word.yaml
+      description: Whole-entry lookup for a single word.
+      apis: [Words API]
+      tools: 1
+      personas: [Application Developer, Word Game Engineer]
+      domains: [Dictionary]
+    - name: Words API — Definitions
+      file: capabilities/words-definitions.yaml
+      apis: [Words API]
+      tools: 1
+      personas: [Application Developer, Education App Builder]
+      domains: [Dictionary]
+    - name: Words API — Thesaurus
+      file: capabilities/words-thesaurus.yaml
+      apis: [Words API]
+      tools: 4
+      personas: [Writing Assistant Engineer, Content Generation Engineer]
+      domains: [Thesaurus]
+    - name: Words API — Examples
+      file: capabilities/words-examples.yaml
+      apis: [Words API]
+      tools: 1
+      personas: [Education App Builder]
+      domains: [Dictionary]
+    - name: Words API — Phonetics
+      file: capabilities/words-phonetics.yaml
+      apis: [Words API]
+      tools: 3
+      personas: [Speech App Engineer, Language Learning App Builder]
+      domains: [Phonetics]
+    - name: Words API — Frequency
+      file: capabilities/words-frequency.yaml
+      apis: [Words API]
+      tools: 1
+      personas: [NLP Engineer, Writing Assistant Engineer]
+      domains: [Corpus Analysis]
+    - name: Words API — Hierarchy
+      file: capabilities/words-hierarchy.yaml
+      apis: [Words API]
+      tools: 11
+      personas: [NLP Engineer, Knowledge Graph Engineer]
+      domains: [Lexical Hierarchy]
+    - name: Words API — Categories
+      file: capabilities/words-categories.yaml
+      apis: [Words API]
+      tools: 7
+      personas: [NLP Engineer, Localization Engineer]
+      domains: [Domain & Region]
+    - name: Words API — Search
+      file: capabilities/words-search.yaml
+      apis: [Words API]
+      tools: 1
+      personas: [Word Game Engineer, Puzzle App Engineer]
+      domains: [Discovery]
+
+  personas:
+    - id: app-developer
+      name: Application Developer
+      workflows: [Words API — Word, Words API — Definitions]
+    - id: word-game-engineer
+      name: Word Game Engineer
+      workflows: [Words API — Word, Words API — Search]
+    - id: writing-assistant-engineer
+      name: Writing Assistant Engineer
+      workflows: [Words API — Thesaurus, Words API — Frequency]
+    - id: education-app-builder
+      name: Education App Builder
+      workflows: [Words API — Definitions, Words API — Examples]
+    - id: speech-app-engineer
+      name: Speech App Engineer
+      workflows: [Words API — Phonetics]
+    - id: language-learning-app-builder
+      name: Language Learning App Builder
+      workflows: [Words API — Phonetics]
+    - id: nlp-engineer
+      name: NLP Engineer
+      workflows: [Words API — Frequency, Words API — Hierarchy, Words API — Categories]
+    - id: knowledge-graph-engineer
+      name: Knowledge Graph Engineer
+      workflows: [Words API — Hierarchy]
+    - id: localization-engineer
+      name: Localization Engineer
+      workflows: [Words API — Categories]
+    - id: puzzle-app-engineer
+      name: Puzzle App Engineer
+      workflows: [Words API — Search]
+    - id: content-generation-engineer
+      name: Content Generation Engineer
+      workflows: [Words API — Thesaurus]
+
+  domains:
+    - name: Dictionary
+      description: Whole-word lookup, definitions, examples.
+    - name: Thesaurus
+      description: Synonym, antonym, similar, and idiomatic relationships.
+    - name: Phonetics
+      description: IPA pronunciation, syllables, rhymes.
+    - name: Corpus Analysis
+      description: Zipf, per-million occurrence, diversity scores.
+    - name: Lexical Hierarchy
+      description: typeOf, hasTypes, partOf, hasParts, memberOf, instanceOf, entails relations.
+    - name: Domain & Region
+      description: inCategory, inRegion, usageOf, pertainsTo classification.
+    - name: Discovery
+      description: Search by letter pattern, phoneme pattern, part of speech; random word selection.
+
+  namespaces:
+    consumed:
+      - words-word
+      - words-definitions
+      - words-thesaurus
+      - words-examples
+      - words-phonetics
+      - words-frequency
+      - words-hierarchy
+      - words-categories
+      - words-search
+    restExposed:
+      - words-word-rest
+      - words-definitions-rest
+      - words-thesaurus-rest
+      - words-examples-rest
+      - words-phonetics-rest
+      - words-frequency-rest
+      - words-hierarchy-rest
+      - words-categories-rest
+      - words-search-rest
+    mcpExposed:
+      - words-word-mcp
+      - words-definitions-mcp
+      - words-thesaurus-mcp
+      - words-examples-mcp
+      - words-phonetics-mcp
+      - words-frequency-mcp
+      - words-hierarchy-mcp
+      - words-categories-mcp
+      - words-search-mcp
+
+  binds:
+    - env: WORDS_API_KEY
+      description: RapidAPI subscription key for wordsapiv1.p.rapidapi.com.
+      workflows: [Words API — Word, Words API — Definitions, Words API — Thesaurus, Words API — Examples, Words API — Phonetics, Words API — Frequency, Words API — Hierarchy, Words API — Categories, Words API — Search]
+
+# ─── CROSS-REFERENCE ────────────────────────────────────────────────────────
+crossReference:
+  - resource: word
+    operations: [getWord]
+    workflows: [Words API — Word]
+    personas: [Application Developer, Word Game Engineer]
+  - resource: definitions
+    operations: [getDefinitions]
+    workflows: [Words API — Definitions]
+    personas: [Education App Builder]
+  - resource: synonyms
+    operations: [getSynonyms, getAntonyms, getSimilarTo, getAlso]
+    workflows: [Words API — Thesaurus]
+    personas: [Writing Assistant Engineer, Content Generation Engineer]
+  - resource: examples
+    operations: [getExamples]
+    workflows: [Words API — Examples]
+    personas: [Education App Builder]
+  - resource: phonetics
+    operations: [getRhymes, getSyllables, getPronunciation]
+    workflows: [Words API — Phonetics]
+    personas: [Speech App Engineer, Language Learning App Builder]
+  - resource: frequency
+    operations: [getFrequency]
+    workflows: [Words API — Frequency]
+    personas: [NLP Engineer]
+  - resource: hierarchy
+    operations: [getHasTypes, getTypeOf, getPartOf, getHasParts, getInstances, getInstanceOf, getEntails, getMemberOf, getHasMembers, getSubstanceOf, getHasSubstances]
+    workflows: [Words API — Hierarchy]
+    personas: [NLP Engineer, Knowledge Graph Engineer]
+  - resource: categories
+    operations: [getInCategory, getHasCategories, getUsageOf, getHasUsages, getInRegion, getRegionOf, getPertainsTo]
+    workflows: [Words API — Categories]
+    personas: [NLP Engineer, Localization Engineer]
+  - resource: words
+    operations: [searchWords]
+    workflows: [Words API — Search]
+    personas: [Word Game Engineer, Puzzle App Engineer]

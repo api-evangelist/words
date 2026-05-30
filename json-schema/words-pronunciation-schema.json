@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-schema/words-pronunciation-schema.json",
+  "title": "Pronunciation",
+  "description": "Pronunciation in IPA. May be a single string or split by part of speech.",
+  "type": "object",
+  "properties": {
+    "all": {
+      "type": "string",
+      "description": "IPA pronunciation that applies across all parts of speech.",
+      "example": "\u02c8\u00e6p.\u0259l"
+    },
+    "noun": {
+      "type": "string",
+      "description": "IPA pronunciation when the word is used as a noun."
+    },
+    "verb": {
+      "type": "string",
+      "description": "IPA pronunciation when the word is used as a verb."
+    },
+    "adjective": {
+      "type": "string",
+      "description": "IPA pronunciation when the word is used as an adjective."
+    },
+    "adverb": {
+      "type": "string",
+      "description": "IPA pronunciation when the word is used as an adverb."
+    }
+  }
+}

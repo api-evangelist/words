@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-schema/words-word-entry-schema.json",
+  "title": "WordEntry",
+  "description": "Full lexical entry for one English word \u2014 every detail-type endpoint reads from this structure.",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string",
+      "description": "The headword.",
+      "example": "apple"
+    },
+    "results": {
+      "type": "array",
+      "description": "One Result per documented sense of the word.",
+      "items": {
+        "$ref": "#/components/schemas/Result"
+      }
+    },
+    "syllables": {
+      "$ref": "#/components/schemas/Syllables"
+    },
+    "pronunciation": {
+      "$ref": "#/components/schemas/Pronunciation"
+    },
+    "frequency": {
+      "type": "number",
+      "format": "double",
+      "description": "Legacy frequency score (Zipf scale).",
+      "example": 4.83
+    }
+  }
+}

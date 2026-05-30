@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-structure/words-region-of-response-structure.json",
+  "name": "RegionOfResponse",
+  "description": "RegionOfResponse schema from Words API",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string"
+    },
+    "regionOf": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

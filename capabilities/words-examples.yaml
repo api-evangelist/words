@@ -1,0 +1,79 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Words API — Examples
+  description: 'Words API Examples surface — 1 operations. Lead operation: Get Word Examples. Self-contained Naftiko capability covering one Words API business surface.'
+  tags:
+  - Words API
+  - Examples
+  created: '2026-05-30'
+  modified: '2026-05-30'
+binds:
+- namespace: env
+  keys:
+    WORDS_API_KEY: WORDS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: words-examples
+    baseUri: https://wordsapiv1.p.rapidapi.com
+    description: Words API Examples business capability. Self-contained, no shared references.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.WORDS_API_KEY}}'
+      placement: header
+    resources:
+    - name: word-examples
+      path: /words/{word}/examples
+      operations:
+      - name: getExamples
+        method: GET
+        description: Get Word Examples
+        inputParameters:
+        - name: word
+          in: path
+          type: string
+          required: true
+          description: The English word to look up.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: words-examples-rest
+    port: 8080
+    description: REST adapter for Words API — Examples. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/words/{word}/examples
+      name: word-examples
+      description: REST surface for /words/{word}/examples.
+      operations:
+      - method: GET
+        name: getExamples
+        description: Get Word Examples
+        call: words-examples.getExamples
+        with:
+          word: rest.word
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: words-examples-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Words API — Examples. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: get-examples
+      description: Get Word Examples
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: words-examples.getExamples
+      with:
+        word: tools.word
+      outputParameters:
+      - type: object
+        mapping: $.

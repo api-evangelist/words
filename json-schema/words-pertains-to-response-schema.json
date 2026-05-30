@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-schema/words-pertains-to-response-schema.json",
+  "title": "PertainsToResponse",
+  "description": "PertainsToResponse schema from Words API",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string"
+    },
+    "pertainsTo": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

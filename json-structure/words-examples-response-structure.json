@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-structure/words-examples-response-structure.json",
+  "name": "ExamplesResponse",
+  "description": "Response from GET /words/{word}/examples.",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string",
+      "example": "apple"
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "he is the apple of my eye"
+      ]
+    }
+  }
+}

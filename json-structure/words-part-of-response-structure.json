@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-structure/words-part-of-response-structure.json",
+  "name": "PartOfResponse",
+  "description": "PartOfResponse schema from Words API",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string",
+      "example": "wheel"
+    },
+    "partOf": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "car",
+        "bicycle"
+      ]
+    }
+  }
+}

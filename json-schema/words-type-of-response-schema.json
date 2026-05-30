@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-schema/words-type-of-response-schema.json",
+  "title": "TypeOfResponse",
+  "description": "TypeOfResponse schema from Words API",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string",
+      "example": "apple"
+    },
+    "typeOf": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "edible fruit",
+        "pome",
+        "false fruit"
+      ]
+    }
+  }
+}

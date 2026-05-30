@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-structure/words-entails-response-structure.json",
+  "name": "EntailsResponse",
+  "description": "EntailsResponse schema from Words API",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string",
+      "example": "walk"
+    },
+    "entails": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "step",
+        "move"
+      ]
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-structure/words-syllables-structure.json",
+  "name": "Syllables",
+  "description": "Syllable breakdown for a word.",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "int32",
+      "description": "Number of syllables in the word.",
+      "example": 2
+    },
+    "list": {
+      "type": "array",
+      "description": "Ordered list of the word's syllables.",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "ap",
+        "ple"
+      ]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-structure/words-antonyms-response-structure.json",
+  "name": "AntonymsResponse",
+  "description": "Response from GET /words/{word}/antonyms.",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string",
+      "example": "happy"
+    },
+    "antonyms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "unhappy",
+        "sad"
+      ]
+    }
+  }
+}

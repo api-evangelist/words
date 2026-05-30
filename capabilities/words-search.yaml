@@ -1,0 +1,163 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Words API — Search
+  description: 'Words API Search surface — 1 operations. Lead operation: Search Words and Get Random Word. Self-contained Naftiko capability covering one Words API business surface.'
+  tags:
+  - Words API
+  - Search
+  created: '2026-05-30'
+  modified: '2026-05-30'
+binds:
+- namespace: env
+  keys:
+    WORDS_API_KEY: WORDS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: words-search
+    baseUri: https://wordsapiv1.p.rapidapi.com
+    description: Words API Search business capability. Self-contained, no shared references.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.WORDS_API_KEY}}'
+      placement: header
+    resources:
+    - name: root
+      path: /words/
+      operations:
+      - name: searchWords
+        method: GET
+        description: Search Words and Get Random Word
+        inputParameters:
+        - name: letterPattern
+          in: query
+          type: string
+          required: false
+          description: Regex pattern matched against the word's letters.
+        - name: letters
+          in: query
+          type: integer
+          required: false
+          description: Exact letter count.
+        - name: lettersMin
+          in: query
+          type: integer
+          required: false
+          description: Minimum letter count.
+        - name: lettersMax
+          in: query
+          type: integer
+          required: false
+          description: Maximum letter count.
+        - name: pronunciationPattern
+          in: query
+          type: string
+          required: false
+          description: Regex pattern matched against the IPA pronunciation.
+        - name: sounds
+          in: query
+          type: integer
+          required: false
+          description: Exact phoneme count.
+        - name: soundsMin
+          in: query
+          type: integer
+          required: false
+          description: Minimum phoneme count.
+        - name: soundsMax
+          in: query
+          type: integer
+          required: false
+          description: Maximum phoneme count.
+        - name: partOfSpeech
+          in: query
+          type: string
+          required: false
+          description: Filter by grammatical class.
+        - name: hasDetails
+          in: query
+          type: string
+          required: false
+          description: Comma-separated detail types the word must have (e.g. "synonyms
+        - name: random
+          in: query
+          type: boolean
+          required: false
+          description: Return a single random word matching the filters.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Results per page (1–100).
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Page number for pagination.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: words-search-rest
+    port: 8080
+    description: REST adapter for Words API — Search. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/words
+      name: root
+      description: REST surface for /words/.
+      operations:
+      - method: GET
+        name: searchWords
+        description: Search Words and Get Random Word
+        call: words-search.searchWords
+        with:
+          letterPattern: rest.letterPattern
+          letters: rest.letters
+          lettersMin: rest.lettersMin
+          lettersMax: rest.lettersMax
+          pronunciationPattern: rest.pronunciationPattern
+          sounds: rest.sounds
+          soundsMin: rest.soundsMin
+          soundsMax: rest.soundsMax
+          partOfSpeech: rest.partOfSpeech
+          hasDetails: rest.hasDetails
+          random: rest.random
+          limit: rest.limit
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: words-search-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Words API — Search. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: search-words
+      description: Search Words and Get Random Word
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: words-search.searchWords
+      with:
+        letterPattern: tools.letterPattern
+        letters: tools.letters
+        lettersMin: tools.lettersMin
+        lettersMax: tools.lettersMax
+        pronunciationPattern: tools.pronunciationPattern
+        sounds: tools.sounds
+        soundsMin: tools.soundsMin
+        soundsMax: tools.soundsMax
+        partOfSpeech: tools.partOfSpeech
+        hasDetails: tools.hasDetails
+        random: tools.random
+        limit: tools.limit
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.

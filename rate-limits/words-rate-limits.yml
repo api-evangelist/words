@@ -1,0 +1,68 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Words API
+providerId: words
+created: '2026-05-30'
+modified: '2026-05-30'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Dictionaries
+  - Linguistics
+  - RapidAPI
+description: >-
+  Words API rate limits are enforced by the RapidAPI gateway on a per-subscription
+  basis. Every plan has a daily request quota (2,500 / 25,000 / 250,000 / 500,000
+  requests per day for Basic / Pro / Ultra / Mega). Quota counters reset daily and
+  are scoped to the X-RapidAPI-Key, not per-IP. There is no separately published
+  per-second cap; RapidAPI applies generic burst protection.
+sources:
+  - https://www.wordsapi.com/
+  - https://www.wordsapi.com/docs/
+  - https://docs.rapidapi.com/docs/keys-and-key-rotation
+responseCodes:
+  quotaExceeded: 429
+  throttled: 429
+  unauthorized: 401
+limits:
+  - name: Basic plan daily quota
+    scope: subscription/key
+    metric: requests_per_day
+    limit: 2500
+    timeFrame: day
+    notes: Free tier — resets each calendar day. Hard ceiling enforced by RapidAPI gateway.
+  - name: Pro plan daily quota
+    scope: subscription/key
+    metric: requests_per_day
+    limit: 25000
+    timeFrame: day
+    notes: Paid Pro tier ($10/month).
+  - name: Ultra plan daily quota
+    scope: subscription/key
+    metric: requests_per_day
+    limit: 250000
+    timeFrame: day
+    notes: Paid Ultra tier ($49/month).
+  - name: Mega plan daily quota
+    scope: subscription/key
+    metric: requests_per_day
+    limit: 500000
+    timeFrame: day
+    notes: Paid Mega tier ($89/month).
+  - name: Gateway burst protection
+    scope: key/IP
+    metric: varies
+    limit: 'see RapidAPI gateway burst policy'
+    notes: RapidAPI enforces undocumented burst protection on every key. Use exponential backoff on 429 responses.
+policies:
+  - name: Daily quota reset
+    description: Daily request counters reset at 00:00 UTC for every subscription. Consumed quota is visible in the RapidAPI dashboard.
+  - name: 24-hour caching allowance
+    description: Per Words API Terms of Service, consumers may cache responses for up to 24 hours, which is the cheapest way to stay under daily quota.
+  - name: Exponential backoff on 429
+    description: When you receive 429 Too Many Requests, back off exponentially and retry after the gateway-suggested Retry-After interval.
+  - name: Key rotation
+    description: Subscriptions are bound to the X-RapidAPI-Key value; rotate keys via the RapidAPI dashboard if exposed.
+  - name: Plan upgrade
+    description: To raise daily limits, upgrade the RapidAPI subscription (Pro / Ultra / Mega) or purchase the full dataset for local hosting.

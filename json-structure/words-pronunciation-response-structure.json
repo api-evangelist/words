@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-structure/words-pronunciation-response-structure.json",
+  "name": "PronunciationResponse",
+  "description": "Response from GET /words/{word}/pronunciation.",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string",
+      "example": "apple"
+    },
+    "pronunciation": {
+      "$ref": "#/components/schemas/Pronunciation"
+    }
+  }
+}

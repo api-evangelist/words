@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-schema/words-definition-entry-schema.json",
+  "title": "DefinitionEntry",
+  "description": "One definition with its grammatical category.",
+  "type": "object",
+  "properties": {
+    "definition": {
+      "type": "string",
+      "description": "Definition text.",
+      "example": "fruit with red or yellow or green skin and sweet to tart crisp whitish flesh"
+    },
+    "partOfSpeech": {
+      "type": "string",
+      "description": "Grammatical category.",
+      "example": "noun"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-structure/words-frequency-response-structure.json",
+  "name": "FrequencyResponse",
+  "description": "Response from GET /words/{word}/frequency.",
+  "type": "object",
+  "allOf": [
+    {
+      "type": "object",
+      "properties": {
+        "word": {
+          "type": "string",
+          "example": "apple"
+        },
+        "frequency": {
+          "$ref": "#/components/schemas/Frequency"
+        }
+      }
+    }
+  ]
+}

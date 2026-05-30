@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-schema/words-syllables-response-schema.json",
+  "title": "SyllablesResponse",
+  "description": "Response from GET /words/{word}/syllables.",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string",
+      "example": "apple"
+    },
+    "numSyllables": {
+      "type": "integer",
+      "example": 2
+    },
+    "list": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "ap",
+        "ple"
+      ]
+    }
+  }
+}

@@ -1,32 +1,225 @@
 aid: words
-name: Words
-description: "Definitions and synonyms for more than 150,000 words"
+name: Words API
+description: >-
+  Words API is a RESTful English-language API that provides definitions, synonyms,
+  antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and
+  hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf,
+  similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than
+  150,000 English words. Distributed and metered through the RapidAPI marketplace.
 url: https://www.wordsapi.com/docs/
+baseURL: https://wordsapiv1.p.rapidapi.com
+image: https://www.wordsapi.com/img/logo.png
 specificationVersion: '0.20'
 created: '2026-05-28'
-modified: '2026-05-28'
+modified: '2026-05-30'
 x-source: public-apis/public-apis
 x-category: "Dictionaries"
 x-tier: 3
 x-tier-reason: bulk-registered-from-public-apis
 tags:
   - Dictionaries
+  - Linguistics
+  - English
+  - Thesaurus
+  - Lexical Data
   - Public APIs
 apis:
-  - name: Words
-    description: "Definitions and synonyms for more than 150,000 words"
+  - name: Words API
+    description: >-
+      RESTful English-language dictionary, thesaurus, and lexical-relationship API. One
+      base resource — /words/{word} — plus 28 sub-resources for individual detail
+      types (definitions, synonyms, antonyms, examples, rhymes, frequency, syllables,
+      pronunciation, hasTypes, typeOf, partOf, hasParts, instances, instanceOf,
+      similarTo, also, entails, memberOf, hasMembers, substanceOf, hasSubstances,
+      inCategory, hasCategories, usageOf, hasUsages, inRegion, regionOf, pertainsTo)
+      and a /words search/random endpoint with letter, sound, and part-of-speech filters.
     humanURL: https://www.wordsapi.com/docs/
-    baseURL: https://www.wordsapi.com/docs/
+    baseURL: https://wordsapiv1.p.rapidapi.com
     tags:
       - Dictionaries
+      - Thesaurus
+      - Linguistics
+      - English
     properties:
       - type: Documentation
         url: https://www.wordsapi.com/docs/
+      - type: APIReference
+        url: https://www.wordsapi.com/docs/#endpoints
+      - type: Authentication
+        url: https://www.wordsapi.com/docs/#authorization
+      - type: SignUp
+        url: https://rapidapi.com/dpventures/api/wordsapi
+      - type: OpenAPI
+        url: openapi/words-openapi.yml
+      - type: NaftikoCapability
+        url: capabilities/words-word.yaml
+      - type: NaftikoCapability
+        url: capabilities/words-definitions.yaml
+      - type: NaftikoCapability
+        url: capabilities/words-thesaurus.yaml
+      - type: NaftikoCapability
+        url: capabilities/words-examples.yaml
+      - type: NaftikoCapability
+        url: capabilities/words-phonetics.yaml
+      - type: NaftikoCapability
+        url: capabilities/words-frequency.yaml
+      - type: NaftikoCapability
+        url: capabilities/words-hierarchy.yaml
+      - type: NaftikoCapability
+        url: capabilities/words-categories.yaml
+      - type: NaftikoCapability
+        url: capabilities/words-search.yaml
+      - type: JSONSchema
+        title: WordEntry
+        url: json-schema/words-word-entry-schema.json
+      - type: JSONSchema
+        title: Result
+        url: json-schema/words-result-schema.json
+      - type: JSONSchema
+        title: DefinitionsResponse
+        url: json-schema/words-definitions-response-schema.json
+      - type: JSONSchema
+        title: SynonymsResponse
+        url: json-schema/words-synonyms-response-schema.json
+      - type: JSONSchema
+        title: AntonymsResponse
+        url: json-schema/words-antonyms-response-schema.json
+      - type: JSONSchema
+        title: ExamplesResponse
+        url: json-schema/words-examples-response-schema.json
+      - type: JSONSchema
+        title: RhymesResponse
+        url: json-schema/words-rhymes-response-schema.json
+      - type: JSONSchema
+        title: FrequencyResponse
+        url: json-schema/words-frequency-response-schema.json
+      - type: JSONSchema
+        title: SyllablesResponse
+        url: json-schema/words-syllables-response-schema.json
+      - type: JSONSchema
+        title: PronunciationResponse
+        url: json-schema/words-pronunciation-response-schema.json
+      - type: JSONSchema
+        title: SearchResponse
+        url: json-schema/words-search-response-schema.json
+      - type: JSONStructure
+        title: WordEntry
+        url: json-structure/words-word-entry-structure.json
+      - type: JSONStructure
+        title: Result
+        url: json-structure/words-result-structure.json
+      - type: Example
+        title: WordEntry Example
+        url: examples/words-word-entry-example.json
+      - type: Example
+        title: DefinitionsResponse Example
+        url: examples/words-definitions-response-example.json
+      - type: Example
+        title: SynonymsResponse Example
+        url: examples/words-synonyms-response-example.json
+      - type: Example
+        title: FrequencyResponse Example
+        url: examples/words-frequency-response-example.json
+      - type: Example
+        title: SearchResponse Example
+        url: examples/words-search-response-example.json
 common:
   - type: Website
+    url: https://www.wordsapi.com/
+  - type: Documentation
     url: https://www.wordsapi.com/docs/
+  - type: SignUp
+    url: https://rapidapi.com/dpventures/api/wordsapi
+  - type: Pricing
+    url: https://rapidapi.com/dpventures/api/wordsapi/pricing
+  - type: Blog
+    url: https://blog.wordsapi.com/
+  - type: Contact
+    url: mailto:support@wordsapi.com
+  - type: GitHubOrganization
+    url: https://github.com/WordsAPI
+  - type: GitHubRepository
+    title: Word Frequencies Dataset
+    url: https://github.com/WordsAPI/wordfrequencies
+  - type: Marketplace
+    title: RapidAPI Listing
+    url: https://rapidapi.com/dpventures/api/wordsapi
   - type: PublicAPIsListing
     url: https://github.com/public-apis/public-apis
+  - type: Features
+    data:
+      - name: 150,000+ English Words
+        description: Definitions, syllables, pronunciation, and lexical relationships across more than 150,000 English words.
+      - name: Definitions and Parts of Speech
+        description: Per-sense definitions grouped by part of speech (noun, verb, adjective, adverb).
+      - name: Thesaurus (Synonyms and Antonyms)
+        description: Interchangeable and opposite-meaning words for each sense of a word.
+      - name: Lexical Hierarchies
+        description: typeOf, hasTypes, partOf, hasParts, instanceOf, hasInstances, memberOf, hasMembers, substanceOf, hasSubstances, inCategory, hasCategories relationships.
+      - name: Pronunciation in IPA
+        description: International Phonetic Alphabet pronunciation, optionally split per part of speech.
+      - name: Syllable Breakdown
+        description: Syllable count and the ordered list of syllables for each word.
+      - name: Rhymes
+        description: Lists of rhyming words, distinguished by pronunciation variant where pronunciations differ.
+      - name: Frequency Data
+        description: Zipf frequency (1–7), per-million occurrence rate, and corpus diversity score derived from large English subtitle corpora.
+      - name: Examples
+        description: Sample sentences illustrating real usage for each sense.
+      - name: Regional and Domain Usage
+        description: inRegion, regionOf, inCategory, hasCategories, usageOf, hasUsages relationships connect words to dialects and subject domains.
+      - name: Random and Filtered Word Search
+        description: /words search endpoint supports letter count, letter pattern, phoneme count, IPA pattern, part of speech, and random selection.
+  - type: UseCases
+    data:
+      - name: Dictionary and Thesaurus Applications
+        description: Power dictionary, thesaurus, and "word of the day" applications with definitions, synonyms, and related words.
+      - name: Word Games and Puzzles
+        description: Drive crossword, Scrabble-style, and anagram games with filtered word search, rhymes, and difficulty-tunable random word selection.
+      - name: Writing and Editing Tools
+        description: Build grammar, style, and writing assistants that suggest synonyms, antonyms, and frequency-aware alternatives.
+      - name: Language Learning and Education
+        description: Provide IPA pronunciation, syllable splits, frequency, and example sentences for ESL and vocabulary-building apps.
+      - name: NLP and Text Enrichment
+        description: Enrich downstream NLP pipelines with hypernyms, hyponyms, meronyms, and domain labels for entity expansion.
+      - name: Voice and Speech Applications
+        description: Use IPA pronunciation and syllable data for speech synthesis, ASR vocabulary tuning, and pronunciation coaching.
+      - name: Chatbots and Conversational Agents
+        description: Disambiguate user input by mapping words to their senses, hypernyms, and categories at runtime.
+      - name: Content Generation and Rewriting
+        description: Drive paraphrasing and content-variation engines with synonym, similar-to, and pertains-to relationships.
+  - type: Integrations
+    data:
+      - name: RapidAPI
+        description: Words API is distributed, authenticated, and metered through the RapidAPI marketplace.
+      - name: WordNet
+        description: Lexical relationships (typeOf, hasParts, memberOf, etc.) follow the WordNet relational model.
+      - name: Subtitle Corpora
+        description: Frequency data is derived from large English movie and television subtitle corpora (see WordsAPI/wordfrequencies on GitHub).
+  - type: Solutions
+    data:
+      - name: Free Tier
+        description: 2,500 requests per day at no charge for prototyping, students, and small projects.
+      - name: Pro
+        description: $10 / month, 25,000 requests per day for production applications and games.
+      - name: Ultra
+        description: $49 / month, 250,000 requests per day for high-volume consumer applications.
+      - name: Mega
+        description: $89 / month, 500,000 requests per day for very high-volume production workloads.
+      - name: Data Purchase
+        description: One-time $629 purchase of the full Words API dataset for local hosting.
+  - type: Plans
+    url: plans/words-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/words-rate-limits.yml
+  - type: FinOps
+    url: finops/words-finops.yml
+  - type: SpectralRules
+    url: rules/words-rules.yml
+  - type: Vocabulary
+    url: vocabulary/words-vocabulary.yml
+  - type: JSONLD
+    url: json-ld/words-context.jsonld
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

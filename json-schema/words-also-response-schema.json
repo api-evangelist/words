@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/words/refs/heads/main/json-schema/words-also-response-schema.json",
+  "title": "AlsoResponse",
+  "description": "AlsoResponse schema from Words API",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string"
+    },
+    "also": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
