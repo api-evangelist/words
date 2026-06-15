@@ -1,0 +1,732 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Words API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Word",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Word Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Retrieves the full lexical entry for a single English word — every documented sense (definition + part of speech), syllable breakdown, IPA pronunciation, and the embedded results array used by every other detail-type endpoint."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Definitions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Word Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/definitions",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns every documented definition for the word, grouped by part of speech."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Thesaurus",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Word Synonyms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/synonyms",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns words interchangeable with the given word in the same sense."
+        },
+        {
+          "info": {
+            "name": "Get Word Antonyms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/antonyms",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns opposite-meaning words for the given word."
+        },
+        {
+          "info": {
+            "name": "Get Words Similar To",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/similar",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns related but non-synonymous words for the given word."
+        },
+        {
+          "info": {
+            "name": "Get Word Also Used",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/also",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns idiomatic phrases that include the given word."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Examples",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Word Examples",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/examples",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns example sentences that use the given word."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Phonetics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Word Rhymes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/rhymes",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns words that rhyme with the given word, organized by part of speech when pronunciations differ."
+        },
+        {
+          "info": {
+            "name": "Get Word Syllables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/syllables",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the syllable count and the ordered list of syllables for the word."
+        },
+        {
+          "info": {
+            "name": "Get Word Pronunciation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/pronunciation",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the IPA pronunciation for the word, optionally split by part of speech."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Frequency",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Word Frequency",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/frequency",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns corpus-derived frequency statistics for the word — Zipf score (1–7), per-million occurrence rate, and corpus diversity (0–1)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Hierarchy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Word Has Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/hasTypes",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the more specific words (hyponyms) of the given word."
+        },
+        {
+          "info": {
+            "name": "Get Word Type Of",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/typeOf",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the more generic words (hypernyms) of the given word."
+        },
+        {
+          "info": {
+            "name": "Get Word Part Of",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/partOf",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns wholes the word is a part of (holonyms)."
+        },
+        {
+          "info": {
+            "name": "Get Word Has Parts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/hasParts",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the parts that compose the word (meronyms)."
+        },
+        {
+          "info": {
+            "name": "Get Word Instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/instances",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns specific instances of the given word (e.g. concrete examples of a category)."
+        },
+        {
+          "info": {
+            "name": "Get Word Instance Of",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/instanceOf",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the categories of which the given word is an instance."
+        },
+        {
+          "info": {
+            "name": "Get Word Entails",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/entails",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns words logically entailed by the given word, typically verbs."
+        },
+        {
+          "info": {
+            "name": "Get Word Member Of",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/memberOf",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns groups the given word is a member of."
+        },
+        {
+          "info": {
+            "name": "Get Word Has Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/hasMembers",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the members that belong to the given group word."
+        },
+        {
+          "info": {
+            "name": "Get Word Substance Of",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/substanceOf",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns materials of which the given word is a substance."
+        },
+        {
+          "info": {
+            "name": "Get Word Has Substances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/hasSubstances",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the substances that compose the given word."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Word In Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/inCategory",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the categories the given word belongs to."
+        },
+        {
+          "info": {
+            "name": "Get Word Has Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/hasCategories",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the subcategories of the given category word."
+        },
+        {
+          "info": {
+            "name": "Get Word Usage Of",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/usageOf",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the domain-usage classifications of the given word."
+        },
+        {
+          "info": {
+            "name": "Get Word Has Usages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/hasUsages",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the domain-usage examples of the given word."
+        },
+        {
+          "info": {
+            "name": "Get Word In Region",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/inRegion",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the geographic regions where the given word is used."
+        },
+        {
+          "info": {
+            "name": "Get Word Region Of",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/regionOf",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the regional variants associated with the given word."
+        },
+        {
+          "info": {
+            "name": "Get Word Pertains To",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/pertainsTo",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns words to which the given word pertains (adjective-to-noun and similar relations)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Words and Get Random Word",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/",
+            "params": [
+              {
+                "name": "letterPattern",
+                "value": "^a.*z$",
+                "type": "query",
+                "description": "Regex pattern matched against the word's letters."
+              },
+              {
+                "name": "letters",
+                "value": "5",
+                "type": "query",
+                "description": "Exact letter count."
+              },
+              {
+                "name": "lettersMin",
+                "value": "4",
+                "type": "query",
+                "description": "Minimum letter count."
+              },
+              {
+                "name": "lettersMax",
+                "value": "10",
+                "type": "query",
+                "description": "Maximum letter count."
+              },
+              {
+                "name": "pronunciationPattern",
+                "value": "ˈæp.*",
+                "type": "query",
+                "description": "Regex pattern matched against the IPA pronunciation."
+              },
+              {
+                "name": "sounds",
+                "value": "5",
+                "type": "query",
+                "description": "Exact phoneme count."
+              },
+              {
+                "name": "soundsMin",
+                "value": "3",
+                "type": "query",
+                "description": "Minimum phoneme count."
+              },
+              {
+                "name": "soundsMax",
+                "value": "8",
+                "type": "query",
+                "description": "Maximum phoneme count."
+              },
+              {
+                "name": "partOfSpeech",
+                "value": "verb",
+                "type": "query",
+                "description": "Filter by grammatical class."
+              },
+              {
+                "name": "hasDetails",
+                "value": "synonyms,examples",
+                "type": "query",
+                "description": "Comma-separated detail types the word must have (e.g. \"synonyms"
+              },
+              {
+                "name": "random",
+                "value": "true",
+                "type": "query",
+                "description": "Return a single random word matching the filters."
+              },
+              {
+                "name": "limit",
+                "value": "50",
+                "type": "query",
+                "description": "Results per page (1–100)."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Page number for pagination."
+              }
+            ]
+          },
+          "docs": "Searches the Words API dictionary using letter, sound, part-of-speech, and detail-type filters. Pass random=true to return a single random word matching the filters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
