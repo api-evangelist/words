@@ -44,7 +44,7 @@ apis:
         url: https://www.wordsapi.com/docs/#endpoints
       - type: Authentication
         url: https://www.wordsapi.com/docs/#authorization
-      - type: SignUp
+      - type: Signup
         url: https://rapidapi.com/dpventures/api/wordsapi
       - type: OpenAPI
         url: openapi/words-openapi.yml
@@ -87,19 +87,19 @@ apis:
       - type: JSONStructure
         title: Result
         url: json-structure/words-result-structure.json
-      - type: Example
+      - type: Examples
         title: WordEntry Example
         url: examples/words-word-entry-example.json
-      - type: Example
+      - type: Examples
         title: DefinitionsResponse Example
         url: examples/words-definitions-response-example.json
-      - type: Example
+      - type: Examples
         title: SynonymsResponse Example
         url: examples/words-synonyms-response-example.json
-      - type: Example
+      - type: Examples
         title: FrequencyResponse Example
         url: examples/words-frequency-response-example.json
-      - type: Example
+      - type: Examples
         title: SearchResponse Example
         url: examples/words-search-response-example.json
 common:
@@ -107,7 +107,7 @@ common:
     url: https://www.wordsapi.com/
   - type: Documentation
     url: https://www.wordsapi.com/docs/
-  - type: SignUp
+  - type: Signup
     url: https://rapidapi.com/dpventures/api/wordsapi
   - type: Pricing
     url: https://rapidapi.com/dpventures/api/wordsapi/pricing
