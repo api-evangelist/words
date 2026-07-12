@@ -103,6 +103,10 @@ apis:
         title: SearchResponse Example
         url: examples/words-search-response-example.json
 common:
+  - type: DomainSecurity
+    url: security/words-domain-security.yml
+  - type: Authentication
+    url: authentication/words-authentication.yml
   - type: Website
     url: https://www.wordsapi.com/
   - type: Documentation

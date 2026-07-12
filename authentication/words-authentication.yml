@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/words-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: RapidApiKey
+  type: apiKey
+  in: header
+  parameter: X-RapidAPI-Key
+  description: RapidAPI subscription key. The X-RapidAPI-Host header (wordsapiv1.p.rapidapi.com)
+    is also required.
+  sources:
+  - openapi/words-openapi.yml
