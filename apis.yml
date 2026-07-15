@@ -103,6 +103,8 @@ apis:
         title: SearchResponse Example
         url: examples/words-search-response-example.json
 common:
+  - type: AgenticAccess
+    url: agentic-access/words-agentic-access.yml
   - type: DomainSecurity
     url: security/words-domain-security.yml
   - type: Authentication
