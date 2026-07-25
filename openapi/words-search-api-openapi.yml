@@ -1,0 +1,228 @@
+openapi: 3.0.3
+info:
+  title: Words Categories Search API
+  version: 1.0.0
+  description: Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.
+  contact:
+    name: Words API Support
+    email: support@wordsapi.com
+    url: https://www.wordsapi.com/
+  license:
+    name: Words API Terms of Service
+    url: https://www.wordsapi.com/
+  x-generated-from: documentation
+  x-last-validated: '2026-05-30'
+servers:
+- url: https://wordsapiv1.p.rapidapi.com
+  description: Words API production endpoint, served through the RapidAPI gateway.
+security:
+- RapidApiKey: []
+tags:
+- name: Search
+  description: Words API Search and Random Word Discovery Endpoint.
+paths:
+  /words/:
+    get:
+      tags:
+      - Search
+      operationId: searchWords
+      summary: Search Words and Get Random Word
+      description: Searches the Words API dictionary using letter, sound, part-of-speech, and detail-type filters. Pass random=true to return a single random word matching the filters.
+      parameters:
+      - name: letterPattern
+        in: query
+        required: false
+        description: Regex pattern matched against the word's letters.
+        schema:
+          type: string
+        example: ^a.*z$
+      - name: letters
+        in: query
+        required: false
+        description: Exact letter count.
+        schema:
+          type: integer
+          minimum: 1
+        example: 5
+      - name: lettersMin
+        in: query
+        required: false
+        description: Minimum letter count.
+        schema:
+          type: integer
+          minimum: 1
+        example: 4
+      - name: lettersMax
+        in: query
+        required: false
+        description: Maximum letter count.
+        schema:
+          type: integer
+          minimum: 1
+        example: 10
+      - name: pronunciationPattern
+        in: query
+        required: false
+        description: Regex pattern matched against the IPA pronunciation.
+        schema:
+          type: string
+        example: ˈæp.*
+      - name: sounds
+        in: query
+        required: false
+        description: Exact phoneme count.
+        schema:
+          type: integer
+          minimum: 1
+        example: 5
+      - name: soundsMin
+        in: query
+        required: false
+        description: Minimum phoneme count.
+        schema:
+          type: integer
+          minimum: 1
+        example: 3
+      - name: soundsMax
+        in: query
+        required: false
+        description: Maximum phoneme count.
+        schema:
+          type: integer
+          minimum: 1
+        example: 8
+      - name: partOfSpeech
+        in: query
+        required: false
+        description: Filter by grammatical class.
+        schema:
+          type: string
+          enum:
+          - noun
+          - verb
+          - adjective
+          - adverb
+          - pronoun
+          - preposition
+          - conjunction
+          - interjection
+          - determiner
+        example: verb
+      - name: hasDetails
+        in: query
+        required: false
+        description: Comma-separated detail types the word must have (e.g. "synonyms
+        examples").: null
+        schema:
+          type: string
+        example: synonyms,examples
+      - name: random
+        in: query
+        required: false
+        description: Return a single random word matching the filters.
+        schema:
+          type: boolean
+        example: true
+      - name: limit
+        in: query
+        required: false
+        description: Results per page (1–100).
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 100
+        example: 50
+      - name: page
+        in: query
+        required: false
+        description: Page number for pagination.
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+        example: 1
+      responses:
+        '200':
+          description: Search results returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    TooManyRequests:
+      description: Quota or rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid RapidAPI credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Malformed request or invalid query parameter.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    SearchResponse:
+      type: object
+      description: Response from GET /words search.
+      properties:
+        query:
+          type: object
+          description: The query parameters as interpreted by Words API.
+          additionalProperties: true
+        results:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                type: string
+              description: Matching words.
+              example:
+              - apple
+              - ample
+              - angle
+            total:
+              type: integer
+              example: 3
+        word:
+          type: string
+          description: When random=true, the single random word returned.
+          example: serendipity
+    Error:
+      type: object
+      description: Error response body returned by Words API when a request fails.
+      properties:
+        success:
+          type: boolean
+          description: Always false for error responses.
+          example: false
+        message:
+          type: string
+          description: Human-readable description of the error.
+          example: word not found
+      required:
+      - message
+  securitySchemes:
+    RapidApiKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: RapidAPI subscription key. The X-RapidAPI-Host header (wordsapiv1.p.rapidapi.com) is also required.

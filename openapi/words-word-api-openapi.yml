@@ -1,0 +1,299 @@
+openapi: 3.0.3
+info:
+  title: Words Categories Word API
+  version: 1.0.0
+  description: Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.
+  contact:
+    name: Words API Support
+    email: support@wordsapi.com
+    url: https://www.wordsapi.com/
+  license:
+    name: Words API Terms of Service
+    url: https://www.wordsapi.com/
+  x-generated-from: documentation
+  x-last-validated: '2026-05-30'
+servers:
+- url: https://wordsapiv1.p.rapidapi.com
+  description: Words API production endpoint, served through the RapidAPI gateway.
+security:
+- RapidApiKey: []
+tags:
+- name: Word
+  description: Words API Lookup a Word and Retrieve Its Full Lexical Entry.
+paths:
+  /words/{word}:
+    get:
+      tags:
+      - Word
+      operationId: getWord
+      summary: Get Word Entry
+      description: Retrieves the full lexical entry for a single English word — every documented sense (definition + part of speech), syllable breakdown, IPA pronunciation, and the embedded results array used by every other detail-type endpoint.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: Full word entry returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WordEntry'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    ServerError:
+      description: Upstream Words API error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid RapidAPI credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Quota or rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Word not found in the Words API dictionary.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Word:
+      name: word
+      in: path
+      required: true
+      description: The English word to look up.
+      schema:
+        type: string
+      example: apple
+  schemas:
+    Result:
+      type: object
+      description: Single lexical-relationship record for one sense of a word.
+      properties:
+        definition:
+          type: string
+          description: Definition of this sense.
+          example: fruit with red or yellow or green skin and sweet to tart crisp whitish flesh
+        partOfSpeech:
+          type: string
+          description: Grammatical category of this sense.
+          example: noun
+        synonyms:
+          type: array
+          description: Words interchangeable with the headword in this sense.
+          items:
+            type: string
+          example:
+          - orchard apple tree
+        antonyms:
+          type: array
+          description: Words with opposite meaning in this sense.
+          items:
+            type: string
+        examples:
+          type: array
+          description: Example sentences for this sense.
+          items:
+            type: string
+          example:
+          - he is the apple of my eye
+        typeOf:
+          type: array
+          description: Hypernyms — more general words for this sense.
+          items:
+            type: string
+          example:
+          - edible fruit
+          - pome
+          - false fruit
+        hasTypes:
+          type: array
+          description: Hyponyms — more specific words for this sense.
+          items:
+            type: string
+        partOf:
+          type: array
+          description: Holonyms — wholes this sense is part of.
+          items:
+            type: string
+        hasParts:
+          type: array
+          description: Meronyms — parts that compose this sense.
+          items:
+            type: string
+        instanceOf:
+          type: array
+          description: Categories of which this sense is an instance.
+          items:
+            type: string
+        hasInstances:
+          type: array
+          description: Specific instances of this sense.
+          items:
+            type: string
+        similarTo:
+          type: array
+          description: Related but non-synonymous words.
+          items:
+            type: string
+        also:
+          type: array
+          description: Idiomatic phrases that include this sense.
+          items:
+            type: string
+        entails:
+          type: array
+          description: Words logically entailed by this sense.
+          items:
+            type: string
+        memberOf:
+          type: array
+          description: Groups the sense is a member of.
+          items:
+            type: string
+        hasMembers:
+          type: array
+          description: Members that belong to this group sense.
+          items:
+            type: string
+        substanceOf:
+          type: array
+          description: Materials this sense is a substance of.
+          items:
+            type: string
+        hasSubstances:
+          type: array
+          description: Substances that compose this sense.
+          items:
+            type: string
+        inCategory:
+          type: array
+          description: Categories this sense belongs to.
+          items:
+            type: string
+        hasCategories:
+          type: array
+          description: Subcategories of this category sense.
+          items:
+            type: string
+        usageOf:
+          type: array
+          description: Domain-usage classifications this sense belongs to.
+          items:
+            type: string
+        hasUsages:
+          type: array
+          description: Domain-usage examples of this sense.
+          items:
+            type: string
+        inRegion:
+          type: array
+          description: Regions in which this sense is used.
+          items:
+            type: string
+        regionOf:
+          type: array
+          description: Regional variants associated with this sense.
+          items:
+            type: string
+        pertainsTo:
+          type: array
+          description: Words this sense pertains to.
+          items:
+            type: string
+    Pronunciation:
+      type: object
+      description: Pronunciation in IPA. May be a single string or split by part of speech.
+      properties:
+        all:
+          type: string
+          description: IPA pronunciation that applies across all parts of speech.
+          example: ˈæp.əl
+        noun:
+          type: string
+          description: IPA pronunciation when the word is used as a noun.
+        verb:
+          type: string
+          description: IPA pronunciation when the word is used as a verb.
+        adjective:
+          type: string
+          description: IPA pronunciation when the word is used as an adjective.
+        adverb:
+          type: string
+          description: IPA pronunciation when the word is used as an adverb.
+    Error:
+      type: object
+      description: Error response body returned by Words API when a request fails.
+      properties:
+        success:
+          type: boolean
+          description: Always false for error responses.
+          example: false
+        message:
+          type: string
+          description: Human-readable description of the error.
+          example: word not found
+      required:
+      - message
+    Syllables:
+      type: object
+      description: Syllable breakdown for a word.
+      properties:
+        count:
+          type: integer
+          description: Number of syllables in the word.
+          example: 2
+        list:
+          type: array
+          description: Ordered list of the word's syllables.
+          items:
+            type: string
+          example:
+          - ap
+          - ple
+    WordEntry:
+      type: object
+      description: Full lexical entry for one English word — every detail-type endpoint reads from this structure.
+      properties:
+        word:
+          type: string
+          description: The headword.
+          example: apple
+        results:
+          type: array
+          description: One Result per documented sense of the word.
+          items:
+            $ref: '#/components/schemas/Result'
+        syllables:
+          $ref: '#/components/schemas/Syllables'
+        pronunciation:
+          $ref: '#/components/schemas/Pronunciation'
+        frequency:
+          type: number
+          format: double
+          description: Legacy frequency score (Zipf scale).
+          example: 4.83
+  securitySchemes:
+    RapidApiKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: RapidAPI subscription key. The X-RapidAPI-Host header (wordsapiv1.p.rapidapi.com) is also required.

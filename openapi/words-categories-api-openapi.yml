@@ -1,0 +1,236 @@
+openapi: 3.0.3
+info:
+  title: Words Categories API
+  version: 1.0.0
+  description: Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.
+  contact:
+    name: Words API Support
+    email: support@wordsapi.com
+    url: https://www.wordsapi.com/
+  license:
+    name: Words API Terms of Service
+    url: https://www.wordsapi.com/
+  x-generated-from: documentation
+  x-last-validated: '2026-05-30'
+servers:
+- url: https://wordsapiv1.p.rapidapi.com
+  description: Words API production endpoint, served through the RapidAPI gateway.
+security:
+- RapidApiKey: []
+tags:
+- name: Categories
+  description: Words API Category, Region, and Domain-Usage Relationships.
+paths:
+  /words/{word}/inCategory:
+    get:
+      tags:
+      - Categories
+      operationId: getInCategory
+      summary: Get Word In Category
+      description: Returns the categories the given word belongs to.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: inCategory returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InCategoryResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/hasCategories:
+    get:
+      tags:
+      - Categories
+      operationId: getHasCategories
+      summary: Get Word Has Categories
+      description: Returns the subcategories of the given category word.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: hasCategories returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HasCategoriesResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/usageOf:
+    get:
+      tags:
+      - Categories
+      operationId: getUsageOf
+      summary: Get Word Usage Of
+      description: Returns the domain-usage classifications of the given word.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: usageOf returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsageOfResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/hasUsages:
+    get:
+      tags:
+      - Categories
+      operationId: getHasUsages
+      summary: Get Word Has Usages
+      description: Returns the domain-usage examples of the given word.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: hasUsages returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HasUsagesResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/inRegion:
+    get:
+      tags:
+      - Categories
+      operationId: getInRegion
+      summary: Get Word In Region
+      description: Returns the geographic regions where the given word is used.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: inRegion returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InRegionResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/regionOf:
+    get:
+      tags:
+      - Categories
+      operationId: getRegionOf
+      summary: Get Word Region Of
+      description: Returns the regional variants associated with the given word.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: regionOf returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionOfResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/pertainsTo:
+    get:
+      tags:
+      - Categories
+      operationId: getPertainsTo
+      summary: Get Word Pertains To
+      description: Returns words to which the given word pertains (adjective-to-noun and similar relations).
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: pertainsTo returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PertainsToResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    RegionOfResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        regionOf:
+          type: array
+          items:
+            type: string
+    InRegionResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        inRegion:
+          type: array
+          items:
+            type: string
+    HasUsagesResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        hasUsages:
+          type: array
+          items:
+            type: string
+    PertainsToResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        pertainsTo:
+          type: array
+          items:
+            type: string
+    UsageOfResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        usageOf:
+          type: array
+          items:
+            type: string
+    HasCategoriesResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        hasCategories:
+          type: array
+          items:
+            type: string
+    InCategoryResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        inCategory:
+          type: array
+          items:
+            type: string
+  parameters:
+    Word:
+      name: word
+      in: path
+      required: true
+      description: The English word to look up.
+      schema:
+        type: string
+      example: apple
+  securitySchemes:
+    RapidApiKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: RapidAPI subscription key. The X-RapidAPI-Host header (wordsapiv1.p.rapidapi.com) is also required.

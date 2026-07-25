@@ -1,0 +1,189 @@
+openapi: 3.0.3
+info:
+  title: Words Categories Phonetics API
+  version: 1.0.0
+  description: Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.
+  contact:
+    name: Words API Support
+    email: support@wordsapi.com
+    url: https://www.wordsapi.com/
+  license:
+    name: Words API Terms of Service
+    url: https://www.wordsapi.com/
+  x-generated-from: documentation
+  x-last-validated: '2026-05-30'
+servers:
+- url: https://wordsapiv1.p.rapidapi.com
+  description: Words API production endpoint, served through the RapidAPI gateway.
+security:
+- RapidApiKey: []
+tags:
+- name: Phonetics
+  description: Words API Pronunciation (IPA), Syllables, and Rhymes.
+paths:
+  /words/{word}/rhymes:
+    get:
+      tags:
+      - Phonetics
+      operationId: getRhymes
+      summary: Get Word Rhymes
+      description: Returns words that rhyme with the given word, organized by part of speech when pronunciations differ.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: Rhymes returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RhymesResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/syllables:
+    get:
+      tags:
+      - Phonetics
+      operationId: getSyllables
+      summary: Get Word Syllables
+      description: Returns the syllable count and the ordered list of syllables for the word.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: Syllables returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyllablesResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/pronunciation:
+    get:
+      tags:
+      - Phonetics
+      operationId: getPronunciation
+      summary: Get Word Pronunciation
+      description: Returns the IPA pronunciation for the word, optionally split by part of speech.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: Pronunciation returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PronunciationResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    Word:
+      name: word
+      in: path
+      required: true
+      description: The English word to look up.
+      schema:
+        type: string
+      example: apple
+  schemas:
+    RhymesResponse:
+      type: object
+      description: Response from GET /words/{word}/rhymes.
+      properties:
+        word:
+          type: string
+          example: apple
+        rhymes:
+          type: object
+          description: Rhyme arrays grouped by pronunciation variant.
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          example:
+            all:
+            - chapel
+            - dapple
+            - grapple
+    Pronunciation:
+      type: object
+      description: Pronunciation in IPA. May be a single string or split by part of speech.
+      properties:
+        all:
+          type: string
+          description: IPA pronunciation that applies across all parts of speech.
+          example: ˈæp.əl
+        noun:
+          type: string
+          description: IPA pronunciation when the word is used as a noun.
+        verb:
+          type: string
+          description: IPA pronunciation when the word is used as a verb.
+        adjective:
+          type: string
+          description: IPA pronunciation when the word is used as an adjective.
+        adverb:
+          type: string
+          description: IPA pronunciation when the word is used as an adverb.
+    Error:
+      type: object
+      description: Error response body returned by Words API when a request fails.
+      properties:
+        success:
+          type: boolean
+          description: Always false for error responses.
+          example: false
+        message:
+          type: string
+          description: Human-readable description of the error.
+          example: word not found
+      required:
+      - message
+    SyllablesResponse:
+      type: object
+      description: Response from GET /words/{word}/syllables.
+      properties:
+        word:
+          type: string
+          example: apple
+        numSyllables:
+          type: integer
+          example: 2
+        list:
+          type: array
+          items:
+            type: string
+          example:
+          - ap
+          - ple
+    PronunciationResponse:
+      type: object
+      description: Response from GET /words/{word}/pronunciation.
+      properties:
+        word:
+          type: string
+          example: apple
+        pronunciation:
+          $ref: '#/components/schemas/Pronunciation'
+  responses:
+    NotFound:
+      description: Word not found in the Words API dictionary.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    RapidApiKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: RapidAPI subscription key. The X-RapidAPI-Host header (wordsapiv1.p.rapidapi.com) is also required.

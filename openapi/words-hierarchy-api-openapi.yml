@@ -1,0 +1,371 @@
+openapi: 3.0.3
+info:
+  title: Words Categories Hierarchy API
+  version: 1.0.0
+  description: Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.
+  contact:
+    name: Words API Support
+    email: support@wordsapi.com
+    url: https://www.wordsapi.com/
+  license:
+    name: Words API Terms of Service
+    url: https://www.wordsapi.com/
+  x-generated-from: documentation
+  x-last-validated: '2026-05-30'
+servers:
+- url: https://wordsapiv1.p.rapidapi.com
+  description: Words API production endpoint, served through the RapidAPI gateway.
+security:
+- RapidApiKey: []
+tags:
+- name: Hierarchy
+  description: Words API Lexical Hierarchies — typeOf, hasTypes, partOf, hasParts, instances.
+paths:
+  /words/{word}/hasTypes:
+    get:
+      tags:
+      - Hierarchy
+      operationId: getHasTypes
+      summary: Get Word Has Types
+      description: Returns the more specific words (hyponyms) of the given word.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: hasTypes returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HasTypesResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/typeOf:
+    get:
+      tags:
+      - Hierarchy
+      operationId: getTypeOf
+      summary: Get Word Type Of
+      description: Returns the more generic words (hypernyms) of the given word.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: typeOf returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TypeOfResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/partOf:
+    get:
+      tags:
+      - Hierarchy
+      operationId: getPartOf
+      summary: Get Word Part Of
+      description: Returns wholes the word is a part of (holonyms).
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: partOf returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartOfResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/hasParts:
+    get:
+      tags:
+      - Hierarchy
+      operationId: getHasParts
+      summary: Get Word Has Parts
+      description: Returns the parts that compose the word (meronyms).
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: hasParts returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HasPartsResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/instances:
+    get:
+      tags:
+      - Hierarchy
+      operationId: getInstances
+      summary: Get Word Instances
+      description: Returns specific instances of the given word (e.g. concrete examples of a category).
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: instances returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstancesResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/instanceOf:
+    get:
+      tags:
+      - Hierarchy
+      operationId: getInstanceOf
+      summary: Get Word Instance Of
+      description: Returns the categories of which the given word is an instance.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: instanceOf returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstanceOfResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/entails:
+    get:
+      tags:
+      - Hierarchy
+      operationId: getEntails
+      summary: Get Word Entails
+      description: Returns words logically entailed by the given word, typically verbs.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: entails returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntailsResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/memberOf:
+    get:
+      tags:
+      - Hierarchy
+      operationId: getMemberOf
+      summary: Get Word Member Of
+      description: Returns groups the given word is a member of.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: memberOf returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberOfResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/hasMembers:
+    get:
+      tags:
+      - Hierarchy
+      operationId: getHasMembers
+      summary: Get Word Has Members
+      description: Returns the members that belong to the given group word.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: hasMembers returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HasMembersResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/substanceOf:
+    get:
+      tags:
+      - Hierarchy
+      operationId: getSubstanceOf
+      summary: Get Word Substance Of
+      description: Returns materials of which the given word is a substance.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: substanceOf returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubstanceOfResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/hasSubstances:
+    get:
+      tags:
+      - Hierarchy
+      operationId: getHasSubstances
+      summary: Get Word Has Substances
+      description: Returns the substances that compose the given word.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: hasSubstances returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HasSubstancesResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    InstancesResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        instances:
+          type: array
+          items:
+            type: string
+    SubstanceOfResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        substanceOf:
+          type: array
+          items:
+            type: string
+    InstanceOfResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        instanceOf:
+          type: array
+          items:
+            type: string
+    MemberOfResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        memberOf:
+          type: array
+          items:
+            type: string
+    PartOfResponse:
+      type: object
+      properties:
+        word:
+          type: string
+          example: wheel
+        partOf:
+          type: array
+          items:
+            type: string
+          example:
+          - car
+          - bicycle
+    HasSubstancesResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        hasSubstances:
+          type: array
+          items:
+            type: string
+    HasPartsResponse:
+      type: object
+      properties:
+        word:
+          type: string
+          example: car
+        hasParts:
+          type: array
+          items:
+            type: string
+          example:
+          - wheel
+          - engine
+          - door
+    HasTypesResponse:
+      type: object
+      properties:
+        word:
+          type: string
+          example: fruit
+        hasTypes:
+          type: array
+          items:
+            type: string
+          example:
+          - apple
+          - orange
+          - pear
+    EntailsResponse:
+      type: object
+      properties:
+        word:
+          type: string
+          example: walk
+        entails:
+          type: array
+          items:
+            type: string
+          example:
+          - step
+          - move
+    HasMembersResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        hasMembers:
+          type: array
+          items:
+            type: string
+    TypeOfResponse:
+      type: object
+      properties:
+        word:
+          type: string
+          example: apple
+        typeOf:
+          type: array
+          items:
+            type: string
+          example:
+          - edible fruit
+          - pome
+          - false fruit
+  parameters:
+    Word:
+      name: word
+      in: path
+      required: true
+      description: The English word to look up.
+      schema:
+        type: string
+      example: apple
+  securitySchemes:
+    RapidApiKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: RapidAPI subscription key. The X-RapidAPI-Host header (wordsapiv1.p.rapidapi.com) is also required.

@@ -1,0 +1,112 @@
+openapi: 3.0.3
+info:
+  title: Words Categories Frequency API
+  version: 1.0.0
+  description: Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.
+  contact:
+    name: Words API Support
+    email: support@wordsapi.com
+    url: https://www.wordsapi.com/
+  license:
+    name: Words API Terms of Service
+    url: https://www.wordsapi.com/
+  x-generated-from: documentation
+  x-last-validated: '2026-05-30'
+servers:
+- url: https://wordsapiv1.p.rapidapi.com
+  description: Words API production endpoint, served through the RapidAPI gateway.
+security:
+- RapidApiKey: []
+tags:
+- name: Frequency
+  description: Words API Corpus-derived Frequency Statistics (Zipf, perMillion, diversity).
+paths:
+  /words/{word}/frequency:
+    get:
+      tags:
+      - Frequency
+      operationId: getFrequency
+      summary: Get Word Frequency
+      description: Returns corpus-derived frequency statistics for the word — Zipf score (1–7), per-million occurrence rate, and corpus diversity (0–1).
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: Frequency returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FrequencyResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    FrequencyResponse:
+      type: object
+      description: Response from GET /words/{word}/frequency.
+      allOf:
+      - type: object
+        properties:
+          word:
+            type: string
+            example: apple
+          frequency:
+            $ref: '#/components/schemas/Frequency'
+    Error:
+      type: object
+      description: Error response body returned by Words API when a request fails.
+      properties:
+        success:
+          type: boolean
+          description: Always false for error responses.
+          example: false
+        message:
+          type: string
+          description: Human-readable description of the error.
+          example: word not found
+      required:
+      - message
+    Frequency:
+      type: object
+      description: Corpus-derived frequency information for a word.
+      properties:
+        zipf:
+          type: number
+          format: double
+          description: Zipf-scale frequency score (typically 1–7).
+          example: 4.83
+        perMillion:
+          type: number
+          format: double
+          description: Average number of occurrences per million corpus tokens.
+          example: 67.61
+        diversity:
+          type: number
+          format: double
+          description: Likelihood (0–1) that the word appears in a randomly chosen document.
+          example: 0.17
+  parameters:
+    Word:
+      name: word
+      in: path
+      required: true
+      description: The English word to look up.
+      schema:
+        type: string
+      example: apple
+  responses:
+    NotFound:
+      description: Word not found in the Words API dictionary.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    RapidApiKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: RapidAPI subscription key. The X-RapidAPI-Host header (wordsapiv1.p.rapidapi.com) is also required.

@@ -1,0 +1,105 @@
+openapi: 3.0.3
+info:
+  title: Words Categories Definitions API
+  version: 1.0.0
+  description: Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.
+  contact:
+    name: Words API Support
+    email: support@wordsapi.com
+    url: https://www.wordsapi.com/
+  license:
+    name: Words API Terms of Service
+    url: https://www.wordsapi.com/
+  x-generated-from: documentation
+  x-last-validated: '2026-05-30'
+servers:
+- url: https://wordsapiv1.p.rapidapi.com
+  description: Words API production endpoint, served through the RapidAPI gateway.
+security:
+- RapidApiKey: []
+tags:
+- name: Definitions
+  description: Words API Sense-level Definitions Grouped by Part of Speech.
+paths:
+  /words/{word}/definitions:
+    get:
+      tags:
+      - Definitions
+      operationId: getDefinitions
+      summary: Get Word Definitions
+      description: Returns every documented definition for the word, grouped by part of speech.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: Definitions returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefinitionsResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    DefinitionEntry:
+      type: object
+      description: One definition with its grammatical category.
+      properties:
+        definition:
+          type: string
+          description: Definition text.
+          example: fruit with red or yellow or green skin and sweet to tart crisp whitish flesh
+        partOfSpeech:
+          type: string
+          description: Grammatical category.
+          example: noun
+    DefinitionsResponse:
+      type: object
+      description: Response from GET /words/{word}/definitions.
+      properties:
+        word:
+          type: string
+          example: apple
+        definitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefinitionEntry'
+    Error:
+      type: object
+      description: Error response body returned by Words API when a request fails.
+      properties:
+        success:
+          type: boolean
+          description: Always false for error responses.
+          example: false
+        message:
+          type: string
+          description: Human-readable description of the error.
+          example: word not found
+      required:
+      - message
+  parameters:
+    Word:
+      name: word
+      in: path
+      required: true
+      description: The English word to look up.
+      schema:
+        type: string
+      example: apple
+  responses:
+    NotFound:
+      description: Word not found in the Words API dictionary.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    RapidApiKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: RapidAPI subscription key. The X-RapidAPI-Host header (wordsapiv1.p.rapidapi.com) is also required.

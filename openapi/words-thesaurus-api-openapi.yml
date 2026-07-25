@@ -1,0 +1,192 @@
+openapi: 3.0.3
+info:
+  title: Words Categories Thesaurus API
+  version: 1.0.0
+  description: Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.
+  contact:
+    name: Words API Support
+    email: support@wordsapi.com
+    url: https://www.wordsapi.com/
+  license:
+    name: Words API Terms of Service
+    url: https://www.wordsapi.com/
+  x-generated-from: documentation
+  x-last-validated: '2026-05-30'
+servers:
+- url: https://wordsapiv1.p.rapidapi.com
+  description: Words API production endpoint, served through the RapidAPI gateway.
+security:
+- RapidApiKey: []
+tags:
+- name: Thesaurus
+  description: Words API Synonyms, Antonyms, and Similar Word Relationships.
+paths:
+  /words/{word}/synonyms:
+    get:
+      tags:
+      - Thesaurus
+      operationId: getSynonyms
+      summary: Get Word Synonyms
+      description: Returns words interchangeable with the given word in the same sense.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: Synonyms returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SynonymsResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/antonyms:
+    get:
+      tags:
+      - Thesaurus
+      operationId: getAntonyms
+      summary: Get Word Antonyms
+      description: Returns opposite-meaning words for the given word.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: Antonyms returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AntonymsResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/similar:
+    get:
+      tags:
+      - Thesaurus
+      operationId: getSimilarTo
+      summary: Get Words Similar To
+      description: Returns related but non-synonymous words for the given word.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: similarTo returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimilarToResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/also:
+    get:
+      tags:
+      - Thesaurus
+      operationId: getAlso
+      summary: Get Word Also Used
+      description: Returns idiomatic phrases that include the given word.
+      parameters:
+      - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: also returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlsoResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    Word:
+      name: word
+      in: path
+      required: true
+      description: The English word to look up.
+      schema:
+        type: string
+      example: apple
+  schemas:
+    AntonymsResponse:
+      type: object
+      description: Response from GET /words/{word}/antonyms.
+      properties:
+        word:
+          type: string
+          example: happy
+        antonyms:
+          type: array
+          items:
+            type: string
+          example:
+          - unhappy
+          - sad
+    Error:
+      type: object
+      description: Error response body returned by Words API when a request fails.
+      properties:
+        success:
+          type: boolean
+          description: Always false for error responses.
+          example: false
+        message:
+          type: string
+          description: Human-readable description of the error.
+          example: word not found
+      required:
+      - message
+    SimilarToResponse:
+      type: object
+      properties:
+        word:
+          type: string
+          example: bright
+        similarTo:
+          type: array
+          items:
+            type: string
+          example:
+          - vivid
+          - brilliant
+    SynonymsResponse:
+      type: object
+      description: Response from GET /words/{word}/synonyms.
+      properties:
+        word:
+          type: string
+          example: happy
+        synonyms:
+          type: array
+          items:
+            type: string
+          example:
+          - glad
+          - joyful
+          - pleased
+    AlsoResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        also:
+          type: array
+          items:
+            type: string
+  responses:
+    NotFound:
+      description: Word not found in the Words API dictionary.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    RapidApiKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: RapidAPI subscription key. The X-RapidAPI-Host header (wordsapiv1.p.rapidapi.com) is also required.
