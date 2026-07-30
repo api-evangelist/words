@@ -7,6 +7,19 @@ description: >-
   Distributed and metered through the RapidAPI marketplace.
 url: https://www.wordsapi.com/docs/
 baseURL: https://wordsapiv1.p.rapidapi.com
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://www.wordsapi.com/img/logo.png
 specificationVersion: '0.20'
 created: '2026-05-28'
@@ -23,85 +36,492 @@ tags:
   - Lexical Data
   - Public APIs
 apis:
-  - name: Words API
-    description: >-
-      RESTful English-language dictionary, thesaurus, and lexical-relationship API. One base resource — /words/{word} —
-      plus 28 sub-resources for individual detail types (definitions, synonyms, antonyms, examples, rhymes, frequency,
-      syllables, pronunciation, hasTypes, typeOf, partOf, hasParts, instances, instanceOf, similarTo, also, entails,
-      memberOf, hasMembers, substanceOf, hasSubstances, inCategory, hasCategories, usageOf, hasUsages, inRegion,
-      regionOf, pertainsTo) and a /words search/random endpoint with letter, sound, and part-of-speech filters.
-    humanURL: https://www.wordsapi.com/docs/
-    baseURL: https://wordsapiv1.p.rapidapi.com
-    tags:
-      - Dictionaries
-      - Thesaurus
-      - Linguistics
-      - English
-    properties:
-      - type: Documentation
-        url: https://www.wordsapi.com/docs/
-      - type: APIReference
-        url: https://www.wordsapi.com/docs/#endpoints
-      - type: Authentication
-        url: https://www.wordsapi.com/docs/#authorization
-      - type: Signup
-        url: https://rapidapi.com/dpventures/api/wordsapi
-      - type: OpenAPI
-        url: openapi/words-openapi.yml
-      - type: JSONSchema
-        title: WordEntry
-        url: json-schema/words-word-entry-schema.json
-      - type: JSONSchema
-        title: Result
-        url: json-schema/words-result-schema.json
-      - type: JSONSchema
-        title: DefinitionsResponse
-        url: json-schema/words-definitions-response-schema.json
-      - type: JSONSchema
-        title: SynonymsResponse
-        url: json-schema/words-synonyms-response-schema.json
-      - type: JSONSchema
-        title: AntonymsResponse
-        url: json-schema/words-antonyms-response-schema.json
-      - type: JSONSchema
-        title: ExamplesResponse
-        url: json-schema/words-examples-response-schema.json
-      - type: JSONSchema
-        title: RhymesResponse
-        url: json-schema/words-rhymes-response-schema.json
-      - type: JSONSchema
-        title: FrequencyResponse
-        url: json-schema/words-frequency-response-schema.json
-      - type: JSONSchema
-        title: SyllablesResponse
-        url: json-schema/words-syllables-response-schema.json
-      - type: JSONSchema
-        title: PronunciationResponse
-        url: json-schema/words-pronunciation-response-schema.json
-      - type: JSONSchema
-        title: SearchResponse
-        url: json-schema/words-search-response-schema.json
-      - type: JSONStructure
-        title: WordEntry
-        url: json-structure/words-word-entry-structure.json
-      - type: JSONStructure
-        title: Result
-        url: json-structure/words-result-structure.json
-      - type: Examples
-        title: WordEntry Example
-        url: examples/words-word-entry-example.json
-      - type: Examples
-        title: DefinitionsResponse Example
-        url: examples/words-definitions-response-example.json
-      - type: Examples
-        title: SynonymsResponse Example
-        url: examples/words-synonyms-response-example.json
-      - type: Examples
-        title: FrequencyResponse Example
-        url: examples/words-frequency-response-example.json
-      - type: Examples
-        title: SearchResponse Example
-        url: examples/words-search-response-example.json
+- aid: words:words-categories-api
+  name: Words API Categories API
+  description: Words API Category, Region, and Domain-Usage Relationships.
+  humanURL: https://www.wordsapi.com/docs/
+  baseURL: https://wordsapiv1.p.rapidapi.com
+  tags:
+  - Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/words-categories-api-openapi.yml
+  - type: Documentation
+    url: https://www.wordsapi.com/docs/
+  - type: APIReference
+    url: https://www.wordsapi.com/docs/#endpoints
+  - type: Authentication
+    url: https://www.wordsapi.com/docs/#authorization
+  - type: Signup
+    url: https://rapidapi.com/dpventures/api/wordsapi
+  - type: JSONSchema
+    url: json-schema/words-word-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/words-result-schema.json
+  - type: JSONSchema
+    url: json-schema/words-definitions-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-synonyms-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-antonyms-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-examples-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-rhymes-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-frequency-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-syllables-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-pronunciation-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-search-response-schema.json
+  - type: JSONStructure
+    url: json-structure/words-word-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/words-result-structure.json
+  - type: Examples
+    url: examples/words-word-entry-example.json
+  - type: Examples
+    url: examples/words-definitions-response-example.json
+  - type: Examples
+    url: examples/words-synonyms-response-example.json
+  - type: Examples
+    url: examples/words-frequency-response-example.json
+  - type: Examples
+    url: examples/words-search-response-example.json
+- aid: words:words-definitions-api
+  name: Words API Definitions API
+  description: Words API Sense-level Definitions Grouped by Part of Speech.
+  humanURL: https://www.wordsapi.com/docs/
+  baseURL: https://wordsapiv1.p.rapidapi.com
+  tags:
+  - Definitions
+  properties:
+  - type: OpenAPI
+    url: openapi/words-definitions-api-openapi.yml
+  - type: Documentation
+    url: https://www.wordsapi.com/docs/
+  - type: APIReference
+    url: https://www.wordsapi.com/docs/#endpoints
+  - type: Authentication
+    url: https://www.wordsapi.com/docs/#authorization
+  - type: Signup
+    url: https://rapidapi.com/dpventures/api/wordsapi
+  - type: JSONSchema
+    url: json-schema/words-word-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/words-result-schema.json
+  - type: JSONSchema
+    url: json-schema/words-definitions-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-synonyms-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-antonyms-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-examples-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-rhymes-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-frequency-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-syllables-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-pronunciation-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-search-response-schema.json
+  - type: JSONStructure
+    url: json-structure/words-word-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/words-result-structure.json
+  - type: Examples
+    url: examples/words-word-entry-example.json
+  - type: Examples
+    url: examples/words-definitions-response-example.json
+  - type: Examples
+    url: examples/words-synonyms-response-example.json
+  - type: Examples
+    url: examples/words-frequency-response-example.json
+  - type: Examples
+    url: examples/words-search-response-example.json
+- aid: words:words-examples-api
+  name: Words API Examples API
+  description: Words API Real-world Example Sentences for Each Sense.
+  humanURL: https://www.wordsapi.com/docs/
+  baseURL: https://wordsapiv1.p.rapidapi.com
+  tags:
+  - Examples
+  properties:
+  - type: OpenAPI
+    url: openapi/words-examples-api-openapi.yml
+  - type: Documentation
+    url: https://www.wordsapi.com/docs/
+  - type: APIReference
+    url: https://www.wordsapi.com/docs/#endpoints
+  - type: Authentication
+    url: https://www.wordsapi.com/docs/#authorization
+  - type: Signup
+    url: https://rapidapi.com/dpventures/api/wordsapi
+  - type: JSONSchema
+    url: json-schema/words-word-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/words-result-schema.json
+  - type: JSONSchema
+    url: json-schema/words-definitions-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-synonyms-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-antonyms-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-examples-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-rhymes-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-frequency-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-syllables-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-pronunciation-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-search-response-schema.json
+  - type: JSONStructure
+    url: json-structure/words-word-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/words-result-structure.json
+  - type: Examples
+    url: examples/words-word-entry-example.json
+  - type: Examples
+    url: examples/words-definitions-response-example.json
+  - type: Examples
+    url: examples/words-synonyms-response-example.json
+  - type: Examples
+    url: examples/words-frequency-response-example.json
+  - type: Examples
+    url: examples/words-search-response-example.json
+- aid: words:words-frequency-api
+  name: Words API Frequency API
+  description: Words API Corpus-derived Frequency Statistics (Zipf, perMillion, diversity).
+  humanURL: https://www.wordsapi.com/docs/
+  baseURL: https://wordsapiv1.p.rapidapi.com
+  tags:
+  - Frequency
+  properties:
+  - type: OpenAPI
+    url: openapi/words-frequency-api-openapi.yml
+  - type: Documentation
+    url: https://www.wordsapi.com/docs/
+  - type: APIReference
+    url: https://www.wordsapi.com/docs/#endpoints
+  - type: Authentication
+    url: https://www.wordsapi.com/docs/#authorization
+  - type: Signup
+    url: https://rapidapi.com/dpventures/api/wordsapi
+  - type: JSONSchema
+    url: json-schema/words-word-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/words-result-schema.json
+  - type: JSONSchema
+    url: json-schema/words-definitions-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-synonyms-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-antonyms-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-examples-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-rhymes-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-frequency-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-syllables-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-pronunciation-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-search-response-schema.json
+  - type: JSONStructure
+    url: json-structure/words-word-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/words-result-structure.json
+  - type: Examples
+    url: examples/words-word-entry-example.json
+  - type: Examples
+    url: examples/words-definitions-response-example.json
+  - type: Examples
+    url: examples/words-synonyms-response-example.json
+  - type: Examples
+    url: examples/words-frequency-response-example.json
+  - type: Examples
+    url: examples/words-search-response-example.json
+- aid: words:words-hierarchy-api
+  name: Words API Hierarchy API
+  description: Words API Lexical Hierarchies — typeOf, hasTypes, partOf, hasParts, instances.
+  humanURL: https://www.wordsapi.com/docs/
+  baseURL: https://wordsapiv1.p.rapidapi.com
+  tags:
+  - Hierarchy
+  properties:
+  - type: OpenAPI
+    url: openapi/words-hierarchy-api-openapi.yml
+  - type: Documentation
+    url: https://www.wordsapi.com/docs/
+  - type: APIReference
+    url: https://www.wordsapi.com/docs/#endpoints
+  - type: Authentication
+    url: https://www.wordsapi.com/docs/#authorization
+  - type: Signup
+    url: https://rapidapi.com/dpventures/api/wordsapi
+  - type: JSONSchema
+    url: json-schema/words-word-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/words-result-schema.json
+  - type: JSONSchema
+    url: json-schema/words-definitions-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-synonyms-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-antonyms-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-examples-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-rhymes-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-frequency-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-syllables-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-pronunciation-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-search-response-schema.json
+  - type: JSONStructure
+    url: json-structure/words-word-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/words-result-structure.json
+  - type: Examples
+    url: examples/words-word-entry-example.json
+  - type: Examples
+    url: examples/words-definitions-response-example.json
+  - type: Examples
+    url: examples/words-synonyms-response-example.json
+  - type: Examples
+    url: examples/words-frequency-response-example.json
+  - type: Examples
+    url: examples/words-search-response-example.json
+- aid: words:words-phonetics-api
+  name: Words API Phonetics API
+  description: Words API Pronunciation (IPA), Syllables, and Rhymes.
+  humanURL: https://www.wordsapi.com/docs/
+  baseURL: https://wordsapiv1.p.rapidapi.com
+  tags:
+  - Phonetics
+  properties:
+  - type: OpenAPI
+    url: openapi/words-phonetics-api-openapi.yml
+  - type: Documentation
+    url: https://www.wordsapi.com/docs/
+  - type: APIReference
+    url: https://www.wordsapi.com/docs/#endpoints
+  - type: Authentication
+    url: https://www.wordsapi.com/docs/#authorization
+  - type: Signup
+    url: https://rapidapi.com/dpventures/api/wordsapi
+  - type: JSONSchema
+    url: json-schema/words-word-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/words-result-schema.json
+  - type: JSONSchema
+    url: json-schema/words-definitions-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-synonyms-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-antonyms-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-examples-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-rhymes-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-frequency-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-syllables-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-pronunciation-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-search-response-schema.json
+  - type: JSONStructure
+    url: json-structure/words-word-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/words-result-structure.json
+  - type: Examples
+    url: examples/words-word-entry-example.json
+  - type: Examples
+    url: examples/words-definitions-response-example.json
+  - type: Examples
+    url: examples/words-synonyms-response-example.json
+  - type: Examples
+    url: examples/words-frequency-response-example.json
+  - type: Examples
+    url: examples/words-search-response-example.json
+- aid: words:words-search-api
+  name: Words API Search API
+  description: Words API Search and Random Word Discovery Endpoint.
+  humanURL: https://www.wordsapi.com/docs/
+  baseURL: https://wordsapiv1.p.rapidapi.com
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/words-search-api-openapi.yml
+  - type: Documentation
+    url: https://www.wordsapi.com/docs/
+  - type: APIReference
+    url: https://www.wordsapi.com/docs/#endpoints
+  - type: Authentication
+    url: https://www.wordsapi.com/docs/#authorization
+  - type: Signup
+    url: https://rapidapi.com/dpventures/api/wordsapi
+  - type: JSONSchema
+    url: json-schema/words-word-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/words-result-schema.json
+  - type: JSONSchema
+    url: json-schema/words-definitions-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-synonyms-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-antonyms-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-examples-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-rhymes-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-frequency-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-syllables-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-pronunciation-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-search-response-schema.json
+  - type: JSONStructure
+    url: json-structure/words-word-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/words-result-structure.json
+  - type: Examples
+    url: examples/words-word-entry-example.json
+  - type: Examples
+    url: examples/words-definitions-response-example.json
+  - type: Examples
+    url: examples/words-synonyms-response-example.json
+  - type: Examples
+    url: examples/words-frequency-response-example.json
+  - type: Examples
+    url: examples/words-search-response-example.json
+- aid: words:words-thesaurus-api
+  name: Words API Thesaurus API
+  description: Words API Synonyms, Antonyms, and Similar Word Relationships.
+  humanURL: https://www.wordsapi.com/docs/
+  baseURL: https://wordsapiv1.p.rapidapi.com
+  tags:
+  - Thesaurus
+  properties:
+  - type: OpenAPI
+    url: openapi/words-thesaurus-api-openapi.yml
+  - type: Documentation
+    url: https://www.wordsapi.com/docs/
+  - type: APIReference
+    url: https://www.wordsapi.com/docs/#endpoints
+  - type: Authentication
+    url: https://www.wordsapi.com/docs/#authorization
+  - type: Signup
+    url: https://rapidapi.com/dpventures/api/wordsapi
+  - type: JSONSchema
+    url: json-schema/words-word-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/words-result-schema.json
+  - type: JSONSchema
+    url: json-schema/words-definitions-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-synonyms-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-antonyms-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-examples-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-rhymes-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-frequency-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-syllables-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-pronunciation-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-search-response-schema.json
+  - type: JSONStructure
+    url: json-structure/words-word-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/words-result-structure.json
+  - type: Examples
+    url: examples/words-word-entry-example.json
+  - type: Examples
+    url: examples/words-definitions-response-example.json
+  - type: Examples
+    url: examples/words-synonyms-response-example.json
+  - type: Examples
+    url: examples/words-frequency-response-example.json
+  - type: Examples
+    url: examples/words-search-response-example.json
+- aid: words:words-word-api
+  name: Words API Word API
+  description: Words API Lookup a Word and Retrieve Its Full Lexical Entry.
+  humanURL: https://www.wordsapi.com/docs/
+  baseURL: https://wordsapiv1.p.rapidapi.com
+  tags:
+  - Word
+  properties:
+  - type: OpenAPI
+    url: openapi/words-word-api-openapi.yml
+  - type: Documentation
+    url: https://www.wordsapi.com/docs/
+  - type: APIReference
+    url: https://www.wordsapi.com/docs/#endpoints
+  - type: Authentication
+    url: https://www.wordsapi.com/docs/#authorization
+  - type: Signup
+    url: https://rapidapi.com/dpventures/api/wordsapi
+  - type: JSONSchema
+    url: json-schema/words-word-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/words-result-schema.json
+  - type: JSONSchema
+    url: json-schema/words-definitions-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-synonyms-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-antonyms-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-examples-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-rhymes-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-frequency-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-syllables-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-pronunciation-response-schema.json
+  - type: JSONSchema
+    url: json-schema/words-search-response-schema.json
+  - type: JSONStructure
+    url: json-structure/words-word-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/words-result-structure.json
+  - type: Examples
+    url: examples/words-word-entry-example.json
+  - type: Examples
+    url: examples/words-definitions-response-example.json
+  - type: Examples
+    url: examples/words-synonyms-response-example.json
+  - type: Examples
+    url: examples/words-frequency-response-example.json
+  - type: Examples
+    url: examples/words-search-response-example.json
 common:
   - type: AgenticAccess
     url: agentic-access/words-agentic-access.yml
