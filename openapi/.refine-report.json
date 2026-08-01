@@ -1,0 +1,30 @@
+{
+  "provider": "words",
+  "sources": [
+    "words-categories-api-openapi.yml",
+    "words-definitions-api-openapi.yml",
+    "words-examples-api-openapi.yml",
+    "words-frequency-api-openapi.yml",
+    "words-hierarchy-api-openapi.yml",
+    "words-phonetics-api-openapi.yml",
+    "words-search-api-openapi.yml",
+    "words-thesaurus-api-openapi.yml",
+    "words-word-api-openapi.yml"
+  ],
+  "outputs": [
+    "words-categories-api-openapi.yml",
+    "words-definitions-api-openapi.yml",
+    "words-examples-api-openapi.yml",
+    "words-frequency-api-openapi.yml",
+    "words-hierarchy-api-openapi.yml",
+    "words-phonetics-api-openapi.yml",
+    "words-search-api-openapi.yml",
+    "words-thesaurus-api-openapi.yml",
+    "words-word-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

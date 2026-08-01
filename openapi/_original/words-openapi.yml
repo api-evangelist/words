@@ -1,0 +1,883 @@
+openapi: 3.0.3
+info:
+  title: Words API
+  version: '1.0.0'
+  description: >-
+    Words API is a RESTful English-language API that provides definitions, synonyms,
+    antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and
+    hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf,
+    similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than
+    150,000 English words. Authentication is handled via the RapidAPI marketplace
+    using the X-RapidAPI-Key and X-RapidAPI-Host headers.
+  contact:
+    name: Words API Support
+    email: support@wordsapi.com
+    url: https://www.wordsapi.com/
+  license:
+    name: Words API Terms of Service
+    url: https://www.wordsapi.com/
+  x-generated-from: documentation
+  x-last-validated: '2026-05-30'
+servers:
+  - url: https://wordsapiv1.p.rapidapi.com
+    description: Words API production endpoint, served through the RapidAPI gateway.
+security:
+  - RapidApiKey: []
+tags:
+  - name: Word
+    description: Words API Lookup a Word and Retrieve Its Full Lexical Entry.
+  - name: Definitions
+    description: Words API Sense-level Definitions Grouped by Part of Speech.
+  - name: Thesaurus
+    description: Words API Synonyms, Antonyms, and Similar Word Relationships.
+  - name: Examples
+    description: Words API Real-world Example Sentences for Each Sense.
+  - name: Phonetics
+    description: Words API Pronunciation (IPA), Syllables, and Rhymes.
+  - name: Frequency
+    description: Words API Corpus-derived Frequency Statistics (Zipf, perMillion, diversity).
+  - name: Hierarchy
+    description: Words API Lexical Hierarchies — typeOf, hasTypes, partOf, hasParts, instances.
+  - name: Categories
+    description: Words API Category, Region, and Domain-Usage Relationships.
+  - name: Search
+    description: Words API Search and Random Word Discovery Endpoint.
+paths:
+  /words/{word}:
+    get:
+      tags: [Word]
+      operationId: getWord
+      summary: Get Word Entry
+      description: >-
+        Retrieves the full lexical entry for a single English word — every documented
+        sense (definition + part of speech), syllable breakdown, IPA pronunciation,
+        and the embedded results array used by every other detail-type endpoint.
+      parameters:
+        - $ref: '#/components/parameters/Word'
+      responses:
+        '200':
+          description: Full word entry returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WordEntry'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '429': { $ref: '#/components/responses/TooManyRequests' }
+        '500': { $ref: '#/components/responses/ServerError' }
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /words/{word}/definitions:
+    get:
+      tags: [Definitions]
+      operationId: getDefinitions
+      summary: Get Word Definitions
+      description: Returns every documented definition for the word, grouped by part of speech.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: Definitions returned., content: { application/json: { schema: { $ref: '#/components/schemas/DefinitionsResponse' } } } }
+        '404': { $ref: '#/components/responses/NotFound' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/synonyms:
+    get:
+      tags: [Thesaurus]
+      operationId: getSynonyms
+      summary: Get Word Synonyms
+      description: Returns words interchangeable with the given word in the same sense.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: Synonyms returned., content: { application/json: { schema: { $ref: '#/components/schemas/SynonymsResponse' } } } }
+        '404': { $ref: '#/components/responses/NotFound' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/antonyms:
+    get:
+      tags: [Thesaurus]
+      operationId: getAntonyms
+      summary: Get Word Antonyms
+      description: Returns opposite-meaning words for the given word.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: Antonyms returned., content: { application/json: { schema: { $ref: '#/components/schemas/AntonymsResponse' } } } }
+        '404': { $ref: '#/components/responses/NotFound' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/examples:
+    get:
+      tags: [Examples]
+      operationId: getExamples
+      summary: Get Word Examples
+      description: Returns example sentences that use the given word.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: Examples returned., content: { application/json: { schema: { $ref: '#/components/schemas/ExamplesResponse' } } } }
+        '404': { $ref: '#/components/responses/NotFound' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/rhymes:
+    get:
+      tags: [Phonetics]
+      operationId: getRhymes
+      summary: Get Word Rhymes
+      description: Returns words that rhyme with the given word, organized by part of speech when pronunciations differ.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: Rhymes returned., content: { application/json: { schema: { $ref: '#/components/schemas/RhymesResponse' } } } }
+        '404': { $ref: '#/components/responses/NotFound' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/frequency:
+    get:
+      tags: [Frequency]
+      operationId: getFrequency
+      summary: Get Word Frequency
+      description: >-
+        Returns corpus-derived frequency statistics for the word — Zipf score (1–7),
+        per-million occurrence rate, and corpus diversity (0–1).
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: Frequency returned., content: { application/json: { schema: { $ref: '#/components/schemas/FrequencyResponse' } } } }
+        '404': { $ref: '#/components/responses/NotFound' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/syllables:
+    get:
+      tags: [Phonetics]
+      operationId: getSyllables
+      summary: Get Word Syllables
+      description: Returns the syllable count and the ordered list of syllables for the word.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: Syllables returned., content: { application/json: { schema: { $ref: '#/components/schemas/SyllablesResponse' } } } }
+        '404': { $ref: '#/components/responses/NotFound' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/pronunciation:
+    get:
+      tags: [Phonetics]
+      operationId: getPronunciation
+      summary: Get Word Pronunciation
+      description: Returns the IPA pronunciation for the word, optionally split by part of speech.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: Pronunciation returned., content: { application/json: { schema: { $ref: '#/components/schemas/PronunciationResponse' } } } }
+        '404': { $ref: '#/components/responses/NotFound' }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/hasTypes:
+    get:
+      tags: [Hierarchy]
+      operationId: getHasTypes
+      summary: Get Word Has Types
+      description: Returns the more specific words (hyponyms) of the given word.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: hasTypes returned., content: { application/json: { schema: { $ref: '#/components/schemas/HasTypesResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/typeOf:
+    get:
+      tags: [Hierarchy]
+      operationId: getTypeOf
+      summary: Get Word Type Of
+      description: Returns the more generic words (hypernyms) of the given word.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: typeOf returned., content: { application/json: { schema: { $ref: '#/components/schemas/TypeOfResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/partOf:
+    get:
+      tags: [Hierarchy]
+      operationId: getPartOf
+      summary: Get Word Part Of
+      description: Returns wholes the word is a part of (holonyms).
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: partOf returned., content: { application/json: { schema: { $ref: '#/components/schemas/PartOfResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/hasParts:
+    get:
+      tags: [Hierarchy]
+      operationId: getHasParts
+      summary: Get Word Has Parts
+      description: Returns the parts that compose the word (meronyms).
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: hasParts returned., content: { application/json: { schema: { $ref: '#/components/schemas/HasPartsResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/instances:
+    get:
+      tags: [Hierarchy]
+      operationId: getInstances
+      summary: Get Word Instances
+      description: Returns specific instances of the given word (e.g. concrete examples of a category).
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: instances returned., content: { application/json: { schema: { $ref: '#/components/schemas/InstancesResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/instanceOf:
+    get:
+      tags: [Hierarchy]
+      operationId: getInstanceOf
+      summary: Get Word Instance Of
+      description: Returns the categories of which the given word is an instance.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: instanceOf returned., content: { application/json: { schema: { $ref: '#/components/schemas/InstanceOfResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/similar:
+    get:
+      tags: [Thesaurus]
+      operationId: getSimilarTo
+      summary: Get Words Similar To
+      description: Returns related but non-synonymous words for the given word.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: similarTo returned., content: { application/json: { schema: { $ref: '#/components/schemas/SimilarToResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/also:
+    get:
+      tags: [Thesaurus]
+      operationId: getAlso
+      summary: Get Word Also Used
+      description: Returns idiomatic phrases that include the given word.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: also returned., content: { application/json: { schema: { $ref: '#/components/schemas/AlsoResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/entails:
+    get:
+      tags: [Hierarchy]
+      operationId: getEntails
+      summary: Get Word Entails
+      description: Returns words logically entailed by the given word, typically verbs.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: entails returned., content: { application/json: { schema: { $ref: '#/components/schemas/EntailsResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/memberOf:
+    get:
+      tags: [Hierarchy]
+      operationId: getMemberOf
+      summary: Get Word Member Of
+      description: Returns groups the given word is a member of.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: memberOf returned., content: { application/json: { schema: { $ref: '#/components/schemas/MemberOfResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/hasMembers:
+    get:
+      tags: [Hierarchy]
+      operationId: getHasMembers
+      summary: Get Word Has Members
+      description: Returns the members that belong to the given group word.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: hasMembers returned., content: { application/json: { schema: { $ref: '#/components/schemas/HasMembersResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/substanceOf:
+    get:
+      tags: [Hierarchy]
+      operationId: getSubstanceOf
+      summary: Get Word Substance Of
+      description: Returns materials of which the given word is a substance.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: substanceOf returned., content: { application/json: { schema: { $ref: '#/components/schemas/SubstanceOfResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/hasSubstances:
+    get:
+      tags: [Hierarchy]
+      operationId: getHasSubstances
+      summary: Get Word Has Substances
+      description: Returns the substances that compose the given word.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: hasSubstances returned., content: { application/json: { schema: { $ref: '#/components/schemas/HasSubstancesResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/inCategory:
+    get:
+      tags: [Categories]
+      operationId: getInCategory
+      summary: Get Word In Category
+      description: Returns the categories the given word belongs to.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: inCategory returned., content: { application/json: { schema: { $ref: '#/components/schemas/InCategoryResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/hasCategories:
+    get:
+      tags: [Categories]
+      operationId: getHasCategories
+      summary: Get Word Has Categories
+      description: Returns the subcategories of the given category word.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: hasCategories returned., content: { application/json: { schema: { $ref: '#/components/schemas/HasCategoriesResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/usageOf:
+    get:
+      tags: [Categories]
+      operationId: getUsageOf
+      summary: Get Word Usage Of
+      description: Returns the domain-usage classifications of the given word.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: usageOf returned., content: { application/json: { schema: { $ref: '#/components/schemas/UsageOfResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/hasUsages:
+    get:
+      tags: [Categories]
+      operationId: getHasUsages
+      summary: Get Word Has Usages
+      description: Returns the domain-usage examples of the given word.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: hasUsages returned., content: { application/json: { schema: { $ref: '#/components/schemas/HasUsagesResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/inRegion:
+    get:
+      tags: [Categories]
+      operationId: getInRegion
+      summary: Get Word In Region
+      description: Returns the geographic regions where the given word is used.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: inRegion returned., content: { application/json: { schema: { $ref: '#/components/schemas/InRegionResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/regionOf:
+    get:
+      tags: [Categories]
+      operationId: getRegionOf
+      summary: Get Word Region Of
+      description: Returns the regional variants associated with the given word.
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: regionOf returned., content: { application/json: { schema: { $ref: '#/components/schemas/RegionOfResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/{word}/pertainsTo:
+    get:
+      tags: [Categories]
+      operationId: getPertainsTo
+      summary: Get Word Pertains To
+      description: Returns words to which the given word pertains (adjective-to-noun and similar relations).
+      parameters: [{ $ref: '#/components/parameters/Word' }]
+      responses:
+        '200': { description: pertainsTo returned., content: { application/json: { schema: { $ref: '#/components/schemas/PertainsToResponse' } } } }
+      x-microcks-operation: { delay: 0, dispatcher: FALLBACK }
+  /words/:
+    get:
+      tags: [Search]
+      operationId: searchWords
+      summary: Search Words and Get Random Word
+      description: >-
+        Searches the Words API dictionary using letter, sound, part-of-speech, and detail-type
+        filters. Pass random=true to return a single random word matching the filters.
+      parameters:
+        - { name: letterPattern, in: query, required: false, description: Regex pattern matched against the word's letters., schema: { type: string }, example: "^a.*z$" }
+        - { name: letters, in: query, required: false, description: Exact letter count., schema: { type: integer, minimum: 1 }, example: 5 }
+        - { name: lettersMin, in: query, required: false, description: Minimum letter count., schema: { type: integer, minimum: 1 }, example: 4 }
+        - { name: lettersMax, in: query, required: false, description: Maximum letter count., schema: { type: integer, minimum: 1 }, example: 10 }
+        - { name: pronunciationPattern, in: query, required: false, description: Regex pattern matched against the IPA pronunciation., schema: { type: string }, example: "ˈæp.*" }
+        - { name: sounds, in: query, required: false, description: Exact phoneme count., schema: { type: integer, minimum: 1 }, example: 5 }
+        - { name: soundsMin, in: query, required: false, description: Minimum phoneme count., schema: { type: integer, minimum: 1 }, example: 3 }
+        - { name: soundsMax, in: query, required: false, description: Maximum phoneme count., schema: { type: integer, minimum: 1 }, example: 8 }
+        - { name: partOfSpeech, in: query, required: false, description: Filter by grammatical class., schema: { type: string, enum: [noun, verb, adjective, adverb, pronoun, preposition, conjunction, interjection, determiner] }, example: verb }
+        - { name: hasDetails, in: query, required: false, description: Comma-separated detail types the word must have (e.g. "synonyms,examples")., schema: { type: string }, example: "synonyms,examples" }
+        - { name: random, in: query, required: false, description: Return a single random word matching the filters., schema: { type: boolean }, example: true }
+        - { name: limit, in: query, required: false, description: Results per page (1–100)., schema: { type: integer, minimum: 1, maximum: 100, default: 100 }, example: 50 }
+        - { name: page, in: query, required: false, description: Page number for pagination., schema: { type: integer, minimum: 1, default: 1 }, example: 1 }
+      responses:
+        '200':
+          description: Search results returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '429': { $ref: '#/components/responses/TooManyRequests' }
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    Word:
+      name: word
+      in: path
+      required: true
+      description: The English word to look up.
+      schema:
+        type: string
+      example: apple
+  securitySchemes:
+    RapidApiKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: RapidAPI subscription key. The X-RapidAPI-Host header (wordsapiv1.p.rapidapi.com) is also required.
+  responses:
+    Unauthorized:
+      description: Missing or invalid RapidAPI credentials.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    NotFound:
+      description: Word not found in the Words API dictionary.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    BadRequest:
+      description: Malformed request or invalid query parameter.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    TooManyRequests:
+      description: Quota or rate limit exceeded.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    ServerError:
+      description: Upstream Words API error.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+  schemas:
+    Error:
+      type: object
+      description: Error response body returned by Words API when a request fails.
+      properties:
+        success:
+          type: boolean
+          description: Always false for error responses.
+          example: false
+        message:
+          type: string
+          description: Human-readable description of the error.
+          example: "word not found"
+      required: [message]
+    Pronunciation:
+      type: object
+      description: Pronunciation in IPA. May be a single string or split by part of speech.
+      properties:
+        all:
+          type: string
+          description: IPA pronunciation that applies across all parts of speech.
+          example: "ˈæp.əl"
+        noun:
+          type: string
+          description: IPA pronunciation when the word is used as a noun.
+        verb:
+          type: string
+          description: IPA pronunciation when the word is used as a verb.
+        adjective:
+          type: string
+          description: IPA pronunciation when the word is used as an adjective.
+        adverb:
+          type: string
+          description: IPA pronunciation when the word is used as an adverb.
+    Syllables:
+      type: object
+      description: Syllable breakdown for a word.
+      properties:
+        count:
+          type: integer
+          description: Number of syllables in the word.
+          example: 2
+        list:
+          type: array
+          description: Ordered list of the word's syllables.
+          items: { type: string }
+          example: [ap, ple]
+    Frequency:
+      type: object
+      description: Corpus-derived frequency information for a word.
+      properties:
+        zipf:
+          type: number
+          format: double
+          description: Zipf-scale frequency score (typically 1–7).
+          example: 4.83
+        perMillion:
+          type: number
+          format: double
+          description: Average number of occurrences per million corpus tokens.
+          example: 67.61
+        diversity:
+          type: number
+          format: double
+          description: Likelihood (0–1) that the word appears in a randomly chosen document.
+          example: 0.17
+    Result:
+      type: object
+      description: Single lexical-relationship record for one sense of a word.
+      properties:
+        definition:
+          type: string
+          description: Definition of this sense.
+          example: "fruit with red or yellow or green skin and sweet to tart crisp whitish flesh"
+        partOfSpeech:
+          type: string
+          description: Grammatical category of this sense.
+          example: noun
+        synonyms:
+          type: array
+          description: Words interchangeable with the headword in this sense.
+          items: { type: string }
+          example: [orchard apple tree]
+        antonyms:
+          type: array
+          description: Words with opposite meaning in this sense.
+          items: { type: string }
+        examples:
+          type: array
+          description: Example sentences for this sense.
+          items: { type: string }
+          example: ["he is the apple of my eye"]
+        typeOf:
+          type: array
+          description: Hypernyms — more general words for this sense.
+          items: { type: string }
+          example: [edible fruit, pome, false fruit]
+        hasTypes:
+          type: array
+          description: Hyponyms — more specific words for this sense.
+          items: { type: string }
+        partOf:
+          type: array
+          description: Holonyms — wholes this sense is part of.
+          items: { type: string }
+        hasParts:
+          type: array
+          description: Meronyms — parts that compose this sense.
+          items: { type: string }
+        instanceOf:
+          type: array
+          description: Categories of which this sense is an instance.
+          items: { type: string }
+        hasInstances:
+          type: array
+          description: Specific instances of this sense.
+          items: { type: string }
+        similarTo:
+          type: array
+          description: Related but non-synonymous words.
+          items: { type: string }
+        also:
+          type: array
+          description: Idiomatic phrases that include this sense.
+          items: { type: string }
+        entails:
+          type: array
+          description: Words logically entailed by this sense.
+          items: { type: string }
+        memberOf:
+          type: array
+          description: Groups the sense is a member of.
+          items: { type: string }
+        hasMembers:
+          type: array
+          description: Members that belong to this group sense.
+          items: { type: string }
+        substanceOf:
+          type: array
+          description: Materials this sense is a substance of.
+          items: { type: string }
+        hasSubstances:
+          type: array
+          description: Substances that compose this sense.
+          items: { type: string }
+        inCategory:
+          type: array
+          description: Categories this sense belongs to.
+          items: { type: string }
+        hasCategories:
+          type: array
+          description: Subcategories of this category sense.
+          items: { type: string }
+        usageOf:
+          type: array
+          description: Domain-usage classifications this sense belongs to.
+          items: { type: string }
+        hasUsages:
+          type: array
+          description: Domain-usage examples of this sense.
+          items: { type: string }
+        inRegion:
+          type: array
+          description: Regions in which this sense is used.
+          items: { type: string }
+        regionOf:
+          type: array
+          description: Regional variants associated with this sense.
+          items: { type: string }
+        pertainsTo:
+          type: array
+          description: Words this sense pertains to.
+          items: { type: string }
+    WordEntry:
+      type: object
+      description: Full lexical entry for one English word — every detail-type endpoint reads from this structure.
+      properties:
+        word:
+          type: string
+          description: The headword.
+          example: apple
+        results:
+          type: array
+          description: One Result per documented sense of the word.
+          items: { $ref: '#/components/schemas/Result' }
+        syllables: { $ref: '#/components/schemas/Syllables' }
+        pronunciation: { $ref: '#/components/schemas/Pronunciation' }
+        frequency:
+          type: number
+          format: double
+          description: Legacy frequency score (Zipf scale).
+          example: 4.83
+    DefinitionEntry:
+      type: object
+      description: One definition with its grammatical category.
+      properties:
+        definition: { type: string, description: Definition text., example: "fruit with red or yellow or green skin and sweet to tart crisp whitish flesh" }
+        partOfSpeech: { type: string, description: Grammatical category., example: noun }
+    DefinitionsResponse:
+      type: object
+      description: Response from GET /words/{word}/definitions.
+      properties:
+        word: { type: string, example: apple }
+        definitions:
+          type: array
+          items: { $ref: '#/components/schemas/DefinitionEntry' }
+    SynonymsResponse:
+      type: object
+      description: Response from GET /words/{word}/synonyms.
+      properties:
+        word: { type: string, example: happy }
+        synonyms:
+          type: array
+          items: { type: string }
+          example: [glad, joyful, pleased]
+    AntonymsResponse:
+      type: object
+      description: Response from GET /words/{word}/antonyms.
+      properties:
+        word: { type: string, example: happy }
+        antonyms:
+          type: array
+          items: { type: string }
+          example: [unhappy, sad]
+    ExamplesResponse:
+      type: object
+      description: Response from GET /words/{word}/examples.
+      properties:
+        word: { type: string, example: apple }
+        examples:
+          type: array
+          items: { type: string }
+          example: ["he is the apple of my eye"]
+    RhymesResponse:
+      type: object
+      description: Response from GET /words/{word}/rhymes.
+      properties:
+        word: { type: string, example: apple }
+        rhymes:
+          type: object
+          description: Rhyme arrays grouped by pronunciation variant.
+          additionalProperties:
+            type: array
+            items: { type: string }
+          example:
+            all: [chapel, dapple, grapple]
+    FrequencyResponse:
+      type: object
+      description: Response from GET /words/{word}/frequency.
+      allOf:
+        - type: object
+          properties:
+            word: { type: string, example: apple }
+            frequency: { $ref: '#/components/schemas/Frequency' }
+    SyllablesResponse:
+      type: object
+      description: Response from GET /words/{word}/syllables.
+      properties:
+        word: { type: string, example: apple }
+        numSyllables: { type: integer, example: 2 }
+        list:
+          type: array
+          items: { type: string }
+          example: [ap, ple]
+    PronunciationResponse:
+      type: object
+      description: Response from GET /words/{word}/pronunciation.
+      properties:
+        word: { type: string, example: apple }
+        pronunciation: { $ref: '#/components/schemas/Pronunciation' }
+    HasTypesResponse:
+      type: object
+      properties:
+        word: { type: string, example: fruit }
+        hasTypes:
+          type: array
+          items: { type: string }
+          example: [apple, orange, pear]
+    TypeOfResponse:
+      type: object
+      properties:
+        word: { type: string, example: apple }
+        typeOf:
+          type: array
+          items: { type: string }
+          example: [edible fruit, pome, false fruit]
+    PartOfResponse:
+      type: object
+      properties:
+        word: { type: string, example: wheel }
+        partOf:
+          type: array
+          items: { type: string }
+          example: [car, bicycle]
+    HasPartsResponse:
+      type: object
+      properties:
+        word: { type: string, example: car }
+        hasParts:
+          type: array
+          items: { type: string }
+          example: [wheel, engine, door]
+    InstancesResponse:
+      type: object
+      properties:
+        word: { type: string }
+        instances:
+          type: array
+          items: { type: string }
+    InstanceOfResponse:
+      type: object
+      properties:
+        word: { type: string }
+        instanceOf:
+          type: array
+          items: { type: string }
+    SimilarToResponse:
+      type: object
+      properties:
+        word: { type: string, example: bright }
+        similarTo:
+          type: array
+          items: { type: string }
+          example: [vivid, brilliant]
+    AlsoResponse:
+      type: object
+      properties:
+        word: { type: string }
+        also:
+          type: array
+          items: { type: string }
+    EntailsResponse:
+      type: object
+      properties:
+        word: { type: string, example: walk }
+        entails:
+          type: array
+          items: { type: string }
+          example: [step, move]
+    MemberOfResponse:
+      type: object
+      properties:
+        word: { type: string }
+        memberOf:
+          type: array
+          items: { type: string }
+    HasMembersResponse:
+      type: object
+      properties:
+        word: { type: string }
+        hasMembers:
+          type: array
+          items: { type: string }
+    SubstanceOfResponse:
+      type: object
+      properties:
+        word: { type: string }
+        substanceOf:
+          type: array
+          items: { type: string }
+    HasSubstancesResponse:
+      type: object
+      properties:
+        word: { type: string }
+        hasSubstances:
+          type: array
+          items: { type: string }
+    InCategoryResponse:
+      type: object
+      properties:
+        word: { type: string }
+        inCategory:
+          type: array
+          items: { type: string }
+    HasCategoriesResponse:
+      type: object
+      properties:
+        word: { type: string }
+        hasCategories:
+          type: array
+          items: { type: string }
+    UsageOfResponse:
+      type: object
+      properties:
+        word: { type: string }
+        usageOf:
+          type: array
+          items: { type: string }
+    HasUsagesResponse:
+      type: object
+      properties:
+        word: { type: string }
+        hasUsages:
+          type: array
+          items: { type: string }
+    InRegionResponse:
+      type: object
+      properties:
+        word: { type: string }
+        inRegion:
+          type: array
+          items: { type: string }
+    RegionOfResponse:
+      type: object
+      properties:
+        word: { type: string }
+        regionOf:
+          type: array
+          items: { type: string }
+    PertainsToResponse:
+      type: object
+      properties:
+        word: { type: string }
+        pertainsTo:
+          type: array
+          items: { type: string }
+    SearchResultsMeta:
+      type: object
+      description: Pagination and totals metadata for /words search.
+      properties:
+        currentPage: { type: integer, example: 1 }
+        limit: { type: integer, example: 100 }
+        total: { type: integer, example: 12345 }
+    SearchResponse:
+      type: object
+      description: Response from GET /words search.
+      properties:
+        query:
+          type: object
+          description: The query parameters as interpreted by Words API.
+          additionalProperties: true
+        results:
+          type: object
+          properties:
+            data:
+              type: array
+              items: { type: string }
+              description: Matching words.
+              example: [apple, ample, angle]
+            total:
+              type: integer
+              example: 3
+        word:
+          type: string
+          description: When random=true, the single random word returned.
+          example: serendipity
