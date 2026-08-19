@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Words Categories Phonetics API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Phonetics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Word Rhymes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/rhymes",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns words that rhyme with the given word, organized by part of speech when pronunciations differ."
+        },
+        {
+          "info": {
+            "name": "Get Word Syllables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/syllables",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the syllable count and the ordered list of syllables for the word."
+        },
+        {
+          "info": {
+            "name": "Get Word Pronunciation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/pronunciation",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the IPA pronunciation for the word, optionally split by part of speech."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

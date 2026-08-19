@@ -1,0 +1,235 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Words Categories Hierarchy API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hierarchy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Word Has Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/hasTypes",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the more specific words (hyponyms) of the given word."
+        },
+        {
+          "info": {
+            "name": "Get Word Type Of",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/typeOf",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the more generic words (hypernyms) of the given word."
+        },
+        {
+          "info": {
+            "name": "Get Word Part Of",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/partOf",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns wholes the word is a part of (holonyms)."
+        },
+        {
+          "info": {
+            "name": "Get Word Has Parts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/hasParts",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the parts that compose the word (meronyms)."
+        },
+        {
+          "info": {
+            "name": "Get Word Instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/instances",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns specific instances of the given word (e.g. concrete examples of a category)."
+        },
+        {
+          "info": {
+            "name": "Get Word Instance Of",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/instanceOf",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the categories of which the given word is an instance."
+        },
+        {
+          "info": {
+            "name": "Get Word Entails",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/entails",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns words logically entailed by the given word, typically verbs."
+        },
+        {
+          "info": {
+            "name": "Get Word Member Of",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/memberOf",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns groups the given word is a member of."
+        },
+        {
+          "info": {
+            "name": "Get Word Has Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/hasMembers",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the members that belong to the given group word."
+        },
+        {
+          "info": {
+            "name": "Get Word Substance Of",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/substanceOf",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns materials of which the given word is a substance."
+        },
+        {
+          "info": {
+            "name": "Get Word Has Substances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/hasSubstances",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the substances that compose the given word."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

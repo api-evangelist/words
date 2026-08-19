@@ -1,0 +1,547 @@
+{
+  "item": [
+    {
+      "id": "2ea2c60f-0dcf-48d2-97be-74c8717b0487",
+      "name": "Thesaurus",
+      "description": {
+        "content": "Words API Synonyms, Antonyms, and Similar Word Relationships.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aef5b5e0-7057-4229-a81a-c674fa962723",
+          "name": "Get Word Synonyms",
+          "request": {
+            "name": "Get Word Synonyms",
+            "description": {
+              "content": "Returns words interchangeable with the given word in the same sense.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "words",
+                ":word",
+                "synonyms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "word",
+                  "description": "(Required) The English word to look up."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c25a256-c7cc-4daf-b96f-e057e806ee8f",
+              "name": "Synonyms returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "synonyms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"word\": \"happy\",\n  \"synonyms\": [\n    \"glad\",\n    \"joyful\",\n    \"pleased\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c82408a8-5756-42a1-8615-11c2ceed1771",
+              "name": "Word not found in the Words API dictionary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "synonyms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"word not found\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b059324b-553a-496a-9980-4ff7d7859c0a",
+          "name": "Get Word Antonyms",
+          "request": {
+            "name": "Get Word Antonyms",
+            "description": {
+              "content": "Returns opposite-meaning words for the given word.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "words",
+                ":word",
+                "antonyms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "word",
+                  "description": "(Required) The English word to look up."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "749c72ed-8a83-4a3d-b413-12474b64ff41",
+              "name": "Antonyms returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "antonyms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"word\": \"happy\",\n  \"antonyms\": [\n    \"unhappy\",\n    \"sad\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95b6bc66-eff5-4fc6-927f-6bf02170f8c0",
+              "name": "Word not found in the Words API dictionary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "antonyms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"word not found\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8122bfc8-185c-4429-9269-44a4961ac982",
+          "name": "Get Words Similar To",
+          "request": {
+            "name": "Get Words Similar To",
+            "description": {
+              "content": "Returns related but non-synonymous words for the given word.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "words",
+                ":word",
+                "similar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "word",
+                  "description": "(Required) The English word to look up."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd411e75-3ae7-4e45-a0cf-1eacd293c5cb",
+              "name": "similarTo returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "similar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"word\": \"bright\",\n  \"similarTo\": [\n    \"vivid\",\n    \"brilliant\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ded054ad-85cf-488a-bc96-aecc99d0c706",
+          "name": "Get Word Also Used",
+          "request": {
+            "name": "Get Word Also Used",
+            "description": {
+              "content": "Returns idiomatic phrases that include the given word.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "words",
+                ":word",
+                "also"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "word",
+                  "description": "(Required) The English word to look up."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "66ab43d8-0f51-47f8-b950-f04d42a56f40",
+              "name": "also returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "also"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"word\": \"string\",\n  \"also\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://wordsapiv1.p.rapidapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-RapidAPI-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "256b9c00-53b7-40ab-a1dc-ee39e64d4280",
+    "name": "Words Categories Thesaurus API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.\n\nContact Support:\n Name: Words API Support\n Email: support@wordsapi.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Words Categories Search API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Words and Get Random Word",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/",
+            "params": [
+              {
+                "name": "letterPattern",
+                "value": "^a.*z$",
+                "type": "query",
+                "description": "Regex pattern matched against the word's letters."
+              },
+              {
+                "name": "letters",
+                "value": "5",
+                "type": "query",
+                "description": "Exact letter count."
+              },
+              {
+                "name": "lettersMin",
+                "value": "4",
+                "type": "query",
+                "description": "Minimum letter count."
+              },
+              {
+                "name": "lettersMax",
+                "value": "10",
+                "type": "query",
+                "description": "Maximum letter count."
+              },
+              {
+                "name": "pronunciationPattern",
+                "value": "ˈæp.*",
+                "type": "query",
+                "description": "Regex pattern matched against the IPA pronunciation."
+              },
+              {
+                "name": "sounds",
+                "value": "5",
+                "type": "query",
+                "description": "Exact phoneme count."
+              },
+              {
+                "name": "soundsMin",
+                "value": "3",
+                "type": "query",
+                "description": "Minimum phoneme count."
+              },
+              {
+                "name": "soundsMax",
+                "value": "8",
+                "type": "query",
+                "description": "Maximum phoneme count."
+              },
+              {
+                "name": "partOfSpeech",
+                "value": "verb",
+                "type": "query",
+                "description": "Filter by grammatical class."
+              },
+              {
+                "name": "hasDetails",
+                "value": "synonyms,examples",
+                "type": "query",
+                "description": "Comma-separated detail types the word must have (e.g. \"synonyms"
+              },
+              {
+                "name": "random",
+                "value": "true",
+                "type": "query",
+                "description": "Return a single random word matching the filters."
+              },
+              {
+                "name": "limit",
+                "value": "50",
+                "type": "query",
+                "description": "Results per page (1–100)."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Page number for pagination."
+              }
+            ]
+          },
+          "docs": "Searches the Words API dictionary using letter, sound, part-of-speech, and detail-type filters. Pass random=true to return a single random word matching the filters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

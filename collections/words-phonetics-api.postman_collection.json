@@ -1,0 +1,502 @@
+{
+  "item": [
+    {
+      "id": "b9fd8622-c834-4cce-a0cf-601883edb0b3",
+      "name": "Phonetics",
+      "description": {
+        "content": "Words API Pronunciation (IPA), Syllables, and Rhymes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f7c53723-b3d3-458b-9ccb-213a773cc356",
+          "name": "Get Word Rhymes",
+          "request": {
+            "name": "Get Word Rhymes",
+            "description": {
+              "content": "Returns words that rhyme with the given word, organized by part of speech when pronunciations differ.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "words",
+                ":word",
+                "rhymes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "word",
+                  "description": "(Required) The English word to look up."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39fb5c5e-8e54-4b72-b1a4-86826ab2b5e4",
+              "name": "Rhymes returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "rhymes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"word\": \"apple\",\n  \"rhymes\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8dabd778-4f12-4c22-9d7a-4067c88d6510",
+              "name": "Word not found in the Words API dictionary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "rhymes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"word not found\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d69db256-81c9-4208-8416-df2e40895e95",
+          "name": "Get Word Syllables",
+          "request": {
+            "name": "Get Word Syllables",
+            "description": {
+              "content": "Returns the syllable count and the ordered list of syllables for the word.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "words",
+                ":word",
+                "syllables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "word",
+                  "description": "(Required) The English word to look up."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba276fbe-e260-4a74-b3f8-e24eee70ed0f",
+              "name": "Syllables returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "syllables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"word\": \"apple\",\n  \"numSyllables\": 2,\n  \"list\": [\n    \"ap\",\n    \"ple\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c3caf69-1171-43dc-a792-b90f7d79f5e3",
+              "name": "Word not found in the Words API dictionary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "syllables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"word not found\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f65a0ab-cd40-4e8d-a565-a2513f874561",
+          "name": "Get Word Pronunciation",
+          "request": {
+            "name": "Get Word Pronunciation",
+            "description": {
+              "content": "Returns the IPA pronunciation for the word, optionally split by part of speech.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "words",
+                ":word",
+                "pronunciation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "word",
+                  "description": "(Required) The English word to look up."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1374d40-ad36-430a-b3bb-b145856a7da0",
+              "name": "Pronunciation returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "pronunciation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"word\": \"apple\",\n  \"pronunciation\": {\n    \"all\": \"ˈæp.əl\",\n    \"noun\": \"string\",\n    \"verb\": \"string\",\n    \"adjective\": \"string\",\n    \"adverb\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d776e8ea-bd02-40c4-9264-da2da5645606",
+              "name": "Word not found in the Words API dictionary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "pronunciation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"word not found\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://wordsapiv1.p.rapidapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-RapidAPI-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2614b5f8-c0c4-454b-a403-6cbe3cff4f4e",
+    "name": "Words Categories Phonetics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.\n\nContact Support:\n Name: Words API Support\n Email: support@wordsapi.com",
+      "type": "text/plain"
+    }
+  }
+}

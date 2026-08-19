@@ -1,0 +1,735 @@
+{
+  "item": [
+    {
+      "id": "9a16ea14-8f0a-4d14-9db1-67ee7cd2674a",
+      "name": "Categories",
+      "description": {
+        "content": "Words API Category, Region, and Domain-Usage Relationships.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8a30d92f-950b-462b-922a-722134da1ca3",
+          "name": "Get Word In Category",
+          "request": {
+            "name": "Get Word In Category",
+            "description": {
+              "content": "Returns the categories the given word belongs to.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "words",
+                ":word",
+                "inCategory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "word",
+                  "description": "(Required) The English word to look up."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c20bf5ee-3910-43a0-a9c4-56f36b435ea9",
+              "name": "inCategory returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "inCategory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"word\": \"string\",\n  \"inCategory\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c7897e3-4210-485e-9a60-bdf5b5b418dd",
+          "name": "Get Word Has Categories",
+          "request": {
+            "name": "Get Word Has Categories",
+            "description": {
+              "content": "Returns the subcategories of the given category word.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "words",
+                ":word",
+                "hasCategories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "word",
+                  "description": "(Required) The English word to look up."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a7acfa8-76d8-4fb1-8e7b-58f4388459d2",
+              "name": "hasCategories returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "hasCategories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"word\": \"string\",\n  \"hasCategories\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb8844ee-e419-4899-b923-f737871690bb",
+          "name": "Get Word Usage Of",
+          "request": {
+            "name": "Get Word Usage Of",
+            "description": {
+              "content": "Returns the domain-usage classifications of the given word.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "words",
+                ":word",
+                "usageOf"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "word",
+                  "description": "(Required) The English word to look up."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00c420bb-57d0-4e68-9cf5-23331d6201d2",
+              "name": "usageOf returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "usageOf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"word\": \"string\",\n  \"usageOf\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a5f318e-e1fe-4c15-8267-e45fa3dcb00c",
+          "name": "Get Word Has Usages",
+          "request": {
+            "name": "Get Word Has Usages",
+            "description": {
+              "content": "Returns the domain-usage examples of the given word.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "words",
+                ":word",
+                "hasUsages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "word",
+                  "description": "(Required) The English word to look up."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5192f313-5ac3-4eb4-acc0-02dd8aad5823",
+              "name": "hasUsages returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "hasUsages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"word\": \"string\",\n  \"hasUsages\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c582f37-2a57-4b7e-bbad-1665dfb494bf",
+          "name": "Get Word In Region",
+          "request": {
+            "name": "Get Word In Region",
+            "description": {
+              "content": "Returns the geographic regions where the given word is used.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "words",
+                ":word",
+                "inRegion"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "word",
+                  "description": "(Required) The English word to look up."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b7d76694-f024-4bce-ad21-fde0ea942b72",
+              "name": "inRegion returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "inRegion"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"word\": \"string\",\n  \"inRegion\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68dcd36d-3214-41e2-b286-13e53bf54e3c",
+          "name": "Get Word Region Of",
+          "request": {
+            "name": "Get Word Region Of",
+            "description": {
+              "content": "Returns the regional variants associated with the given word.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "words",
+                ":word",
+                "regionOf"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "word",
+                  "description": "(Required) The English word to look up."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d4d262fe-31af-420e-9cae-eb1ae7225c48",
+              "name": "regionOf returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "regionOf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"word\": \"string\",\n  \"regionOf\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39bda440-2f2c-4e75-bc2d-8ec1fb5b6ad0",
+          "name": "Get Word Pertains To",
+          "request": {
+            "name": "Get Word Pertains To",
+            "description": {
+              "content": "Returns words to which the given word pertains (adjective-to-noun and similar relations).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "words",
+                ":word",
+                "pertainsTo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "word",
+                  "description": "(Required) The English word to look up."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8aad5600-080d-4caa-8c71-fbf1a0b4a664",
+              "name": "pertainsTo returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "pertainsTo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"word\": \"string\",\n  \"pertainsTo\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://wordsapiv1.p.rapidapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-RapidAPI-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b50fe0a2-1ee8-419c-b78a-d20088b91dc7",
+    "name": "Words Categories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.\n\nContact Support:\n Name: Words API Support\n Email: support@wordsapi.com",
+      "type": "text/plain"
+    }
+  }
+}

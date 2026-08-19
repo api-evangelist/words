@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Words Categories Definitions API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Definitions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Word Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/definitions",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns every documented definition for the word, grouped by part of speech."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

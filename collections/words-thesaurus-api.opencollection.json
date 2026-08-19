@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Words Categories Thesaurus API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Thesaurus",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Word Synonyms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/synonyms",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns words interchangeable with the given word in the same sense."
+        },
+        {
+          "info": {
+            "name": "Get Word Antonyms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/antonyms",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns opposite-meaning words for the given word."
+        },
+        {
+          "info": {
+            "name": "Get Words Similar To",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/similar",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns related but non-synonymous words for the given word."
+        },
+        {
+          "info": {
+            "name": "Get Word Also Used",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/also",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns idiomatic phrases that include the given word."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

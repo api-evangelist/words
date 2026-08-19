@@ -1,0 +1,353 @@
+{
+  "item": [
+    {
+      "id": "82752146-d823-433d-b871-32c2e16a27a3",
+      "name": "Word",
+      "description": {
+        "content": "Words API Lookup a Word and Retrieve Its Full Lexical Entry.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2a30271c-d748-47e2-b3fd-8ca966a649ab",
+          "name": "Get Word Entry",
+          "request": {
+            "name": "Get Word Entry",
+            "description": {
+              "content": "Retrieves the full lexical entry for a single English word — every documented sense (definition + part of speech), syllable breakdown, IPA pronunciation, and the embedded results array used by every other detail-type endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "words",
+                ":word"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "word",
+                  "description": "(Required) The English word to look up."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6ceeac6-adc0-40b8-bc92-2e9b0d054f5b",
+              "name": "Full word entry returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"word\": \"apple\",\n  \"results\": [\n    {\n      \"definition\": \"fruit with red or yellow or green skin and sweet to tart crisp whitish flesh\",\n      \"partOfSpeech\": \"noun\",\n      \"synonyms\": [\n        \"orchard apple tree\"\n      ],\n      \"antonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"examples\": [\n        \"he is the apple of my eye\"\n      ],\n      \"typeOf\": [\n        \"edible fruit\",\n        \"pome\",\n        \"false fruit\"\n      ],\n      \"hasTypes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"partOf\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hasParts\": [\n        \"string\",\n        \"string\"\n      ],\n      \"instanceOf\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hasInstances\": [\n        \"string\",\n        \"string\"\n      ],\n      \"similarTo\": [\n        \"string\",\n        \"string\"\n      ],\n      \"also\": [\n        \"string\",\n        \"string\"\n      ],\n      \"entails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"memberOf\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hasMembers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"substanceOf\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hasSubstances\": [\n        \"string\",\n        \"string\"\n      ],\n      \"inCategory\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hasCategories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"usageOf\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hasUsages\": [\n        \"string\",\n        \"string\"\n      ],\n      \"inRegion\": [\n        \"string\",\n        \"string\"\n      ],\n      \"regionOf\": [\n        \"string\",\n        \"string\"\n      ],\n      \"pertainsTo\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"definition\": \"fruit with red or yellow or green skin and sweet to tart crisp whitish flesh\",\n      \"partOfSpeech\": \"noun\",\n      \"synonyms\": [\n        \"orchard apple tree\"\n      ],\n      \"antonyms\": [\n        \"string\",\n        \"string\"\n      ],\n      \"examples\": [\n        \"he is the apple of my eye\"\n      ],\n      \"typeOf\": [\n        \"edible fruit\",\n        \"pome\",\n        \"false fruit\"\n      ],\n      \"hasTypes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"partOf\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hasParts\": [\n        \"string\",\n        \"string\"\n      ],\n      \"instanceOf\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hasInstances\": [\n        \"string\",\n        \"string\"\n      ],\n      \"similarTo\": [\n        \"string\",\n        \"string\"\n      ],\n      \"also\": [\n        \"string\",\n        \"string\"\n      ],\n      \"entails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"memberOf\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hasMembers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"substanceOf\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hasSubstances\": [\n        \"string\",\n        \"string\"\n      ],\n      \"inCategory\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hasCategories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"usageOf\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hasUsages\": [\n        \"string\",\n        \"string\"\n      ],\n      \"inRegion\": [\n        \"string\",\n        \"string\"\n      ],\n      \"regionOf\": [\n        \"string\",\n        \"string\"\n      ],\n      \"pertainsTo\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"syllables\": {\n    \"count\": 2,\n    \"list\": [\n      \"ap\",\n      \"ple\"\n    ]\n  },\n  \"pronunciation\": {\n    \"all\": \"ˈæp.əl\",\n    \"noun\": \"string\",\n    \"verb\": \"string\",\n    \"adjective\": \"string\",\n    \"adverb\": \"string\"\n  },\n  \"frequency\": 4.83\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "876897f9-40db-4e20-87d8-e710c52bfb2b",
+              "name": "Missing or invalid RapidAPI credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"word not found\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90ccaa96-c7e0-4e86-88d8-a6eee9972f98",
+              "name": "Word not found in the Words API dictionary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"word not found\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c6c60c6-947f-4df9-9ae9-7ff49c907941",
+              "name": "Quota or rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"word not found\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f0a270d-c711-4830-ac73-ceea29a95631",
+              "name": "Upstream Words API error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"word not found\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://wordsapiv1.p.rapidapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-RapidAPI-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d08bcbc9-93b9-480b-abdc-64bc101ed3a3",
+    "name": "Words Categories Word API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.\n\nContact Support:\n Name: Words API Support\n Email: support@wordsapi.com",
+      "type": "text/plain"
+    }
+  }
+}

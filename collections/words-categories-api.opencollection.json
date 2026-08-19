@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Words Categories API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Word In Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/inCategory",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the categories the given word belongs to."
+        },
+        {
+          "info": {
+            "name": "Get Word Has Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/hasCategories",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the subcategories of the given category word."
+        },
+        {
+          "info": {
+            "name": "Get Word Usage Of",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/usageOf",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the domain-usage classifications of the given word."
+        },
+        {
+          "info": {
+            "name": "Get Word Has Usages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/hasUsages",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the domain-usage examples of the given word."
+        },
+        {
+          "info": {
+            "name": "Get Word In Region",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/inRegion",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the geographic regions where the given word is used."
+        },
+        {
+          "info": {
+            "name": "Get Word Region Of",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/regionOf",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns the regional variants associated with the given word."
+        },
+        {
+          "info": {
+            "name": "Get Word Pertains To",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/pertainsTo",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns words to which the given word pertains (adjective-to-noun and similar relations)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

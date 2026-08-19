@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Words Categories Frequency API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Frequency",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Word Frequency",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://wordsapiv1.p.rapidapi.com/words/:word/frequency",
+            "params": [
+              {
+                "name": "word",
+                "value": "apple",
+                "type": "path",
+                "description": "The English word to look up."
+              }
+            ]
+          },
+          "docs": "Returns corpus-derived frequency statistics for the word — Zipf score (1–7), per-million occurrence rate, and corpus diversity (0–1)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

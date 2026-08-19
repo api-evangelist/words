@@ -1,0 +1,200 @@
+{
+  "item": [
+    {
+      "id": "de0fc6bf-1203-49c0-bc7d-5a5acdedfb22",
+      "name": "Definitions",
+      "description": {
+        "content": "Words API Sense-level Definitions Grouped by Part of Speech.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bf04984e-a81b-4e5a-9067-1a0f29b300ff",
+          "name": "Get Word Definitions",
+          "request": {
+            "name": "Get Word Definitions",
+            "description": {
+              "content": "Returns every documented definition for the word, grouped by part of speech.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "words",
+                ":word",
+                "definitions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "word",
+                  "description": "(Required) The English word to look up."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c274f691-2041-4018-b7cd-32e3fd52aef4",
+              "name": "Definitions returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "definitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"word\": \"apple\",\n  \"definitions\": {\n    \"type\": \"array\",\n    \"maxItems\": 2,\n    \"items\": {\n      \"type\": \"object\",\n      \"description\": \"One definition with its grammatical category.\",\n      \"properties\": {\n        \"definition\": {\n          \"type\": \"string\",\n          \"description\": \"Definition text.\",\n          \"example\": \"fruit with red or yellow or green skin and sweet to tart crisp whitish flesh\"\n        },\n        \"partOfSpeech\": {\n          \"type\": \"string\",\n          \"description\": \"Grammatical category.\",\n          \"example\": \"noun\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10ac6805-3ca2-4b8f-9efb-e191b19f3282",
+              "name": "Word not found in the Words API dictionary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ":word",
+                    "definitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "word",
+                      "description": "(Required) The English word to look up."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"word not found\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://wordsapiv1.p.rapidapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-RapidAPI-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8d8c9830-61ff-4a30-9f26-edfc836c0359",
+    "name": "Words Categories Definitions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.\n\nContact Support:\n Name: Words API Support\n Email: support@wordsapi.com",
+      "type": "text/plain"
+    }
+  }
+}

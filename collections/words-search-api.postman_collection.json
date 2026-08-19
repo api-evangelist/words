@@ -1,0 +1,552 @@
+{
+  "item": [
+    {
+      "id": "c1764d98-0ed2-4f72-b651-67b3b9191779",
+      "name": "Search",
+      "description": {
+        "content": "Words API Search and Random Word Discovery Endpoint.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e9e6921-34ea-4f4a-8a24-b2b57efcb0f6",
+          "name": "Search Words and Get Random Word",
+          "request": {
+            "name": "Search Words and Get Random Word",
+            "description": {
+              "content": "Searches the Words API dictionary using letter, sound, part-of-speech, and detail-type filters. Pass random=true to return a single random word matching the filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "words",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "letterPattern",
+                  "value": "<string>",
+                  "description": "Regex pattern matched against the word's letters."
+                },
+                {
+                  "disabled": false,
+                  "key": "letters",
+                  "value": "<integer>",
+                  "description": "Exact letter count."
+                },
+                {
+                  "disabled": false,
+                  "key": "lettersMin",
+                  "value": "<integer>",
+                  "description": "Minimum letter count."
+                },
+                {
+                  "disabled": false,
+                  "key": "lettersMax",
+                  "value": "<integer>",
+                  "description": "Maximum letter count."
+                },
+                {
+                  "disabled": false,
+                  "key": "pronunciationPattern",
+                  "value": "<string>",
+                  "description": "Regex pattern matched against the IPA pronunciation."
+                },
+                {
+                  "disabled": false,
+                  "key": "sounds",
+                  "value": "<integer>",
+                  "description": "Exact phoneme count."
+                },
+                {
+                  "disabled": false,
+                  "key": "soundsMin",
+                  "value": "<integer>",
+                  "description": "Minimum phoneme count."
+                },
+                {
+                  "disabled": false,
+                  "key": "soundsMax",
+                  "value": "<integer>",
+                  "description": "Maximum phoneme count."
+                },
+                {
+                  "disabled": false,
+                  "key": "partOfSpeech",
+                  "value": "<string>",
+                  "description": "Filter by grammatical class."
+                },
+                {
+                  "disabled": false,
+                  "key": "hasDetails",
+                  "value": "<string>",
+                  "description": "Comma-separated detail types the word must have (e.g. \"synonyms"
+                },
+                {
+                  "disabled": false,
+                  "key": "random",
+                  "value": "<boolean>",
+                  "description": "Return a single random word matching the filters."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Results per page (1–100)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5401c894-e844-4505-8ec2-52248387fb4f",
+              "name": "Search results returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "letterPattern",
+                      "value": "^a.*z$"
+                    },
+                    {
+                      "key": "letters",
+                      "value": "5"
+                    },
+                    {
+                      "key": "lettersMin",
+                      "value": "4"
+                    },
+                    {
+                      "key": "lettersMax",
+                      "value": "10"
+                    },
+                    {
+                      "key": "pronunciationPattern",
+                      "value": "ˈæp.*"
+                    },
+                    {
+                      "key": "sounds",
+                      "value": "5"
+                    },
+                    {
+                      "key": "soundsMin",
+                      "value": "3"
+                    },
+                    {
+                      "key": "soundsMax",
+                      "value": "8"
+                    },
+                    {
+                      "key": "partOfSpeech",
+                      "value": "verb"
+                    },
+                    {
+                      "key": "hasDetails",
+                      "value": "synonyms,examples"
+                    },
+                    {
+                      "key": "random",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"query\": {\n    \"key_0\": 8102.789706444792,\n    \"key_1\": false,\n    \"key_2\": 8436.482287345227\n  },\n  \"results\": {\n    \"data\": [\n      \"apple\",\n      \"ample\",\n      \"angle\"\n    ],\n    \"total\": 3\n  },\n  \"word\": \"serendipity\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "351b1652-8195-46a1-9174-776f27c32dd4",
+              "name": "Malformed request or invalid query parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "letterPattern",
+                      "value": "^a.*z$"
+                    },
+                    {
+                      "key": "letters",
+                      "value": "5"
+                    },
+                    {
+                      "key": "lettersMin",
+                      "value": "4"
+                    },
+                    {
+                      "key": "lettersMax",
+                      "value": "10"
+                    },
+                    {
+                      "key": "pronunciationPattern",
+                      "value": "ˈæp.*"
+                    },
+                    {
+                      "key": "sounds",
+                      "value": "5"
+                    },
+                    {
+                      "key": "soundsMin",
+                      "value": "3"
+                    },
+                    {
+                      "key": "soundsMax",
+                      "value": "8"
+                    },
+                    {
+                      "key": "partOfSpeech",
+                      "value": "verb"
+                    },
+                    {
+                      "key": "hasDetails",
+                      "value": "synonyms,examples"
+                    },
+                    {
+                      "key": "random",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"word not found\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ddac627-59f7-49ab-bbf0-a66958b3e1fc",
+              "name": "Missing or invalid RapidAPI credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "letterPattern",
+                      "value": "^a.*z$"
+                    },
+                    {
+                      "key": "letters",
+                      "value": "5"
+                    },
+                    {
+                      "key": "lettersMin",
+                      "value": "4"
+                    },
+                    {
+                      "key": "lettersMax",
+                      "value": "10"
+                    },
+                    {
+                      "key": "pronunciationPattern",
+                      "value": "ˈæp.*"
+                    },
+                    {
+                      "key": "sounds",
+                      "value": "5"
+                    },
+                    {
+                      "key": "soundsMin",
+                      "value": "3"
+                    },
+                    {
+                      "key": "soundsMax",
+                      "value": "8"
+                    },
+                    {
+                      "key": "partOfSpeech",
+                      "value": "verb"
+                    },
+                    {
+                      "key": "hasDetails",
+                      "value": "synonyms,examples"
+                    },
+                    {
+                      "key": "random",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"word not found\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e2b3ef5-8d98-47d3-a8bc-4d0b136c2fd2",
+              "name": "Quota or rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "words",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "letterPattern",
+                      "value": "^a.*z$"
+                    },
+                    {
+                      "key": "letters",
+                      "value": "5"
+                    },
+                    {
+                      "key": "lettersMin",
+                      "value": "4"
+                    },
+                    {
+                      "key": "lettersMax",
+                      "value": "10"
+                    },
+                    {
+                      "key": "pronunciationPattern",
+                      "value": "ˈæp.*"
+                    },
+                    {
+                      "key": "sounds",
+                      "value": "5"
+                    },
+                    {
+                      "key": "soundsMin",
+                      "value": "3"
+                    },
+                    {
+                      "key": "soundsMax",
+                      "value": "8"
+                    },
+                    {
+                      "key": "partOfSpeech",
+                      "value": "verb"
+                    },
+                    {
+                      "key": "hasDetails",
+                      "value": "synonyms,examples"
+                    },
+                    {
+                      "key": "random",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"word not found\",\n  \"success\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://wordsapiv1.p.rapidapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-RapidAPI-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "57696e84-cdd4-4e04-b27a-96f0df9c44b3",
+    "name": "Words Categories Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.\n\nContact Support:\n Name: Words API Support\n Email: support@wordsapi.com",
+      "type": "text/plain"
+    }
+  }
+}
