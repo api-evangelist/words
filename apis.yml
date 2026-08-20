@@ -32,6 +32,13 @@ tags:
   - Dictionaries
   - Linguistics
   - English
+  - thesaurus
+  - Lexical Data
+  - Public APIs
+tags_raw:
+  - Dictionaries
+  - Linguistics
+  - English
   - Thesaurus
   - Lexical Data
   - Public APIs
@@ -420,6 +427,8 @@ apis:
   humanURL: https://www.wordsapi.com/docs/
   baseURL: https://wordsapiv1.p.rapidapi.com
   tags:
+  - thesaurus
+  tags_raw:
   - Thesaurus
   properties:
   - type: OpenAPI
