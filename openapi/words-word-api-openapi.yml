@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Words Categories Word API
   version: 1.0.0
@@ -49,31 +49,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    ServerError:
-      description: Upstream Words API error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid RapidAPI credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    TooManyRequests:
-      description: Quota or rate limit exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Word not found in the Words API dictionary.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     Word:
       name: word
@@ -84,6 +59,22 @@ components:
         type: string
       example: apple
   schemas:
+    Syllables:
+      type: object
+      description: Syllable breakdown for a word.
+      properties:
+        count:
+          type: integer
+          description: Number of syllables in the word.
+          example: 2
+        list:
+          type: array
+          description: Ordered list of the word's syllables.
+          items:
+            type: string
+          example:
+          - ap
+          - ple
     Result:
       type: object
       description: Single lexical-relationship record for one sense of a word.
@@ -219,26 +210,6 @@ components:
           description: Words this sense pertains to.
           items:
             type: string
-    Pronunciation:
-      type: object
-      description: Pronunciation in IPA. May be a single string or split by part of speech.
-      properties:
-        all:
-          type: string
-          description: IPA pronunciation that applies across all parts of speech.
-          example: ˈæp.əl
-        noun:
-          type: string
-          description: IPA pronunciation when the word is used as a noun.
-        verb:
-          type: string
-          description: IPA pronunciation when the word is used as a verb.
-        adjective:
-          type: string
-          description: IPA pronunciation when the word is used as an adjective.
-        adverb:
-          type: string
-          description: IPA pronunciation when the word is used as an adverb.
     Error:
       type: object
       description: Error response body returned by Words API when a request fails.
@@ -253,22 +224,6 @@ components:
           example: word not found
       required:
       - message
-    Syllables:
-      type: object
-      description: Syllable breakdown for a word.
-      properties:
-        count:
-          type: integer
-          description: Number of syllables in the word.
-          example: 2
-        list:
-          type: array
-          description: Ordered list of the word's syllables.
-          items:
-            type: string
-          example:
-          - ap
-          - ple
     WordEntry:
       type: object
       description: Full lexical entry for one English word — every detail-type endpoint reads from this structure.
@@ -291,6 +246,51 @@ components:
           format: double
           description: Legacy frequency score (Zipf scale).
           example: 4.83
+    Pronunciation:
+      type: object
+      description: Pronunciation in IPA. May be a single string or split by part of speech.
+      properties:
+        all:
+          type: string
+          description: IPA pronunciation that applies across all parts of speech.
+          example: ˈæp.əl
+        noun:
+          type: string
+          description: IPA pronunciation when the word is used as a noun.
+        verb:
+          type: string
+          description: IPA pronunciation when the word is used as a verb.
+        adjective:
+          type: string
+          description: IPA pronunciation when the word is used as an adjective.
+        adverb:
+          type: string
+          description: IPA pronunciation when the word is used as an adverb.
+  responses:
+    NotFound:
+      description: Word not found in the Words API dictionary.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid RapidAPI credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Upstream Words API error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Quota or rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     RapidApiKey:
       type: apiKey

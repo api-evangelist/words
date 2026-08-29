@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Words Categories API
   version: 1.0.0
@@ -155,13 +155,31 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    Word:
+      name: word
+      in: path
+      required: true
+      description: The English word to look up.
+      schema:
+        type: string
+      example: apple
   schemas:
-    RegionOfResponse:
+    InCategoryResponse:
       type: object
       properties:
         word:
           type: string
-        regionOf:
+        inCategory:
+          type: array
+          items:
+            type: string
+    HasCategoriesResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        hasCategories:
           type: array
           items:
             type: string
@@ -183,6 +201,15 @@ components:
           type: array
           items:
             type: string
+    RegionOfResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        regionOf:
+          type: array
+          items:
+            type: string
     PertainsToResponse:
       type: object
       properties:
@@ -201,33 +228,6 @@ components:
           type: array
           items:
             type: string
-    HasCategoriesResponse:
-      type: object
-      properties:
-        word:
-          type: string
-        hasCategories:
-          type: array
-          items:
-            type: string
-    InCategoryResponse:
-      type: object
-      properties:
-        word:
-          type: string
-        inCategory:
-          type: array
-          items:
-            type: string
-  parameters:
-    Word:
-      name: word
-      in: path
-      required: true
-      description: The English word to look up.
-      schema:
-        type: string
-      example: apple
   securitySchemes:
     RapidApiKey:
       type: apiKey

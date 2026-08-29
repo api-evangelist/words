@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Words Categories Frequency API
   version: 1.0.0
@@ -43,6 +43,22 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    Word:
+      name: word
+      in: path
+      required: true
+      description: The English word to look up.
+      schema:
+        type: string
+      example: apple
+  responses:
+    NotFound:
+      description: Word not found in the Words API dictionary.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     FrequencyResponse:
       type: object
@@ -88,22 +104,6 @@ components:
           format: double
           description: Likelihood (0–1) that the word appears in a randomly chosen document.
           example: 0.17
-  parameters:
-    Word:
-      name: word
-      in: path
-      required: true
-      description: The English word to look up.
-      schema:
-        type: string
-      example: apple
-  responses:
-    NotFound:
-      description: Word not found in the Words API dictionary.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     RapidApiKey:
       type: apiKey

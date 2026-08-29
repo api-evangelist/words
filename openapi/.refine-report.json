@@ -25,6 +25,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "words-categories-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "words-definitions-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "words-examples-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "words-frequency-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "words-hierarchy-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "words-phonetics-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "words-search-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "words-thesaurus-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "words-word-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Words Categories Definitions API
   version: 1.0.0
@@ -44,18 +44,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    DefinitionEntry:
-      type: object
-      description: One definition with its grammatical category.
-      properties:
-        definition:
-          type: string
-          description: Definition text.
-          example: fruit with red or yellow or green skin and sweet to tart crisp whitish flesh
-        partOfSpeech:
-          type: string
-          description: Grammatical category.
-          example: noun
     DefinitionsResponse:
       type: object
       description: Response from GET /words/{word}/definitions.
@@ -81,6 +69,18 @@ components:
           example: word not found
       required:
       - message
+    DefinitionEntry:
+      type: object
+      description: One definition with its grammatical category.
+      properties:
+        definition:
+          type: string
+          description: Definition text.
+          example: fruit with red or yellow or green skin and sweet to tart crisp whitish flesh
+        partOfSpeech:
+          type: string
+          description: Grammatical category.
+          example: noun
   parameters:
     Word:
       name: word

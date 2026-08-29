@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Words Categories Thesaurus API
   version: 1.0.0
@@ -102,16 +102,16 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    Word:
-      name: word
-      in: path
-      required: true
-      description: The English word to look up.
-      schema:
-        type: string
-      example: apple
   schemas:
+    AlsoResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        also:
+          type: array
+          items:
+            type: string
     AntonymsResponse:
       type: object
       description: Response from GET /words/{word}/antonyms.
@@ -140,19 +140,6 @@ components:
           example: word not found
       required:
       - message
-    SimilarToResponse:
-      type: object
-      properties:
-        word:
-          type: string
-          example: bright
-        similarTo:
-          type: array
-          items:
-            type: string
-          example:
-          - vivid
-          - brilliant
     SynonymsResponse:
       type: object
       description: Response from GET /words/{word}/synonyms.
@@ -168,15 +155,28 @@ components:
           - glad
           - joyful
           - pleased
-    AlsoResponse:
+    SimilarToResponse:
       type: object
       properties:
         word:
           type: string
-        also:
+          example: bright
+        similarTo:
           type: array
           items:
             type: string
+          example:
+          - vivid
+          - brilliant
+  parameters:
+    Word:
+      name: word
+      in: path
+      required: true
+      description: The English word to look up.
+      schema:
+        type: string
+      example: apple
   responses:
     NotFound:
       description: Word not found in the Words API dictionary.

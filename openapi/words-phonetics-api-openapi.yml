@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Words Categories Phonetics API
   version: 1.0.0
@@ -114,26 +114,15 @@ components:
             - chapel
             - dapple
             - grapple
-    Pronunciation:
+    PronunciationResponse:
       type: object
-      description: Pronunciation in IPA. May be a single string or split by part of speech.
+      description: Response from GET /words/{word}/pronunciation.
       properties:
-        all:
+        word:
           type: string
-          description: IPA pronunciation that applies across all parts of speech.
-          example: ˈæp.əl
-        noun:
-          type: string
-          description: IPA pronunciation when the word is used as a noun.
-        verb:
-          type: string
-          description: IPA pronunciation when the word is used as a verb.
-        adjective:
-          type: string
-          description: IPA pronunciation when the word is used as an adjective.
-        adverb:
-          type: string
-          description: IPA pronunciation when the word is used as an adverb.
+          example: apple
+        pronunciation:
+          $ref: '#/components/schemas/Pronunciation'
     Error:
       type: object
       description: Error response body returned by Words API when a request fails.
@@ -165,15 +154,26 @@ components:
           example:
           - ap
           - ple
-    PronunciationResponse:
+    Pronunciation:
       type: object
-      description: Response from GET /words/{word}/pronunciation.
+      description: Pronunciation in IPA. May be a single string or split by part of speech.
       properties:
-        word:
+        all:
           type: string
-          example: apple
-        pronunciation:
-          $ref: '#/components/schemas/Pronunciation'
+          description: IPA pronunciation that applies across all parts of speech.
+          example: ˈæp.əl
+        noun:
+          type: string
+          description: IPA pronunciation when the word is used as a noun.
+        verb:
+          type: string
+          description: IPA pronunciation when the word is used as a verb.
+        adjective:
+          type: string
+          description: IPA pronunciation when the word is used as an adjective.
+        adverb:
+          type: string
+          description: IPA pronunciation when the word is used as an adverb.
   responses:
     NotFound:
       description: Word not found in the Words API dictionary.

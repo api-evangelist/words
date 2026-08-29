@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Words Categories Search API
   version: 1.0.0
@@ -160,8 +160,8 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    TooManyRequests:
-      description: Quota or rate limit exceeded.
+    BadRequest:
+      description: Malformed request or invalid query parameter.
       content:
         application/json:
           schema:
@@ -172,8 +172,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Malformed request or invalid query parameter.
+    TooManyRequests:
+      description: Quota or rate limit exceeded.
       content:
         application/json:
           schema:

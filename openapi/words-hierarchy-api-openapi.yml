@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Words Categories Hierarchy API
   version: 1.0.0
@@ -241,33 +241,6 @@ components:
           type: array
           items:
             type: string
-    SubstanceOfResponse:
-      type: object
-      properties:
-        word:
-          type: string
-        substanceOf:
-          type: array
-          items:
-            type: string
-    InstanceOfResponse:
-      type: object
-      properties:
-        word:
-          type: string
-        instanceOf:
-          type: array
-          items:
-            type: string
-    MemberOfResponse:
-      type: object
-      properties:
-        word:
-          type: string
-        memberOf:
-          type: array
-          items:
-            type: string
     PartOfResponse:
       type: object
       properties:
@@ -304,6 +277,19 @@ components:
           - wheel
           - engine
           - door
+    EntailsResponse:
+      type: object
+      properties:
+        word:
+          type: string
+          example: walk
+        entails:
+          type: array
+          items:
+            type: string
+          example:
+          - step
+          - move
     HasTypesResponse:
       type: object
       properties:
@@ -318,19 +304,33 @@ components:
           - apple
           - orange
           - pear
-    EntailsResponse:
+    SubstanceOfResponse:
       type: object
       properties:
         word:
           type: string
-          example: walk
-        entails:
+        substanceOf:
           type: array
           items:
             type: string
-          example:
-          - step
-          - move
+    InstanceOfResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        instanceOf:
+          type: array
+          items:
+            type: string
+    MemberOfResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        memberOf:
+          type: array
+          items:
+            type: string
     HasMembersResponse:
       type: object
       properties:
