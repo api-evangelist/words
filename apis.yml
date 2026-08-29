@@ -7,6 +7,19 @@ description: >-
   Distributed and metered through the RapidAPI marketplace.
 url: https://www.wordsapi.com/docs/
 baseURL: https://wordsapiv1.p.rapidapi.com
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
@@ -532,6 +545,8 @@ apis:
   - type: Examples
     url: examples/words-search-response-example.json
 common:
+  - type: IssueTracker
+    url: https://github.com/WordsAPI/wordfrequencies/issues
   - type: AgenticAccess
     url: agentic-access/words-agentic-access.yml
   - type: DomainSecurity
