@@ -171,6 +171,8 @@ apis:
   humanURL: https://www.wordsapi.com/docs/
   baseURL: https://wordsapiv1.p.rapidapi.com
   tags:
+  - Example
+  tags_raw:
   - Examples
   properties:
   - type: OpenAPI
