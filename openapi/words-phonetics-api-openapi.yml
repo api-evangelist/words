@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Words Categories Phonetics API
+  title: Words Phonetics API
   version: 1.0.0
   description: Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.
   contact:
@@ -85,16 +85,24 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    Word:
-      name: word
-      in: path
-      required: true
-      description: The English word to look up.
-      schema:
-        type: string
-      example: apple
   schemas:
+    SyllablesResponse:
+      type: object
+      description: Response from GET /words/{word}/syllables.
+      properties:
+        word:
+          type: string
+          example: apple
+        numSyllables:
+          type: integer
+          example: 2
+        list:
+          type: array
+          items:
+            type: string
+          example:
+          - ap
+          - ple
     RhymesResponse:
       type: object
       description: Response from GET /words/{word}/rhymes.
@@ -137,23 +145,6 @@ components:
           example: word not found
       required:
       - message
-    SyllablesResponse:
-      type: object
-      description: Response from GET /words/{word}/syllables.
-      properties:
-        word:
-          type: string
-          example: apple
-        numSyllables:
-          type: integer
-          example: 2
-        list:
-          type: array
-          items:
-            type: string
-          example:
-          - ap
-          - ple
     Pronunciation:
       type: object
       description: Pronunciation in IPA. May be a single string or split by part of speech.
@@ -181,6 +172,15 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    Word:
+      name: word
+      in: path
+      required: true
+      description: The English word to look up.
+      schema:
+        type: string
+      example: apple
   securitySchemes:
     RapidApiKey:
       type: apiKey

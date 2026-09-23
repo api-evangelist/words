@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Words Categories Thesaurus API
+  title: Words Thesaurus API
   version: 1.0.0
   description: Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.
   contact:
@@ -103,43 +103,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AlsoResponse:
-      type: object
-      properties:
-        word:
-          type: string
-        also:
-          type: array
-          items:
-            type: string
-    AntonymsResponse:
-      type: object
-      description: Response from GET /words/{word}/antonyms.
-      properties:
-        word:
-          type: string
-          example: happy
-        antonyms:
-          type: array
-          items:
-            type: string
-          example:
-          - unhappy
-          - sad
-    Error:
-      type: object
-      description: Error response body returned by Words API when a request fails.
-      properties:
-        success:
-          type: boolean
-          description: Always false for error responses.
-          example: false
-        message:
-          type: string
-          description: Human-readable description of the error.
-          example: word not found
-      required:
-      - message
     SynonymsResponse:
       type: object
       description: Response from GET /words/{word}/synonyms.
@@ -155,6 +118,34 @@ components:
           - glad
           - joyful
           - pleased
+    Error:
+      type: object
+      description: Error response body returned by Words API when a request fails.
+      properties:
+        success:
+          type: boolean
+          description: Always false for error responses.
+          example: false
+        message:
+          type: string
+          description: Human-readable description of the error.
+          example: word not found
+      required:
+      - message
+    AntonymsResponse:
+      type: object
+      description: Response from GET /words/{word}/antonyms.
+      properties:
+        word:
+          type: string
+          example: happy
+        antonyms:
+          type: array
+          items:
+            type: string
+          example:
+          - unhappy
+          - sad
     SimilarToResponse:
       type: object
       properties:
@@ -168,6 +159,22 @@ components:
           example:
           - vivid
           - brilliant
+    AlsoResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        also:
+          type: array
+          items:
+            type: string
+  responses:
+    NotFound:
+      description: Word not found in the Words API dictionary.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     Word:
       name: word
@@ -177,13 +184,6 @@ components:
       schema:
         type: string
       example: apple
-  responses:
-    NotFound:
-      description: Word not found in the Words API dictionary.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     RapidApiKey:
       type: apiKey

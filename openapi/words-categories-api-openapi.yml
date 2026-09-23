@@ -155,22 +155,13 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    Word:
-      name: word
-      in: path
-      required: true
-      description: The English word to look up.
-      schema:
-        type: string
-      example: apple
   schemas:
-    InCategoryResponse:
+    RegionOfResponse:
       type: object
       properties:
         word:
           type: string
-        inCategory:
+        regionOf:
           type: array
           items:
             type: string
@@ -183,30 +174,12 @@ components:
           type: array
           items:
             type: string
-    InRegionResponse:
+    InCategoryResponse:
       type: object
       properties:
         word:
           type: string
-        inRegion:
-          type: array
-          items:
-            type: string
-    HasUsagesResponse:
-      type: object
-      properties:
-        word:
-          type: string
-        hasUsages:
-          type: array
-          items:
-            type: string
-    RegionOfResponse:
-      type: object
-      properties:
-        word:
-          type: string
-        regionOf:
+        inCategory:
           type: array
           items:
             type: string
@@ -228,6 +201,33 @@ components:
           type: array
           items:
             type: string
+    InRegionResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        inRegion:
+          type: array
+          items:
+            type: string
+    HasUsagesResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        hasUsages:
+          type: array
+          items:
+            type: string
+  parameters:
+    Word:
+      name: word
+      in: path
+      required: true
+      description: The English word to look up.
+      schema:
+        type: string
+      example: apple
   securitySchemes:
     RapidApiKey:
       type: apiKey

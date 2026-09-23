@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Words Categories Search API
+  title: Words Search API
   version: 1.0.0
   description: Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.
   contact:
@@ -160,8 +160,8 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    BadRequest:
-      description: Malformed request or invalid query parameter.
+    TooManyRequests:
+      description: Quota or rate limit exceeded.
       content:
         application/json:
           schema:
@@ -172,13 +172,27 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    TooManyRequests:
-      description: Quota or rate limit exceeded.
+    BadRequest:
+      description: Malformed request or invalid query parameter.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      description: Error response body returned by Words API when a request fails.
+      properties:
+        success:
+          type: boolean
+          description: Always false for error responses.
+          example: false
+        message:
+          type: string
+          description: Human-readable description of the error.
+          example: word not found
+      required:
+      - message
     SearchResponse:
       type: object
       description: Response from GET /words search.
@@ -206,20 +220,6 @@ components:
           type: string
           description: When random=true, the single random word returned.
           example: serendipity
-    Error:
-      type: object
-      description: Error response body returned by Words API when a request fails.
-      properties:
-        success:
-          type: boolean
-          description: Always false for error responses.
-          example: false
-        message:
-          type: string
-          description: Human-readable description of the error.
-          example: word not found
-      required:
-      - message
   securitySchemes:
     RapidApiKey:
       type: apiKey

@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Words Categories Word API
+  title: Words Word API
   version: 1.0.0
   description: Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.
   contact:
@@ -49,15 +49,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    Word:
-      name: word
-      in: path
-      required: true
-      description: The English word to look up.
-      schema:
-        type: string
-      example: apple
   schemas:
     Syllables:
       type: object
@@ -75,6 +66,62 @@ components:
           example:
           - ap
           - ple
+    Error:
+      type: object
+      description: Error response body returned by Words API when a request fails.
+      properties:
+        success:
+          type: boolean
+          description: Always false for error responses.
+          example: false
+        message:
+          type: string
+          description: Human-readable description of the error.
+          example: word not found
+      required:
+      - message
+    Pronunciation:
+      type: object
+      description: Pronunciation in IPA. May be a single string or split by part of speech.
+      properties:
+        all:
+          type: string
+          description: IPA pronunciation that applies across all parts of speech.
+          example: ˈæp.əl
+        noun:
+          type: string
+          description: IPA pronunciation when the word is used as a noun.
+        verb:
+          type: string
+          description: IPA pronunciation when the word is used as a verb.
+        adjective:
+          type: string
+          description: IPA pronunciation when the word is used as an adjective.
+        adverb:
+          type: string
+          description: IPA pronunciation when the word is used as an adverb.
+    WordEntry:
+      type: object
+      description: Full lexical entry for one English word — every detail-type endpoint reads from this structure.
+      properties:
+        word:
+          type: string
+          description: The headword.
+          example: apple
+        results:
+          type: array
+          description: One Result per documented sense of the word.
+          items:
+            $ref: '#/components/schemas/Result'
+        syllables:
+          $ref: '#/components/schemas/Syllables'
+        pronunciation:
+          $ref: '#/components/schemas/Pronunciation'
+        frequency:
+          type: number
+          format: double
+          description: Legacy frequency score (Zipf scale).
+          example: 4.83
     Result:
       type: object
       description: Single lexical-relationship record for one sense of a word.
@@ -210,65 +257,9 @@ components:
           description: Words this sense pertains to.
           items:
             type: string
-    Error:
-      type: object
-      description: Error response body returned by Words API when a request fails.
-      properties:
-        success:
-          type: boolean
-          description: Always false for error responses.
-          example: false
-        message:
-          type: string
-          description: Human-readable description of the error.
-          example: word not found
-      required:
-      - message
-    WordEntry:
-      type: object
-      description: Full lexical entry for one English word — every detail-type endpoint reads from this structure.
-      properties:
-        word:
-          type: string
-          description: The headword.
-          example: apple
-        results:
-          type: array
-          description: One Result per documented sense of the word.
-          items:
-            $ref: '#/components/schemas/Result'
-        syllables:
-          $ref: '#/components/schemas/Syllables'
-        pronunciation:
-          $ref: '#/components/schemas/Pronunciation'
-        frequency:
-          type: number
-          format: double
-          description: Legacy frequency score (Zipf scale).
-          example: 4.83
-    Pronunciation:
-      type: object
-      description: Pronunciation in IPA. May be a single string or split by part of speech.
-      properties:
-        all:
-          type: string
-          description: IPA pronunciation that applies across all parts of speech.
-          example: ˈæp.əl
-        noun:
-          type: string
-          description: IPA pronunciation when the word is used as a noun.
-        verb:
-          type: string
-          description: IPA pronunciation when the word is used as a verb.
-        adjective:
-          type: string
-          description: IPA pronunciation when the word is used as an adjective.
-        adverb:
-          type: string
-          description: IPA pronunciation when the word is used as an adverb.
   responses:
-    NotFound:
-      description: Word not found in the Words API dictionary.
+    TooManyRequests:
+      description: Quota or rate limit exceeded.
       content:
         application/json:
           schema:
@@ -279,18 +270,27 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Word not found in the Words API dictionary.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     ServerError:
       description: Upstream Words API error.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    TooManyRequests:
-      description: Quota or rate limit exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  parameters:
+    Word:
+      name: word
+      in: path
+      required: true
+      description: The English word to look up.
+      schema:
+        type: string
+      example: apple
   securitySchemes:
     RapidApiKey:
       type: apiKey

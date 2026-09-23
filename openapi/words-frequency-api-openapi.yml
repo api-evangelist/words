@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Words Categories Frequency API
+  title: Words Frequency API
   version: 1.0.0
   description: Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.
   contact:
@@ -43,15 +43,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    Word:
-      name: word
-      in: path
-      required: true
-      description: The English word to look up.
-      schema:
-        type: string
-      example: apple
   responses:
     NotFound:
       description: Word not found in the Words API dictionary.
@@ -60,17 +51,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
-    FrequencyResponse:
-      type: object
-      description: Response from GET /words/{word}/frequency.
-      allOf:
-      - type: object
-        properties:
-          word:
-            type: string
-            example: apple
-          frequency:
-            $ref: '#/components/schemas/Frequency'
     Error:
       type: object
       description: Error response body returned by Words API when a request fails.
@@ -85,6 +65,17 @@ components:
           example: word not found
       required:
       - message
+    FrequencyResponse:
+      type: object
+      description: Response from GET /words/{word}/frequency.
+      allOf:
+      - type: object
+        properties:
+          word:
+            type: string
+            example: apple
+          frequency:
+            $ref: '#/components/schemas/Frequency'
     Frequency:
       type: object
       description: Corpus-derived frequency information for a word.
@@ -104,6 +95,15 @@ components:
           format: double
           description: Likelihood (0–1) that the word appears in a randomly chosen document.
           example: 0.17
+  parameters:
+    Word:
+      name: word
+      in: path
+      required: true
+      description: The English word to look up.
+      schema:
+        type: string
+      example: apple
   securitySchemes:
     RapidApiKey:
       type: apiKey

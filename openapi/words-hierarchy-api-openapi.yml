@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Words Categories Hierarchy API
+  title: Words Hierarchy API
   version: 1.0.0
   description: Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.
   contact:
@@ -232,28 +232,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    InstancesResponse:
-      type: object
-      properties:
-        word:
-          type: string
-        instances:
-          type: array
-          items:
-            type: string
-    PartOfResponse:
-      type: object
-      properties:
-        word:
-          type: string
-          example: wheel
-        partOf:
-          type: array
-          items:
-            type: string
-          example:
-          - car
-          - bicycle
     HasSubstancesResponse:
       type: object
       properties:
@@ -263,33 +241,15 @@ components:
           type: array
           items:
             type: string
-    HasPartsResponse:
+    SubstanceOfResponse:
       type: object
       properties:
         word:
           type: string
-          example: car
-        hasParts:
+        substanceOf:
           type: array
           items:
             type: string
-          example:
-          - wheel
-          - engine
-          - door
-    EntailsResponse:
-      type: object
-      properties:
-        word:
-          type: string
-          example: walk
-        entails:
-          type: array
-          items:
-            type: string
-          example:
-          - step
-          - move
     HasTypesResponse:
       type: object
       properties:
@@ -304,33 +264,33 @@ components:
           - apple
           - orange
           - pear
-    SubstanceOfResponse:
+    PartOfResponse:
       type: object
       properties:
         word:
           type: string
-        substanceOf:
+          example: wheel
+        partOf:
           type: array
           items:
             type: string
-    InstanceOfResponse:
+          example:
+          - car
+          - bicycle
+    HasPartsResponse:
       type: object
       properties:
         word:
           type: string
-        instanceOf:
+          example: car
+        hasParts:
           type: array
           items:
             type: string
-    MemberOfResponse:
-      type: object
-      properties:
-        word:
-          type: string
-        memberOf:
-          type: array
-          items:
-            type: string
+          example:
+          - wheel
+          - engine
+          - door
     HasMembersResponse:
       type: object
       properties:
@@ -340,6 +300,19 @@ components:
           type: array
           items:
             type: string
+    EntailsResponse:
+      type: object
+      properties:
+        word:
+          type: string
+          example: walk
+        entails:
+          type: array
+          items:
+            type: string
+          example:
+          - step
+          - move
     TypeOfResponse:
       type: object
       properties:
@@ -354,6 +327,33 @@ components:
           - edible fruit
           - pome
           - false fruit
+    InstanceOfResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        instanceOf:
+          type: array
+          items:
+            type: string
+    InstancesResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        instances:
+          type: array
+          items:
+            type: string
+    MemberOfResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        memberOf:
+          type: array
+          items:
+            type: string
   parameters:
     Word:
       name: word

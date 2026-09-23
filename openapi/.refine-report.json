@@ -1,15 +1,7 @@
 {
   "provider": "words",
   "sources": [
-    "words-categories-api-openapi.yml",
-    "words-definitions-api-openapi.yml",
-    "words-examples-api-openapi.yml",
-    "words-frequency-api-openapi.yml",
-    "words-hierarchy-api-openapi.yml",
-    "words-phonetics-api-openapi.yml",
-    "words-search-api-openapi.yml",
-    "words-thesaurus-api-openapi.yml",
-    "words-word-api-openapi.yml"
+    "_ae-authored/words-openapi.yml"
   ],
   "outputs": [
     "words-categories-api-openapi.yml",
@@ -26,16 +18,19 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "words-categories-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "words-definitions-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "words-examples-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "words-frequency-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "words-hierarchy-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "words-phonetics-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "words-search-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "words-thesaurus-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "words-word-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "words-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "words-categories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "words-definitions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "words-examples-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "words-frequency-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "words-hierarchy-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "words-phonetics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "words-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "words-thesaurus-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "words-word-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

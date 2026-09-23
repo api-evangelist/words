@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Words Categories Examples API
+  title: Words Examples API
   version: 1.0.0
   description: Words API is a RESTful English-language API that provides definitions, synonyms, antonyms, related words, syllables, pronunciation (IPA), rhymes, frequency, and hierarchical lexical relationships (typeOf, hasTypes, partOf, hasParts, memberOf, similarTo, also, entails, inCategory, inRegion, pertainsTo, etc.) for more than 150,000 English words. Authentication is handled via the RapidAPI marketplace using the X-RapidAPI-Key and X-RapidAPI-Host headers.
   contact:
@@ -43,13 +43,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    NotFound:
-      description: Word not found in the Words API dictionary.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     Word:
       name: word
@@ -59,7 +52,27 @@ components:
       schema:
         type: string
       example: apple
+  responses:
+    NotFound:
+      description: Word not found in the Words API dictionary.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    ExamplesResponse:
+      type: object
+      description: Response from GET /words/{word}/examples.
+      properties:
+        word:
+          type: string
+          example: apple
+        examples:
+          type: array
+          items:
+            type: string
+          example:
+          - he is the apple of my eye
     Error:
       type: object
       description: Error response body returned by Words API when a request fails.
@@ -74,19 +87,6 @@ components:
           example: word not found
       required:
       - message
-    ExamplesResponse:
-      type: object
-      description: Response from GET /words/{word}/examples.
-      properties:
-        word:
-          type: string
-          example: apple
-        examples:
-          type: array
-          items:
-            type: string
-          example:
-          - he is the apple of my eye
   securitySchemes:
     RapidApiKey:
       type: apiKey
