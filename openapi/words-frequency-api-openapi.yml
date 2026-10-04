@@ -50,21 +50,16 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    Word:
+      name: word
+      in: path
+      required: true
+      description: The English word to look up.
+      schema:
+        type: string
+      example: apple
   schemas:
-    Error:
-      type: object
-      description: Error response body returned by Words API when a request fails.
-      properties:
-        success:
-          type: boolean
-          description: Always false for error responses.
-          example: false
-        message:
-          type: string
-          description: Human-readable description of the error.
-          example: word not found
-      required:
-      - message
     FrequencyResponse:
       type: object
       description: Response from GET /words/{word}/frequency.
@@ -95,15 +90,20 @@ components:
           format: double
           description: Likelihood (0–1) that the word appears in a randomly chosen document.
           example: 0.17
-  parameters:
-    Word:
-      name: word
-      in: path
-      required: true
-      description: The English word to look up.
-      schema:
-        type: string
-      example: apple
+    Error:
+      type: object
+      description: Error response body returned by Words API when a request fails.
+      properties:
+        success:
+          type: boolean
+          description: Always false for error responses.
+          example: false
+        message:
+          type: string
+          description: Human-readable description of the error.
+          example: word not found
+      required:
+      - message
   securitySchemes:
     RapidApiKey:
       type: apiKey

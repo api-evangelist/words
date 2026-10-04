@@ -49,6 +49,31 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    NotFound:
+      description: Word not found in the Words API dictionary.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid RapidAPI credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Upstream Words API error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Quota or rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Syllables:
       type: object
@@ -66,40 +91,6 @@ components:
           example:
           - ap
           - ple
-    Error:
-      type: object
-      description: Error response body returned by Words API when a request fails.
-      properties:
-        success:
-          type: boolean
-          description: Always false for error responses.
-          example: false
-        message:
-          type: string
-          description: Human-readable description of the error.
-          example: word not found
-      required:
-      - message
-    Pronunciation:
-      type: object
-      description: Pronunciation in IPA. May be a single string or split by part of speech.
-      properties:
-        all:
-          type: string
-          description: IPA pronunciation that applies across all parts of speech.
-          example: ˈæp.əl
-        noun:
-          type: string
-          description: IPA pronunciation when the word is used as a noun.
-        verb:
-          type: string
-          description: IPA pronunciation when the word is used as a verb.
-        adjective:
-          type: string
-          description: IPA pronunciation when the word is used as an adjective.
-        adverb:
-          type: string
-          description: IPA pronunciation when the word is used as an adverb.
     WordEntry:
       type: object
       description: Full lexical entry for one English word — every detail-type endpoint reads from this structure.
@@ -122,6 +113,26 @@ components:
           format: double
           description: Legacy frequency score (Zipf scale).
           example: 4.83
+    Pronunciation:
+      type: object
+      description: Pronunciation in IPA. May be a single string or split by part of speech.
+      properties:
+        all:
+          type: string
+          description: IPA pronunciation that applies across all parts of speech.
+          example: ˈæp.əl
+        noun:
+          type: string
+          description: IPA pronunciation when the word is used as a noun.
+        verb:
+          type: string
+          description: IPA pronunciation when the word is used as a verb.
+        adjective:
+          type: string
+          description: IPA pronunciation when the word is used as an adjective.
+        adverb:
+          type: string
+          description: IPA pronunciation when the word is used as an adverb.
     Result:
       type: object
       description: Single lexical-relationship record for one sense of a word.
@@ -257,31 +268,20 @@ components:
           description: Words this sense pertains to.
           items:
             type: string
-  responses:
-    TooManyRequests:
-      description: Quota or rate limit exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid RapidAPI credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Word not found in the Words API dictionary.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Upstream Words API error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      description: Error response body returned by Words API when a request fails.
+      properties:
+        success:
+          type: boolean
+          description: Always false for error responses.
+          example: false
+        message:
+          type: string
+          description: Human-readable description of the error.
+          example: word not found
+      required:
+      - message
   parameters:
     Word:
       name: word

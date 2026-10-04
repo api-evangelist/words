@@ -85,24 +85,43 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    NotFound:
+      description: Word not found in the Words API dictionary.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Word:
+      name: word
+      in: path
+      required: true
+      description: The English word to look up.
+      schema:
+        type: string
+      example: apple
   schemas:
-    SyllablesResponse:
+    Pronunciation:
       type: object
-      description: Response from GET /words/{word}/syllables.
+      description: Pronunciation in IPA. May be a single string or split by part of speech.
       properties:
-        word:
+        all:
           type: string
-          example: apple
-        numSyllables:
-          type: integer
-          example: 2
-        list:
-          type: array
-          items:
-            type: string
-          example:
-          - ap
-          - ple
+          description: IPA pronunciation that applies across all parts of speech.
+          example: ˈæp.əl
+        noun:
+          type: string
+          description: IPA pronunciation when the word is used as a noun.
+        verb:
+          type: string
+          description: IPA pronunciation when the word is used as a verb.
+        adjective:
+          type: string
+          description: IPA pronunciation when the word is used as an adjective.
+        adverb:
+          type: string
+          description: IPA pronunciation when the word is used as an adverb.
     RhymesResponse:
       type: object
       description: Response from GET /words/{word}/rhymes.
@@ -122,6 +141,23 @@ components:
             - chapel
             - dapple
             - grapple
+    SyllablesResponse:
+      type: object
+      description: Response from GET /words/{word}/syllables.
+      properties:
+        word:
+          type: string
+          example: apple
+        numSyllables:
+          type: integer
+          example: 2
+        list:
+          type: array
+          items:
+            type: string
+          example:
+          - ap
+          - ple
     PronunciationResponse:
       type: object
       description: Response from GET /words/{word}/pronunciation.
@@ -145,42 +181,6 @@ components:
           example: word not found
       required:
       - message
-    Pronunciation:
-      type: object
-      description: Pronunciation in IPA. May be a single string or split by part of speech.
-      properties:
-        all:
-          type: string
-          description: IPA pronunciation that applies across all parts of speech.
-          example: ˈæp.əl
-        noun:
-          type: string
-          description: IPA pronunciation when the word is used as a noun.
-        verb:
-          type: string
-          description: IPA pronunciation when the word is used as a verb.
-        adjective:
-          type: string
-          description: IPA pronunciation when the word is used as an adjective.
-        adverb:
-          type: string
-          description: IPA pronunciation when the word is used as an adverb.
-  responses:
-    NotFound:
-      description: Word not found in the Words API dictionary.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    Word:
-      name: word
-      in: path
-      required: true
-      description: The English word to look up.
-      schema:
-        type: string
-      example: apple
   securitySchemes:
     RapidApiKey:
       type: apiKey

@@ -156,33 +156,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    RegionOfResponse:
-      type: object
-      properties:
-        word:
-          type: string
-        regionOf:
-          type: array
-          items:
-            type: string
-    HasCategoriesResponse:
-      type: object
-      properties:
-        word:
-          type: string
-        hasCategories:
-          type: array
-          items:
-            type: string
-    InCategoryResponse:
-      type: object
-      properties:
-        word:
-          type: string
-        inCategory:
-          type: array
-          items:
-            type: string
     PertainsToResponse:
       type: object
       properties:
@@ -192,12 +165,12 @@ components:
           type: array
           items:
             type: string
-    UsageOfResponse:
+    HasCategoriesResponse:
       type: object
       properties:
         word:
           type: string
-        usageOf:
+        hasCategories:
           type: array
           items:
             type: string
@@ -216,6 +189,33 @@ components:
         word:
           type: string
         hasUsages:
+          type: array
+          items:
+            type: string
+    RegionOfResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        regionOf:
+          type: array
+          items:
+            type: string
+    InCategoryResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        inCategory:
+          type: array
+          items:
+            type: string
+    UsageOfResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        usageOf:
           type: array
           items:
             type: string

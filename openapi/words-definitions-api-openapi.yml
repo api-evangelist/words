@@ -50,7 +50,28 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    Word:
+      name: word
+      in: path
+      required: true
+      description: The English word to look up.
+      schema:
+        type: string
+      example: apple
   schemas:
+    DefinitionEntry:
+      type: object
+      description: One definition with its grammatical category.
+      properties:
+        definition:
+          type: string
+          description: Definition text.
+          example: fruit with red or yellow or green skin and sweet to tart crisp whitish flesh
+        partOfSpeech:
+          type: string
+          description: Grammatical category.
+          example: noun
     Error:
       type: object
       description: Error response body returned by Words API when a request fails.
@@ -76,27 +97,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DefinitionEntry'
-    DefinitionEntry:
-      type: object
-      description: One definition with its grammatical category.
-      properties:
-        definition:
-          type: string
-          description: Definition text.
-          example: fruit with red or yellow or green skin and sweet to tart crisp whitish flesh
-        partOfSpeech:
-          type: string
-          description: Grammatical category.
-          example: noun
-  parameters:
-    Word:
-      name: word
-      in: path
-      required: true
-      description: The English word to look up.
-      schema:
-        type: string
-      example: apple
   securitySchemes:
     RapidApiKey:
       type: apiKey

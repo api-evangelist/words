@@ -232,38 +232,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    HasSubstancesResponse:
-      type: object
-      properties:
-        word:
-          type: string
-        hasSubstances:
-          type: array
-          items:
-            type: string
-    SubstanceOfResponse:
-      type: object
-      properties:
-        word:
-          type: string
-        substanceOf:
-          type: array
-          items:
-            type: string
-    HasTypesResponse:
-      type: object
-      properties:
-        word:
-          type: string
-          example: fruit
-        hasTypes:
-          type: array
-          items:
-            type: string
-          example:
-          - apple
-          - orange
-          - pear
     PartOfResponse:
       type: object
       properties:
@@ -277,20 +245,15 @@ components:
           example:
           - car
           - bicycle
-    HasPartsResponse:
+    HasSubstancesResponse:
       type: object
       properties:
         word:
           type: string
-          example: car
-        hasParts:
+        hasSubstances:
           type: array
           items:
             type: string
-          example:
-          - wheel
-          - engine
-          - door
     HasMembersResponse:
       type: object
       properties:
@@ -300,19 +263,6 @@ components:
           type: array
           items:
             type: string
-    EntailsResponse:
-      type: object
-      properties:
-        word:
-          type: string
-          example: walk
-        entails:
-          type: array
-          items:
-            type: string
-          example:
-          - step
-          - move
     TypeOfResponse:
       type: object
       properties:
@@ -336,6 +286,56 @@ components:
           type: array
           items:
             type: string
+    HasTypesResponse:
+      type: object
+      properties:
+        word:
+          type: string
+          example: fruit
+        hasTypes:
+          type: array
+          items:
+            type: string
+          example:
+          - apple
+          - orange
+          - pear
+    SubstanceOfResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        substanceOf:
+          type: array
+          items:
+            type: string
+    EntailsResponse:
+      type: object
+      properties:
+        word:
+          type: string
+          example: walk
+        entails:
+          type: array
+          items:
+            type: string
+          example:
+          - step
+          - move
+    HasPartsResponse:
+      type: object
+      properties:
+        word:
+          type: string
+          example: car
+        hasParts:
+          type: array
+          items:
+            type: string
+          example:
+          - wheel
+          - engine
+          - door
     InstancesResponse:
       type: object
       properties:

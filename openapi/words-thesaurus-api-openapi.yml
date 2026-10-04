@@ -102,7 +102,50 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    NotFound:
+      description: Word not found in the Words API dictionary.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    AlsoResponse:
+      type: object
+      properties:
+        word:
+          type: string
+        also:
+          type: array
+          items:
+            type: string
+    AntonymsResponse:
+      type: object
+      description: Response from GET /words/{word}/antonyms.
+      properties:
+        word:
+          type: string
+          example: happy
+        antonyms:
+          type: array
+          items:
+            type: string
+          example:
+          - unhappy
+          - sad
+    SimilarToResponse:
+      type: object
+      properties:
+        word:
+          type: string
+          example: bright
+        similarTo:
+          type: array
+          items:
+            type: string
+          example:
+          - vivid
+          - brilliant
     SynonymsResponse:
       type: object
       description: Response from GET /words/{word}/synonyms.
@@ -132,49 +175,6 @@ components:
           example: word not found
       required:
       - message
-    AntonymsResponse:
-      type: object
-      description: Response from GET /words/{word}/antonyms.
-      properties:
-        word:
-          type: string
-          example: happy
-        antonyms:
-          type: array
-          items:
-            type: string
-          example:
-          - unhappy
-          - sad
-    SimilarToResponse:
-      type: object
-      properties:
-        word:
-          type: string
-          example: bright
-        similarTo:
-          type: array
-          items:
-            type: string
-          example:
-          - vivid
-          - brilliant
-    AlsoResponse:
-      type: object
-      properties:
-        word:
-          type: string
-        also:
-          type: array
-          items:
-            type: string
-  responses:
-    NotFound:
-      description: Word not found in the Words API dictionary.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     Word:
       name: word

@@ -160,12 +160,6 @@ paths:
         dispatcher: FALLBACK
 components:
   responses:
-    TooManyRequests:
-      description: Quota or rate limit exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing or invalid RapidAPI credentials.
       content:
@@ -178,21 +172,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Quota or rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      description: Error response body returned by Words API when a request fails.
-      properties:
-        success:
-          type: boolean
-          description: Always false for error responses.
-          example: false
-        message:
-          type: string
-          description: Human-readable description of the error.
-          example: word not found
-      required:
-      - message
     SearchResponse:
       type: object
       description: Response from GET /words search.
@@ -220,6 +206,20 @@ components:
           type: string
           description: When random=true, the single random word returned.
           example: serendipity
+    Error:
+      type: object
+      description: Error response body returned by Words API when a request fails.
+      properties:
+        success:
+          type: boolean
+          description: Always false for error responses.
+          example: false
+        message:
+          type: string
+          description: Human-readable description of the error.
+          example: word not found
+      required:
+      - message
   securitySchemes:
     RapidApiKey:
       type: apiKey
